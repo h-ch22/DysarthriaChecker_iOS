@@ -1,0 +1,988 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B49A47529FA33F800978134 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B49A47429FA33F800978134 /* GoogleService-Info.plist */; };
+		7B49A47829FA343A00978134 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47729FA343A00978134 /* FirebaseAnalytics */; };
+		7B49A47A29FA343A00978134 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47929FA343A00978134 /* FirebaseAnalyticsSwift */; };
+		7B49A47C29FA343A00978134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47B29FA343A00978134 /* FirebaseAuth */; };
+		7B49A47E29FA343A00978134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47D29FA343A00978134 /* FirebaseFirestore */; };
+		7B49A48029FA343A00978134 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47F29FA343A00978134 /* FirebaseFirestoreSwift */; };
+		7B49A48229FA343A00978134 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A48129FA343A00978134 /* FirebaseFunctions */; };
+		7B49A48429FA343A00978134 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A48329FA343A00978134 /* FirebaseMessaging */; };
+		7B49A48629FA343A00978134 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A48529FA343A00978134 /* FirebaseStorage */; };
+		7B49A48929FA34BF00978134 /* UserManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B49A48829FA34BF00978134 /* UserManagement.swift */; };
+		7B49A48C29FA34E100978134 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B49A48B29FA34E100978134 /* UserInfoModel.swift */; };
+		7B49A48E29FA361D00978134 /* TextLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B49A48D29FA361D00978134 /* TextLogoView.swift */; };
+		7B49A49029FA385B00978134 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B49A48F29FA385B00978134 /* TutorialView.swift */; };
+		7B4BE6742A113DFF00B9698D /* TrainingWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BE6732A113DFF00B9698D /* TrainingWarningView.swift */; };
+		7B505A282A1123A100614721 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B505A272A1123A100614721 /* ARModel.swift */; };
+		7B505A2A2A1123EA00614721 /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B505A292A1123EA00614721 /* ARViewModel.swift */; };
+		7B505A2C2A11248600614721 /* TrainingSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B505A2B2A11248600614721 /* TrainingSessionView.swift */; };
+		7B71DA0729FA32C2004B1EA8 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71DA0629FA32C2004B1EA8 /* SignInView.swift */; };
+		7B71DA0B29FA32D5004B1EA8 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71DA0A29FA32D5004B1EA8 /* SplashView.swift */; };
+		7B92FC1A2A11C1EF000D9763 /* TrainSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B92FC192A11C1EF000D9763 /* TrainSuccessView.swift */; };
+		7BA1D00729F42A190016578B /* DysarthriaCheckerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA1D00629F42A190016578B /* DysarthriaCheckerApp.swift */; };
+		7BA1D00B29F42A1A0016578B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA1D00A29F42A1A0016578B /* Assets.xcassets */; };
+		7BA1D00E29F42A1A0016578B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA1D00D29F42A1A0016578B /* Preview Assets.xcassets */; };
+		7BA1D01829F42A1A0016578B /* DysarthriaCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA1D01729F42A1A0016578B /* DysarthriaCheckerTests.swift */; };
+		7BA1D02229F42A1A0016578B /* DysarthriaCheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA1D02129F42A1A0016578B /* DysarthriaCheckerUITests.swift */; };
+		7BA1D02429F42A1A0016578B /* DysarthriaCheckerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA1D02329F42A1A0016578B /* DysarthriaCheckerUITestsLaunchTests.swift */; };
+		7BA7703F2A01EA5500D16A93 /* TrainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7703E2A01EA5500D16A93 /* TrainView.swift */; };
+		7BAD71D429FFF8D5004B7655 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD71D329FFF8D5004B7655 /* SignUpView.swift */; };
+		7BAD71D829FFFC92004B7655 /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD71D529FFFC91004B7655 /* PDFViewer.swift */; };
+		7BAD71D929FFFC92004B7655 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD71D629FFFC91004B7655 /* CheckBox.swift */; };
+		7BAD71DA29FFFC92004B7655 /* CheckBox_w.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD71D729FFFC92004B7655 /* CheckBox_w.swift */; };
+		7BAD71DD29FFFDE9004B7655 /* AES256Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD71DC29FFFDE9004B7655 /* AES256Util.swift */; };
+		7BAD71E029FFFE6D004B7655 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7BAD71DF29FFFE6D004B7655 /* CryptoSwift */; };
+		7BAD71E229FFFF2B004B7655 /* Process_signUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD71E129FFFF2B004B7655 /* Process_signUp.swift */; };
+		7BAD71E429FFFFA0004B7655 /* Process_error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD71E329FFFFA0004B7655 /* Process_error.swift */; };
+		7BAD71E62A0001A7004B7655 /* DisabledTypeCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAD71E52A0001A7004B7655 /* DisabledTypeCheckView.swift */; };
+		7BB5013C2A011F6A00F27BFB /* RadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB5013B2A011F6A00F27BFB /* RadioButtonGroup.swift */; };
+		7BB5013E2A011F9C00F27BFB /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB5013D2A011F9C00F27BFB /* RadioButton.swift */; };
+		7BB501402A01294600F27BFB /* SignUpAlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB5013F2A01294600F27BFB /* SignUpAlertModel.swift */; };
+		7BB501422A012EA900F27BFB /* signUp_done.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB501412A012EA900F27BFB /* signUp_done.swift */; };
+		7BB501442A012F6700F27BFB /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB501432A012F6700F27BFB /* TabManager.swift */; };
+		7BB501462A012FF000F27BFB /* onProgressCallerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB501452A012FF000F27BFB /* onProgressCallerModel.swift */; };
+		7BB501482A01317000F27BFB /* DisabledTypeCheckAlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB501472A01317000F27BFB /* DisabledTypeCheckAlertModel.swift */; };
+		7BB5014A2A015B9C00F27BFB /* LAHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB501492A015B9C00F27BFB /* LAHelper.swift */; };
+		7BB5014C2A0160AB00F27BFB /* DiseaseInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB5014B2A0160AB00F27BFB /* DiseaseInfoModel.swift */; };
+		7BB501502A0164AB00F27BFB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB5014F2A0164AB00F27BFB /* HomeView.swift */; };
+		7BB501542A01689D00F27BFB /* InspectionMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB501532A01689D00F27BFB /* InspectionMainView.swift */; };
+		7BB501562A016CBB00F27BFB /* InspectionTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB501552A016CBB00F27BFB /* InspectionTypeSelectionView.swift */; };
+		7BB501592A016CF300F27BFB /* InspectionTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB501582A016CF300F27BFB /* InspectionTypeModel.swift */; };
+		7BB5015B2A0171F700F27BFB /* onModelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB5015A2A0171F700F27BFB /* onModelProgressView.swift */; };
+		7BB5015F2A0172BA00F27BFB /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB5015E2A0172BA00F27BFB /* MoreView.swift */; };
+		7BF99B0C2A0175B10035A0DB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF99B0B2A0175B10035A0DB /* ProfileView.swift */; };
+		7BF99B0F2A0178320035A0DB /* VersionManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF99B0E2A0178320035A0DB /* VersionManagement.swift */; };
+		7BF99B112A0179380035A0DB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF99B102A0179380035A0DB /* InfoView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7BA1D01429F42A1A0016578B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BA1CFFB29F42A190016578B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BA1D00229F42A190016578B;
+			remoteInfo = DysarthriaChecker;
+		};
+		7BA1D01E29F42A1A0016578B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7BA1CFFB29F42A190016578B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BA1D00229F42A190016578B;
+			remoteInfo = DysarthriaChecker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7B49A47429FA33F800978134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7B49A48829FA34BF00978134 /* UserManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagement.swift; sourceTree = "<group>"; };
+		7B49A48B29FA34E100978134 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
+		7B49A48D29FA361D00978134 /* TextLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLogoView.swift; sourceTree = "<group>"; };
+		7B49A48F29FA385B00978134 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		7B4BE6732A113DFF00B9698D /* TrainingWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingWarningView.swift; sourceTree = "<group>"; };
+		7B505A272A1123A100614721 /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
+		7B505A292A1123EA00614721 /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
+		7B505A2B2A11248600614721 /* TrainingSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSessionView.swift; sourceTree = "<group>"; };
+		7B71DA0629FA32C2004B1EA8 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		7B71DA0A29FA32D5004B1EA8 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		7B92FC192A11C1EF000D9763 /* TrainSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainSuccessView.swift; sourceTree = "<group>"; };
+		7BA1D00329F42A190016578B /* DysarthriaChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DysarthriaChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BA1D00629F42A190016578B /* DysarthriaCheckerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DysarthriaCheckerApp.swift; sourceTree = "<group>"; };
+		7BA1D00A29F42A1A0016578B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7BA1D00D29F42A1A0016578B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7BA1D01329F42A1A0016578B /* DysarthriaCheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DysarthriaCheckerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BA1D01729F42A1A0016578B /* DysarthriaCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DysarthriaCheckerTests.swift; sourceTree = "<group>"; };
+		7BA1D01D29F42A1A0016578B /* DysarthriaCheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DysarthriaCheckerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BA1D02129F42A1A0016578B /* DysarthriaCheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DysarthriaCheckerUITests.swift; sourceTree = "<group>"; };
+		7BA1D02329F42A1A0016578B /* DysarthriaCheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DysarthriaCheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7BA7703E2A01EA5500D16A93 /* TrainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainView.swift; sourceTree = "<group>"; };
+		7BAD71D329FFF8D5004B7655 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		7BAD71D529FFFC91004B7655 /* PDFViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
+		7BAD71D629FFFC91004B7655 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		7BAD71D729FFFC92004B7655 /* CheckBox_w.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox_w.swift; sourceTree = "<group>"; };
+		7BAD71DC29FFFDE9004B7655 /* AES256Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES256Util.swift; sourceTree = "<group>"; };
+		7BAD71E129FFFF2B004B7655 /* Process_signUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process_signUp.swift; sourceTree = "<group>"; };
+		7BAD71E329FFFFA0004B7655 /* Process_error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process_error.swift; sourceTree = "<group>"; };
+		7BAD71E52A0001A7004B7655 /* DisabledTypeCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledTypeCheckView.swift; sourceTree = "<group>"; };
+		7BB5013B2A011F6A00F27BFB /* RadioButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonGroup.swift; sourceTree = "<group>"; };
+		7BB5013D2A011F9C00F27BFB /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		7BB5013F2A01294600F27BFB /* SignUpAlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAlertModel.swift; sourceTree = "<group>"; };
+		7BB501412A012EA900F27BFB /* signUp_done.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUp_done.swift; sourceTree = "<group>"; };
+		7BB501432A012F6700F27BFB /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
+		7BB501452A012FF000F27BFB /* onProgressCallerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onProgressCallerModel.swift; sourceTree = "<group>"; };
+		7BB501472A01317000F27BFB /* DisabledTypeCheckAlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledTypeCheckAlertModel.swift; sourceTree = "<group>"; };
+		7BB501492A015B9C00F27BFB /* LAHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LAHelper.swift; sourceTree = "<group>"; };
+		7BB5014B2A0160AB00F27BFB /* DiseaseInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseInfoModel.swift; sourceTree = "<group>"; };
+		7BB5014F2A0164AB00F27BFB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7BB501532A01689D00F27BFB /* InspectionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionMainView.swift; sourceTree = "<group>"; };
+		7BB501552A016CBB00F27BFB /* InspectionTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionTypeSelectionView.swift; sourceTree = "<group>"; };
+		7BB501582A016CF300F27BFB /* InspectionTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionTypeModel.swift; sourceTree = "<group>"; };
+		7BB5015A2A0171F700F27BFB /* onModelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onModelProgressView.swift; sourceTree = "<group>"; };
+		7BB5015E2A0172BA00F27BFB /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		7BF99B0B2A0175B10035A0DB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		7BF99B0E2A0178320035A0DB /* VersionManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionManagement.swift; sourceTree = "<group>"; };
+		7BF99B102A0179380035A0DB /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7BA1D00029F42A190016578B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B49A48029FA343A00978134 /* FirebaseFirestoreSwift in Frameworks */,
+				7B49A47A29FA343A00978134 /* FirebaseAnalyticsSwift in Frameworks */,
+				7BAD71E029FFFE6D004B7655 /* CryptoSwift in Frameworks */,
+				7B49A48429FA343A00978134 /* FirebaseMessaging in Frameworks */,
+				7B49A47E29FA343A00978134 /* FirebaseFirestore in Frameworks */,
+				7B49A48229FA343A00978134 /* FirebaseFunctions in Frameworks */,
+				7B49A48629FA343A00978134 /* FirebaseStorage in Frameworks */,
+				7B49A47C29FA343A00978134 /* FirebaseAuth in Frameworks */,
+				7B49A47829FA343A00978134 /* FirebaseAnalytics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA1D01029F42A1A0016578B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA1D01A29F42A1A0016578B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B49A48729FA34B900978134 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7B49A48829FA34BF00978134 /* UserManagement.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		7B49A48A29FA34D900978134 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B49A48B29FA34E100978134 /* UserInfoModel.swift */,
+				7BB5013F2A01294600F27BFB /* SignUpAlertModel.swift */,
+				7BB501452A012FF000F27BFB /* onProgressCallerModel.swift */,
+				7BB501472A01317000F27BFB /* DisabledTypeCheckAlertModel.swift */,
+				7BB5014B2A0160AB00F27BFB /* DiseaseInfoModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7B71DA0429FA32B7004B1EA8 /* UserManagement */ = {
+			isa = PBXGroup;
+			children = (
+				7B49A48A29FA34D900978134 /* Models */,
+				7B49A48729FA34B900978134 /* Helper */,
+				7B71DA0529FA32BB004B1EA8 /* View */,
+			);
+			path = UserManagement;
+			sourceTree = "<group>";
+		};
+		7B71DA0529FA32BB004B1EA8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B71DA0629FA32C2004B1EA8 /* SignInView.swift */,
+				7BAD71D329FFF8D5004B7655 /* SignUpView.swift */,
+				7BAD71E129FFFF2B004B7655 /* Process_signUp.swift */,
+				7BAD71E329FFFFA0004B7655 /* Process_error.swift */,
+				7BAD71E52A0001A7004B7655 /* DisabledTypeCheckView.swift */,
+				7BB501412A012EA900F27BFB /* signUp_done.swift */,
+				7BF99B0B2A0175B10035A0DB /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B71DA0829FA32C7004B1EA8 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				7BAD71DB29FFFDE3004B7655 /* Helper */,
+				7B71DA0929FA32CD004B1EA8 /* View */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		7B71DA0929FA32CD004B1EA8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7BAD71D729FFFC92004B7655 /* CheckBox_w.swift */,
+				7BAD71D629FFFC91004B7655 /* CheckBox.swift */,
+				7BAD71D529FFFC91004B7655 /* PDFViewer.swift */,
+				7B71DA0A29FA32D5004B1EA8 /* SplashView.swift */,
+				7B49A48D29FA361D00978134 /* TextLogoView.swift */,
+				7B49A48F29FA385B00978134 /* TutorialView.swift */,
+				7BB5013B2A011F6A00F27BFB /* RadioButtonGroup.swift */,
+				7BB5013D2A011F9C00F27BFB /* RadioButton.swift */,
+				7BB501432A012F6700F27BFB /* TabManager.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7BA1CFFA29F42A190016578B = {
+			isa = PBXGroup;
+			children = (
+				7B49A47429FA33F800978134 /* GoogleService-Info.plist */,
+				7BA1D00529F42A190016578B /* DysarthriaChecker */,
+				7BA1D01629F42A1A0016578B /* DysarthriaCheckerTests */,
+				7BA1D02029F42A1A0016578B /* DysarthriaCheckerUITests */,
+				7BA1D00429F42A190016578B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7BA1D00429F42A190016578B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7BA1D00329F42A190016578B /* DysarthriaChecker.app */,
+				7BA1D01329F42A1A0016578B /* DysarthriaCheckerTests.xctest */,
+				7BA1D01D29F42A1A0016578B /* DysarthriaCheckerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7BA1D00529F42A190016578B /* DysarthriaChecker */ = {
+			isa = PBXGroup;
+			children = (
+				7BA7703C2A01EA4700D16A93 /* Train */,
+				7BB5015C2A0172AA00F27BFB /* More */,
+				7BB501512A01688B00F27BFB /* Inspection */,
+				7BB5014D2A01649800F27BFB /* Home */,
+				7B71DA0829FA32C7004B1EA8 /* Framework */,
+				7B71DA0429FA32B7004B1EA8 /* UserManagement */,
+				7BA1D00629F42A190016578B /* DysarthriaCheckerApp.swift */,
+				7BA1D00A29F42A1A0016578B /* Assets.xcassets */,
+				7BA1D00C29F42A1A0016578B /* Preview Content */,
+			);
+			path = DysarthriaChecker;
+			sourceTree = "<group>";
+		};
+		7BA1D00C29F42A1A0016578B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7BA1D00D29F42A1A0016578B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7BA1D01629F42A1A0016578B /* DysarthriaCheckerTests */ = {
+			isa = PBXGroup;
+			children = (
+				7BA1D01729F42A1A0016578B /* DysarthriaCheckerTests.swift */,
+			);
+			path = DysarthriaCheckerTests;
+			sourceTree = "<group>";
+		};
+		7BA1D02029F42A1A0016578B /* DysarthriaCheckerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7BA1D02129F42A1A0016578B /* DysarthriaCheckerUITests.swift */,
+				7BA1D02329F42A1A0016578B /* DysarthriaCheckerUITestsLaunchTests.swift */,
+			);
+			path = DysarthriaCheckerUITests;
+			sourceTree = "<group>";
+		};
+		7BA7703C2A01EA4700D16A93 /* Train */ = {
+			isa = PBXGroup;
+			children = (
+				7BA770402A01EB8A00D16A93 /* Models */,
+				7BA7703D2A01EA4C00D16A93 /* View */,
+			);
+			path = Train;
+			sourceTree = "<group>";
+		};
+		7BA7703D2A01EA4C00D16A93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7BA7703E2A01EA5500D16A93 /* TrainView.swift */,
+				7B505A2B2A11248600614721 /* TrainingSessionView.swift */,
+				7B4BE6732A113DFF00B9698D /* TrainingWarningView.swift */,
+				7B92FC192A11C1EF000D9763 /* TrainSuccessView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7BA770402A01EB8A00D16A93 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B505A272A1123A100614721 /* ARModel.swift */,
+				7B505A292A1123EA00614721 /* ARViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7BAD71DB29FFFDE3004B7655 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7BAD71DC29FFFDE9004B7655 /* AES256Util.swift */,
+				7BB501492A015B9C00F27BFB /* LAHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		7BB5014D2A01649800F27BFB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7BB5014E2A0164A300F27BFB /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7BB5014E2A0164A300F27BFB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7BB5014F2A0164AB00F27BFB /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7BB501512A01688B00F27BFB /* Inspection */ = {
+			isa = PBXGroup;
+			children = (
+				7BB501572A016CE800F27BFB /* Models */,
+				7BB501522A01689200F27BFB /* View */,
+			);
+			path = Inspection;
+			sourceTree = "<group>";
+		};
+		7BB501522A01689200F27BFB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7BB501532A01689D00F27BFB /* InspectionMainView.swift */,
+				7BB501552A016CBB00F27BFB /* InspectionTypeSelectionView.swift */,
+				7BB5015A2A0171F700F27BFB /* onModelProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7BB501572A016CE800F27BFB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7BB501582A016CF300F27BFB /* InspectionTypeModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7BB5015C2A0172AA00F27BFB /* More */ = {
+			isa = PBXGroup;
+			children = (
+				7BF99B0D2A0178270035A0DB /* Helper */,
+				7BB5015D2A0172B200F27BFB /* View */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		7BB5015D2A0172B200F27BFB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7BB5015E2A0172BA00F27BFB /* MoreView.swift */,
+				7BF99B102A0179380035A0DB /* InfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7BF99B0D2A0178270035A0DB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7BF99B0E2A0178320035A0DB /* VersionManagement.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7BA1D00229F42A190016578B /* DysarthriaChecker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BA1D02729F42A1A0016578B /* Build configuration list for PBXNativeTarget "DysarthriaChecker" */;
+			buildPhases = (
+				7BA1CFFF29F42A190016578B /* Sources */,
+				7BA1D00029F42A190016578B /* Frameworks */,
+				7BA1D00129F42A190016578B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DysarthriaChecker;
+			packageProductDependencies = (
+				7B49A47729FA343A00978134 /* FirebaseAnalytics */,
+				7B49A47929FA343A00978134 /* FirebaseAnalyticsSwift */,
+				7B49A47B29FA343A00978134 /* FirebaseAuth */,
+				7B49A47D29FA343A00978134 /* FirebaseFirestore */,
+				7B49A47F29FA343A00978134 /* FirebaseFirestoreSwift */,
+				7B49A48129FA343A00978134 /* FirebaseFunctions */,
+				7B49A48329FA343A00978134 /* FirebaseMessaging */,
+				7B49A48529FA343A00978134 /* FirebaseStorage */,
+				7BAD71DF29FFFE6D004B7655 /* CryptoSwift */,
+			);
+			productName = DysarthriaChecker;
+			productReference = 7BA1D00329F42A190016578B /* DysarthriaChecker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7BA1D01229F42A1A0016578B /* DysarthriaCheckerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BA1D02A29F42A1A0016578B /* Build configuration list for PBXNativeTarget "DysarthriaCheckerTests" */;
+			buildPhases = (
+				7BA1D00F29F42A1A0016578B /* Sources */,
+				7BA1D01029F42A1A0016578B /* Frameworks */,
+				7BA1D01129F42A1A0016578B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7BA1D01529F42A1A0016578B /* PBXTargetDependency */,
+			);
+			name = DysarthriaCheckerTests;
+			productName = DysarthriaCheckerTests;
+			productReference = 7BA1D01329F42A1A0016578B /* DysarthriaCheckerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7BA1D01C29F42A1A0016578B /* DysarthriaCheckerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BA1D02D29F42A1A0016578B /* Build configuration list for PBXNativeTarget "DysarthriaCheckerUITests" */;
+			buildPhases = (
+				7BA1D01929F42A1A0016578B /* Sources */,
+				7BA1D01A29F42A1A0016578B /* Frameworks */,
+				7BA1D01B29F42A1A0016578B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7BA1D01F29F42A1A0016578B /* PBXTargetDependency */,
+			);
+			name = DysarthriaCheckerUITests;
+			productName = DysarthriaCheckerUITests;
+			productReference = 7BA1D01D29F42A1A0016578B /* DysarthriaCheckerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7BA1CFFB29F42A190016578B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					7BA1D00229F42A190016578B = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					7BA1D01229F42A1A0016578B = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 7BA1D00229F42A190016578B;
+					};
+					7BA1D01C29F42A1A0016578B = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 7BA1D00229F42A190016578B;
+					};
+				};
+			};
+			buildConfigurationList = 7BA1CFFE29F42A190016578B /* Build configuration list for PBXProject "DysarthriaChecker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7BA1CFFA29F42A190016578B;
+			packageReferences = (
+				7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7BAD71DE29FFFE6D004B7655 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+			);
+			productRefGroup = 7BA1D00429F42A190016578B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7BA1D00229F42A190016578B /* DysarthriaChecker */,
+				7BA1D01229F42A1A0016578B /* DysarthriaCheckerTests */,
+				7BA1D01C29F42A1A0016578B /* DysarthriaCheckerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7BA1D00129F42A190016578B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BA1D00E29F42A1A0016578B /* Preview Assets.xcassets in Resources */,
+				7B49A47529FA33F800978134 /* GoogleService-Info.plist in Resources */,
+				7BA1D00B29F42A1A0016578B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA1D01129F42A1A0016578B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA1D01B29F42A1A0016578B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7BA1CFFF29F42A190016578B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B49A49029FA385B00978134 /* TutorialView.swift in Sources */,
+				7B4BE6742A113DFF00B9698D /* TrainingWarningView.swift in Sources */,
+				7BF99B112A0179380035A0DB /* InfoView.swift in Sources */,
+				7BB501562A016CBB00F27BFB /* InspectionTypeSelectionView.swift in Sources */,
+				7BB5014A2A015B9C00F27BFB /* LAHelper.swift in Sources */,
+				7BAD71DA29FFFC92004B7655 /* CheckBox_w.swift in Sources */,
+				7BB501502A0164AB00F27BFB /* HomeView.swift in Sources */,
+				7B71DA0729FA32C2004B1EA8 /* SignInView.swift in Sources */,
+				7B505A2C2A11248600614721 /* TrainingSessionView.swift in Sources */,
+				7BAD71DD29FFFDE9004B7655 /* AES256Util.swift in Sources */,
+				7BA1D00729F42A190016578B /* DysarthriaCheckerApp.swift in Sources */,
+				7BB501442A012F6700F27BFB /* TabManager.swift in Sources */,
+				7B71DA0B29FA32D5004B1EA8 /* SplashView.swift in Sources */,
+				7BB501402A01294600F27BFB /* SignUpAlertModel.swift in Sources */,
+				7BAD71D929FFFC92004B7655 /* CheckBox.swift in Sources */,
+				7BB501542A01689D00F27BFB /* InspectionMainView.swift in Sources */,
+				7BB5015B2A0171F700F27BFB /* onModelProgressView.swift in Sources */,
+				7BB5013C2A011F6A00F27BFB /* RadioButtonGroup.swift in Sources */,
+				7BAD71D429FFF8D5004B7655 /* SignUpView.swift in Sources */,
+				7B505A2A2A1123EA00614721 /* ARViewModel.swift in Sources */,
+				7B49A48929FA34BF00978134 /* UserManagement.swift in Sources */,
+				7BB5013E2A011F9C00F27BFB /* RadioButton.swift in Sources */,
+				7BF99B0C2A0175B10035A0DB /* ProfileView.swift in Sources */,
+				7B49A48E29FA361D00978134 /* TextLogoView.swift in Sources */,
+				7BB5015F2A0172BA00F27BFB /* MoreView.swift in Sources */,
+				7B92FC1A2A11C1EF000D9763 /* TrainSuccessView.swift in Sources */,
+				7BF99B0F2A0178320035A0DB /* VersionManagement.swift in Sources */,
+				7BA7703F2A01EA5500D16A93 /* TrainView.swift in Sources */,
+				7BB501422A012EA900F27BFB /* signUp_done.swift in Sources */,
+				7BB501592A016CF300F27BFB /* InspectionTypeModel.swift in Sources */,
+				7BAD71E229FFFF2B004B7655 /* Process_signUp.swift in Sources */,
+				7B49A48C29FA34E100978134 /* UserInfoModel.swift in Sources */,
+				7BB501462A012FF000F27BFB /* onProgressCallerModel.swift in Sources */,
+				7BAD71E62A0001A7004B7655 /* DisabledTypeCheckView.swift in Sources */,
+				7BB5014C2A0160AB00F27BFB /* DiseaseInfoModel.swift in Sources */,
+				7BAD71E429FFFFA0004B7655 /* Process_error.swift in Sources */,
+				7B505A282A1123A100614721 /* ARModel.swift in Sources */,
+				7BAD71D829FFFC92004B7655 /* PDFViewer.swift in Sources */,
+				7BB501482A01317000F27BFB /* DisabledTypeCheckAlertModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA1D00F29F42A1A0016578B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BA1D01829F42A1A0016578B /* DysarthriaCheckerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA1D01929F42A1A0016578B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BA1D02229F42A1A0016578B /* DysarthriaCheckerUITests.swift in Sources */,
+				7BA1D02429F42A1A0016578B /* DysarthriaCheckerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7BA1D01529F42A1A0016578B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BA1D00229F42A190016578B /* DysarthriaChecker */;
+			targetProxy = 7BA1D01429F42A1A0016578B /* PBXContainerItemProxy */;
+		};
+		7BA1D01F29F42A1A0016578B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BA1D00229F42A190016578B /* DysarthriaChecker */;
+			targetProxy = 7BA1D01E29F42A1A0016578B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7BA1D02529F42A1A0016578B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7BA1D02629F42A1A0016578B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7BA1D02829F42A1A0016578B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1000;
+				DEVELOPMENT_ASSET_PATHS = "\"DysarthriaChecker/Preview Content\"";
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "AR FaceTracker 사용을 위해 Face ID 권한이 필요합니다.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "자동로그인 기능 활성화를 위해 Face ID 권한이 필요합니다.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "0.1.0-b";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DysarthriaChecker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7BA1D02929F42A1A0016578B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1000;
+				DEVELOPMENT_ASSET_PATHS = "\"DysarthriaChecker/Preview Content\"";
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "AR FaceTracker 사용을 위해 Face ID 권한이 필요합니다.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "자동로그인 기능 활성화를 위해 Face ID 권한이 필요합니다.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "0.1.0-b";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DysarthriaChecker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7BA1D02B29F42A1A0016578B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DysarthriaCheckerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DysarthriaChecker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DysarthriaChecker";
+			};
+			name = Debug;
+		};
+		7BA1D02C29F42A1A0016578B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DysarthriaCheckerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DysarthriaChecker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DysarthriaChecker";
+			};
+			name = Release;
+		};
+		7BA1D02E29F42A1A0016578B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DysarthriaCheckerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DysarthriaChecker;
+			};
+			name = Debug;
+		};
+		7BA1D02F29F42A1A0016578B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DysarthriaCheckerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DysarthriaChecker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7BA1CFFE29F42A190016578B /* Build configuration list for PBXProject "DysarthriaChecker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BA1D02529F42A1A0016578B /* Debug */,
+				7BA1D02629F42A1A0016578B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7BA1D02729F42A1A0016578B /* Build configuration list for PBXNativeTarget "DysarthriaChecker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BA1D02829F42A1A0016578B /* Debug */,
+				7BA1D02929F42A1A0016578B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7BA1D02A29F42A1A0016578B /* Build configuration list for PBXNativeTarget "DysarthriaCheckerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BA1D02B29F42A1A0016578B /* Debug */,
+				7BA1D02C29F42A1A0016578B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7BA1D02D29F42A1A0016578B /* Build configuration list for PBXNativeTarget "DysarthriaCheckerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BA1D02E29F42A1A0016578B /* Debug */,
+				7BA1D02F29F42A1A0016578B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		7BAD71DE29FFFE6D004B7655 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7B49A47729FA343A00978134 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		7B49A47929FA343A00978134 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		7B49A47B29FA343A00978134 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		7B49A47D29FA343A00978134 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		7B49A47F29FA343A00978134 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		7B49A48129FA343A00978134 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		7B49A48329FA343A00978134 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		7B49A48529FA343A00978134 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		7BAD71DF29FFFE6D004B7655 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BAD71DE29FFFE6D004B7655 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 7BA1CFFB29F42A190016578B /* Project object */;
+}
