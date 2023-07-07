@@ -36,6 +36,8 @@ extension Color{
     static let tutorial_color_1 = Color("tutorialColor_1")
     static let tutorial_color_2 = Color("tutorialColor_2")
     static let tutorial_color_3 = Color("tutorialColor_3")
+    static let audioSpectrum_gradient_start = Color("audioSpectrum_gradient_start")
+    static let audioSpectrum_gradient_end = Color("audioSpectrum_gradient_end")
 }
 
 extension View {

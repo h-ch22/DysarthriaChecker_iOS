@@ -83,7 +83,7 @@ struct InspectionTypeSelectionView: View {
                                     }
                                     
                                     HStack {
-                                        Text("문장을 읽어 검사를 진행합니다.\n일반적인 대화가 가능한 경우 이 옵션을 선택하십시오.")
+                                        Text("문장을 읽어 검사를 진행합니다.\n일반적인 대화가 가능한 경우 이 옵션을 선택하십시오. 이 옵션은 대부분의 사람들에게 권장됩니다.")
                                             .font(.subheadline)
                                             .foregroundColor(selectedType == .SENTENCE ? .white : .txt_color)
                                             .multilineTextAlignment(.leading)
@@ -163,7 +163,7 @@ struct InspectionTypeSelectionView: View {
                                     }
                                     
                                     HStack {
-                                        Text("자유발화에 준하는 문장으로 검사를 진행합니다.\n짧은 녹음, 화면에 표시되는 텍스트를 읽기 어려운 경우 이 옵션을 선택하십시오.")
+                                        Text("자유발화에 준하는 문장으로 검사를 진행합니다.\n장애의 정도가 경미하다고 판단되는 경우 이 옵션을 선택하십시오.")
                                             .font(.subheadline)
                                             .foregroundColor(selectedType == .SEMI_FREE_SPEECH ? .white : .txt_color)
                                             .multilineTextAlignment(.leading)
@@ -203,7 +203,7 @@ struct InspectionTypeSelectionView: View {
                                     }
                                     
                                     HStack {
-                                        Text("자유로운 대화로 검사를 진행합니다.\n일상 속 녹음, 화면에 표시되는 텍스트를 읽기 어려운 경우 이 옵션을 선택하십시오.")
+                                        Text("자유로운 대화로 검사를 진행합니다.\n일상 생활 속에서 쌍방간 의사소통이 원활하며, 화면에 표시되는 문자를 읽을 수 있는 경우 이 옵션을 선택하십시오.")
                                             .font(.subheadline)
                                             .foregroundColor(selectedType == .FREE_SPEECH ? .white : .txt_color)
                                             .multilineTextAlignment(.leading)
@@ -222,7 +222,7 @@ struct InspectionTypeSelectionView: View {
                     
                     Spacer().frame(height : 40)
                     
-                    NavigationLink(destination : onModelProgressView()){
+                    NavigationLink(destination : onModelProgressView(type: selectedType)){
                         HStack{
                             Text("다음 단계로")
                                 .foregroundColor(.white)
@@ -232,6 +232,7 @@ struct InspectionTypeSelectionView: View {
                         }.padding([.vertical], 20)
                             .padding([.horizontal], 120)
                             .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.accent).shadow(radius: 5))
+                            .isHidden(selectedType == nil)
                     }
 
                 }.animation(.easeInOut, value: 1.0).navigationTitle(Text("검사 타입 선택"))

@@ -10,6 +10,11 @@ import SwiftUI
 struct SignInView: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var showAlert = false
+    @State private var showHome = false
+    @State private var showOverlay = false
+    
+    @StateObject private var helper = UserManagement()
     
     var body: some View {
         NavigationView{
@@ -61,7 +66,22 @@ struct SignInView: View {
                     Spacer().frame(height : 20)
                     
                     Group{
-                        NavigationLink(destination : EmptyView()){
+                        Button(action : {
+                            showOverlay = true
+                            helper.signIn(email: email, password: password){result in
+                                guard let result = result else{
+                                    return
+                                }
+                                
+                                if result{
+                                    showOverlay = false
+                                    showHome = true
+                                } else{
+                                    showOverlay = false
+                                    showAlert = true
+                                }
+                            }
+                        }){
                             HStack{
                                 Text("로그인")
                                     .foregroundColor(.white)
@@ -71,6 +91,7 @@ struct SignInView: View {
                             }.padding([.vertical], 20)
                                 .padding([.horizontal], 120)
                                 .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.accent).shadow(radius: 5))
+                                .disabled(email == "" || password == "")
                         }
                         
                         Spacer().frame(height : 20)
@@ -98,6 +119,13 @@ struct SignInView: View {
                     Spacer()
                     
                 }.padding(20)
+                    .alert(isPresented: $showAlert, content : {
+                        return Alert(title: Text("오류"), message: Text("로그인 처리 중 문제가 발생했습니다.\n네트워크 상태를 확인하거나, 입력한 정보가 일치하는지 확인하십시오."), dismissButton: .default(Text("확인")))
+                    })
+                    .fullScreenCover(isPresented: $showHome, content: {
+                        TabManager(userManagement: helper)
+                    })
+                    .overlay(ProcessView().isHidden(!showOverlay))
 
             }.navigationBarHidden(true)
         }

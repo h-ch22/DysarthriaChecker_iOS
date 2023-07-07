@@ -64,8 +64,13 @@
 		7BF99B112A0179380035A0DB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF99B102A0179380035A0DB /* InfoView.swift */; };
 		9B0EDB371FD14FAC601DD08C /* Pods_DysarthriaChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BFC1FC3D90147D50483827 /* Pods_DysarthriaChecker.framework */; };
 		DD0E7595DB9CDB336E098B60 /* Pods_DysarthriaChecker_DysarthriaCheckerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA768D8612ED8946DE0293A /* Pods_DysarthriaChecker_DysarthriaCheckerUITests.framework */; };
-		F6AC9CDD2A52F9CE00A1AA1A /* T01_mobile.pt in Resources */ = {isa = PBXBuildFile; fileRef = F6AC9CDC2A52F9CE00A1AA1A /* T01_mobile.pt */; };
 		F6B6429F2A53004D00A1E552 /* TorchModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = F6B6429E2A53004D00A1E552 /* TorchModule.mm */; };
+		F6B6E37F2A5686B100E5A8E7 /* AudioRecordingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E37E2A5686B100E5A8E7 /* AudioRecordingHelper.swift */; };
+		F6B6E3822A56870B00E5A8E7 /* InspectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E3812A56870B00E5A8E7 /* InspectionHelper.swift */; };
+		F6B6E3862A568EF100E5A8E7 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */; };
+		F6B6E3892A56938500E5A8E7 /* include in Resources */ = {isa = PBXBuildFile; fileRef = F6B6E3882A56938500E5A8E7 /* include */; };
+		F6B6E38B2A56960200E5A8E7 /* onInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E38A2A56960200E5A8E7 /* onInspectionView.swift */; };
+		F6B6E38D2A56A17700E5A8E7 /* AudioSpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,10 +147,15 @@
 		B4F2E04995EEC005390D4A0D /* Pods-DysarthriaChecker-DysarthriaCheckerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DysarthriaChecker-DysarthriaCheckerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DysarthriaChecker-DysarthriaCheckerUITests/Pods-DysarthriaChecker-DysarthriaCheckerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEF3B9B1F44C7D62C4863EBB /* Pods_DysarthriaCheckerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DysarthriaCheckerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3BFC1FC3D90147D50483827 /* Pods_DysarthriaChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DysarthriaChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6AC9CDC2A52F9CE00A1AA1A /* T01_mobile.pt */ = {isa = PBXFileReference; lastKnownFileType = file; path = T01_mobile.pt; sourceTree = "<group>"; };
 		F6B6429A2A52FCF300A1E552 /* PyTorch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PyTorch-Bridging-Header.h"; sourceTree = "<group>"; };
 		F6B6429C2A52FF8000A1E552 /* TorchModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorchModule.h; sourceTree = "<group>"; };
 		F6B6429E2A53004D00A1E552 /* TorchModule.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TorchModule.mm; sourceTree = "<group>"; };
+		F6B6E37E2A5686B100E5A8E7 /* AudioRecordingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingHelper.swift; sourceTree = "<group>"; };
+		F6B6E3812A56870B00E5A8E7 /* InspectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionHelper.swift; sourceTree = "<group>"; };
+		F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
+		F6B6E3882A56938500E5A8E7 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		F6B6E38A2A56960200E5A8E7 /* onInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onInspectionView.swift; sourceTree = "<group>"; };
+		F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpectrumView.swift; sourceTree = "<group>"; };
 		F79D23059E13CE205E63B05F /* Pods-DysarthriaCheckerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DysarthriaCheckerTests.debug.xcconfig"; path = "Target Support Files/Pods-DysarthriaCheckerTests/Pods-DysarthriaCheckerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -265,6 +275,7 @@
 				7BB5013B2A011F6A00F27BFB /* RadioButtonGroup.swift */,
 				7BB5013D2A011F9C00F27BFB /* RadioButton.swift */,
 				7BB501432A012F6700F27BFB /* TabManager.swift */,
+				F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,7 +306,7 @@
 		7BA1D00529F42A190016578B /* DysarthriaChecker */ = {
 			isa = PBXGroup;
 			children = (
-				F6AC9CDB2A52F9CE00A1AA1A /* include */,
+				F6B6E3882A56938500E5A8E7 /* include */,
 				7BA7703C2A01EA4700D16A93 /* Train */,
 				7BB5015C2A0172AA00F27BFB /* More */,
 				7BB501512A01688B00F27BFB /* Inspection */,
@@ -391,6 +402,7 @@
 		7BB501512A01688B00F27BFB /* Inspection */ = {
 			isa = PBXGroup;
 			children = (
+				F6B6E37D2A5686A900E5A8E7 /* Helper */,
 				7BB501572A016CE800F27BFB /* Models */,
 				7BB501522A01689200F27BFB /* View */,
 			);
@@ -403,6 +415,8 @@
 				7BB501532A01689D00F27BFB /* InspectionMainView.swift */,
 				7BB501552A016CBB00F27BFB /* InspectionTypeSelectionView.swift */,
 				7BB5015A2A0171F700F27BFB /* onModelProgressView.swift */,
+				F6B6E38A2A56960200E5A8E7 /* onInspectionView.swift */,
+				F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -451,14 +465,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F6AC9CDB2A52F9CE00A1AA1A /* include */ = {
-			isa = PBXGroup;
-			children = (
-				F6AC9CDC2A52F9CE00A1AA1A /* T01_mobile.pt */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		F6B6429B2A52FF7300A1E552 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +473,15 @@
 				F6B6429E2A53004D00A1E552 /* TorchModule.mm */,
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		F6B6E37D2A5686A900E5A8E7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F6B6E37E2A5686B100E5A8E7 /* AudioRecordingHelper.swift */,
+				F6B6E3812A56870B00E5A8E7 /* InspectionHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +495,7 @@
 				7BA1CFFF29F42A190016578B /* Sources */,
 				7BA1D00029F42A190016578B /* Frameworks */,
 				7BA1D00129F42A190016578B /* Resources */,
+				417A2A5675A41982244B880B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -528,6 +544,7 @@
 				7BA1D01929F42A1A0016578B /* Sources */,
 				7BA1D01A29F42A1A0016578B /* Frameworks */,
 				7BA1D01B29F42A1A0016578B /* Resources */,
+				FBD63A76991622AB4A260E1F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -595,7 +612,7 @@
 				7BA1D00E29F42A1A0016578B /* Preview Assets.xcassets in Resources */,
 				7B49A47529FA33F800978134 /* GoogleService-Info.plist in Resources */,
 				7BA1D00B29F42A1A0016578B /* Assets.xcassets in Resources */,
-				F6AC9CDD2A52F9CE00A1AA1A /* T01_mobile.pt in Resources */,
+				F6B6E3892A56938500E5A8E7 /* include in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +633,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		417A2A5675A41982244B880B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker/Pods-DysarthriaChecker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker/Pods-DysarthriaChecker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker/Pods-DysarthriaChecker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5276C551AC4C2F89C3037807 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -660,6 +694,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FBD63A76991622AB4A260E1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker-DysarthriaCheckerUITests/Pods-DysarthriaChecker-DysarthriaCheckerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker-DysarthriaCheckerUITests/Pods-DysarthriaChecker-DysarthriaCheckerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker-DysarthriaCheckerUITests/Pods-DysarthriaChecker-DysarthriaCheckerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FC498481018144DDDC0FC1C1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -690,6 +741,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B49A49029FA385B00978134 /* TutorialView.swift in Sources */,
+				F6B6E38B2A56960200E5A8E7 /* onInspectionView.swift in Sources */,
 				7B4BE6742A113DFF00B9698D /* TrainingWarningView.swift in Sources */,
 				7BF99B112A0179380035A0DB /* InfoView.swift in Sources */,
 				7BB501562A016CBB00F27BFB /* InspectionTypeSelectionView.swift in Sources */,
@@ -700,8 +752,10 @@
 				7B505A2C2A11248600614721 /* TrainingSessionView.swift in Sources */,
 				7BAD71DD29FFFDE9004B7655 /* AES256Util.swift in Sources */,
 				7BA1D00729F42A190016578B /* DysarthriaCheckerApp.swift in Sources */,
+				F6B6E3862A568EF100E5A8E7 /* ProcessView.swift in Sources */,
 				7BB501442A012F6700F27BFB /* TabManager.swift in Sources */,
 				7B71DA0B29FA32D5004B1EA8 /* SplashView.swift in Sources */,
+				F6B6E3822A56870B00E5A8E7 /* InspectionHelper.swift in Sources */,
 				7BB501402A01294600F27BFB /* SignUpAlertModel.swift in Sources */,
 				7BAD71D929FFFC92004B7655 /* CheckBox.swift in Sources */,
 				7BB501542A01689D00F27BFB /* InspectionMainView.swift in Sources */,
@@ -710,6 +764,7 @@
 				7BAD71D429FFF8D5004B7655 /* SignUpView.swift in Sources */,
 				7B505A2A2A1123EA00614721 /* ARViewModel.swift in Sources */,
 				7B49A48929FA34BF00978134 /* UserManagement.swift in Sources */,
+				F6B6E37F2A5686B100E5A8E7 /* AudioRecordingHelper.swift in Sources */,
 				7BB5013E2A011F9C00F27BFB /* RadioButton.swift in Sources */,
 				F6B6429F2A53004D00A1E552 /* TorchModule.mm in Sources */,
 				7BF99B0C2A0175B10035A0DB /* ProfileView.swift in Sources */,
@@ -721,6 +776,7 @@
 				7BB501422A012EA900F27BFB /* signUp_done.swift in Sources */,
 				7BB501592A016CF300F27BFB /* InspectionTypeModel.swift in Sources */,
 				7BAD71E229FFFF2B004B7655 /* Process_signUp.swift in Sources */,
+				F6B6E38D2A56A17700E5A8E7 /* AudioSpectrumView.swift in Sources */,
 				7B49A48C29FA34E100978134 /* UserInfoModel.swift in Sources */,
 				7BB501462A012FF000F27BFB /* onProgressCallerModel.swift in Sources */,
 				7BAD71E62A0001A7004B7655 /* DisabledTypeCheckView.swift in Sources */,
@@ -891,9 +947,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DysarthriaChecker/Preview Content\"";
 				DEVELOPMENT_TEAM = JLQKH6P6PL;
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "AR FaceTracker 사용을 위해 Face ID 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "AR FaceTracker 사용을 위해 카메라 권한이 필요합니다.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "자동로그인 기능 활성화를 위해 Face ID 권한이 필요합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "구음장애 진단 오디오 녹음을 위해 마이크 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -908,7 +966,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DysarthriaChecker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "DysarthriaChecker/Framework/Headers/DysarthriaChecker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DysarthriaChecker/Framework/Headers/PyTorch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -927,9 +985,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DysarthriaChecker/Preview Content\"";
 				DEVELOPMENT_TEAM = JLQKH6P6PL;
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "AR FaceTracker 사용을 위해 Face ID 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "AR FaceTracker 사용을 위해 카메라 권한이 필요합니다.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "자동로그인 기능 활성화를 위해 Face ID 권한이 필요합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "구음장애 진단 오디오 녹음을 위해 마이크 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -944,7 +1004,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DysarthriaChecker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "DysarthriaChecker/Framework/Headers/DysarthriaChecker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DysarthriaChecker/Framework/Headers/PyTorch-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

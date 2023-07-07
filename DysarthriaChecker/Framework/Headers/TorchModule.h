@@ -19,7 +19,7 @@ NS_SWIFT_NAME(init(fileAtPath:)) NS_DESIGNATED_INITIALIZER;
 @end
 
 @interface AudioTorchModule : TorchModule
-- (nullable NSArray<NSNumber*>*)predictBrain:(void*) audioBuffer NS_SWIFT_NAME(predict(audio:))
+- (nullable NSArray<NSNumber*>*)predictBrain:(void*) audioBuffer NS_SWIFT_NAME(predict(audio:));
 @end
 
 NS_ASSUME_NONNULL_END

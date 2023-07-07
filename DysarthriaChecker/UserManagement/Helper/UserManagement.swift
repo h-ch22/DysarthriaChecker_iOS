@@ -26,6 +26,8 @@ class UserManagement : ObservableObject{
             
             self.getUserInfo(){result in
                 guard let result = result else{return}
+                UserDefaults.standard.set(AES256Util.encrypt(string: email), forKey: "auth_email")
+                UserDefaults.standard.set(AES256Util.encrypt(string: password), forKey: "auth_password")
                 
                 completion(true)
                 return
