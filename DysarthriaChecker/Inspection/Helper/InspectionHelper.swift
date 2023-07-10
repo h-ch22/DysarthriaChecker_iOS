@@ -10,9 +10,21 @@ import RosaKit
 
 class InspectionHelper : ObservableObject{
     @Published var scripts: [String] = []
+    @Published var speech_examples: [String] = []
     
-    private let word_path = Bundle.main.path(forResource: "list_word", ofType: "csv", inDirectory: "include")!
-    private let sentence_path = Bundle.main.path(forResource: "list_sentence", ofType: "csv", inDirectory: "include")!
+    private let word_path = Bundle.main.path(forResource: "list_word", ofType: "CSV", inDirectory: "include")!
+    private let sentence_path = Bundle.main.path(forResource: "list_sentence", ofType: "CSV", inDirectory: "include")!
+    private let paragraph_path = Bundle.main.path(forResource: "list_paragraph", ofType: "csv", inDirectory: "include")!
+    private let semiFreeSpeech_path = Bundle.main.path(forResource: "list_semi_free_speech", ofType: "csv", inDirectory: "include")!
+
+    private lazy var module_T00: AudioTorchModule = {
+        if let filePath = Bundle.main.path(forResource: "T00_mobile", ofType: "pt", inDirectory: "include"),
+           let module = AudioTorchModule(fileAtPath: filePath){
+            return module_T00
+        } else{
+            fatalError("Failed to load model : T00")
+        }
+    }()
     
     private lazy var module_T01: AudioTorchModule = {
         if let filePath = Bundle.main.path(forResource: "T01_mobile", ofType: "pt", inDirectory: "include"),
@@ -32,6 +44,15 @@ class InspectionHelper : ObservableObject{
         }
     }()
     
+    private lazy var module_T03: AudioTorchModule = {
+        if let filePath = Bundle.main.path(forResource: "T03_mobile", ofType: "pt", inDirectory: "include"),
+           let module = AudioTorchModule(fileAtPath: filePath){
+            return module_T03
+        } else{
+            fatalError("Failed to load model : T03")
+        }
+    }()
+    
     private var usedIndexes : [Int] = []
 
     private func getRandomIndex(max: Int) -> Int{
@@ -45,7 +66,7 @@ class InspectionHelper : ObservableObject{
         
         return num
     }
-    
+        
     func getScripts(inspectionType : InspectionTypeModel, count: Int, completion: @escaping(_ result : Bool?) -> Void){
         scripts.removeAll()
         
@@ -84,10 +105,47 @@ class InspectionHelper : ObservableObject{
                 }
                 
             case .PARAGRAPH:
-                break
+                let data = try Data(contentsOf: URL(fileURLWithPath: paragraph_path))
+                let dataEncoded = String(data: data, encoding: .utf8)
+                
+                if let dataArr = dataEncoded?.components(separatedBy: "\n"){
+                    for var i in 0 ..< count{
+                        let index = getRandomIndex(max: dataArr.count)
+                        
+                        if dataArr[index].trimmingCharacters(in: .whitespaces).count < 10{
+                            i-=1
+                        } else{
+                            scripts.append(dataArr[index])
+                        }
+                    }
+                    
+                } else{
+                    completion(false)
+                    return
+                }
                 
             case .SEMI_FREE_SPEECH:
-                break
+                let data = try Data(contentsOf: URL(fileURLWithPath: semiFreeSpeech_path))
+                let dataEncoded = String(data: data, encoding: .utf8)
+                
+                if let dataArr = dataEncoded?.components(separatedBy: "\n"){
+                    for var i in 0 ..< count{
+                        let index = getRandomIndex(max: dataArr.count)
+                        
+                        if dataArr[index].count < 2{
+                            i-=1
+                        } else{
+                            let script = dataArr[index].split(separator: ",")
+
+                            scripts.append(String(script[0]))
+                            speech_examples.append(String(script[1]))
+                        }
+                    }
+                    
+                } else{
+                    completion(false)
+                    return
+                }
                 
             case .FREE_SPEECH:
                 break
@@ -126,10 +184,35 @@ class InspectionHelper : ObservableObject{
                 }
                 
             case .PARAGRAPH:
-                break
+                let data = try Data(contentsOf: URL(fileURLWithPath: paragraph_path))
+                let dataEncoded = String(data: data, encoding: .utf8)
+                
+                if let dataArr = dataEncoded?.components(separatedBy: "\n"){
+                    let i = getRandomIndex(max: dataArr.count)
+                    
+                    if dataArr[index].trimmingCharacters(in: .whitespaces).count > 10{
+                        scripts[index] = dataArr[i]
+                    } else{
+                        refreshScript(type: type, index: index){ _ in
+                        }
+                    }
+                }
                 
             case .SEMI_FREE_SPEECH:
-                break
+                let data = try Data(contentsOf: URL(fileURLWithPath: semiFreeSpeech_path))
+                let dataEncoded = String(data: data, encoding: .utf8)
+                
+                if let dataArr = dataEncoded?.components(separatedBy: "\n"){
+                    let index = getRandomIndex(max: dataArr.count)
+                    let script = dataArr[index].split(separator: ",")
+                        
+                    scripts[index] = String(script[0])
+                    speech_examples[index] = String(script[1])
+                    
+                } else{
+                    completion(false)
+                    return
+                }
                 
             case .FREE_SPEECH:
                 break
@@ -146,17 +229,18 @@ class InspectionHelper : ObservableObject{
     
     func extractMFCC(completion: @escaping(_ result : Bool?) -> Void){
         var spectrograms = [[Double]]()
-
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let url : URL? = paths[0].appendingPathComponent("recording.wav")
         
         do{
-            let audio = url.flatMap{ try? WavFileManager().readWavFile(at: $0)}
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let url : URL? = paths[0].appendingPathComponent("recording.wav")
+            
+            let audio = url.flatMap{ try? WavFileManager().readWavFile(at: $0) }
             let dataCount = audio?.data.count ?? 0
             let sampleRate = 44100
             let bytesPerSample = audio?.bytesPerSample ?? 0
             
             if bytesPerSample == 0{
+                print("Inspection terminated because bytespersample is 0")
                 completion(false)
                 return
             } else{

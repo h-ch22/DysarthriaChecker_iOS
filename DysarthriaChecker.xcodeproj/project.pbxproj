@@ -64,11 +64,11 @@
 		7BF99B112A0179380035A0DB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF99B102A0179380035A0DB /* InfoView.swift */; };
 		9B0EDB371FD14FAC601DD08C /* Pods_DysarthriaChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BFC1FC3D90147D50483827 /* Pods_DysarthriaChecker.framework */; };
 		DD0E7595DB9CDB336E098B60 /* Pods_DysarthriaChecker_DysarthriaCheckerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA768D8612ED8946DE0293A /* Pods_DysarthriaChecker_DysarthriaCheckerUITests.framework */; };
+		F643C3652A5BDE9200E27324 /* include in Resources */ = {isa = PBXBuildFile; fileRef = F643C3642A5BDE9200E27324 /* include */; };
 		F6B6429F2A53004D00A1E552 /* TorchModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = F6B6429E2A53004D00A1E552 /* TorchModule.mm */; };
 		F6B6E37F2A5686B100E5A8E7 /* AudioRecordingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E37E2A5686B100E5A8E7 /* AudioRecordingHelper.swift */; };
 		F6B6E3822A56870B00E5A8E7 /* InspectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E3812A56870B00E5A8E7 /* InspectionHelper.swift */; };
 		F6B6E3862A568EF100E5A8E7 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */; };
-		F6B6E3892A56938500E5A8E7 /* include in Resources */ = {isa = PBXBuildFile; fileRef = F6B6E3882A56938500E5A8E7 /* include */; };
 		F6B6E38B2A56960200E5A8E7 /* onInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E38A2A56960200E5A8E7 /* onInspectionView.swift */; };
 		F6B6E38D2A56A17700E5A8E7 /* AudioSpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */; };
 /* End PBXBuildFile section */
@@ -147,13 +147,13 @@
 		B4F2E04995EEC005390D4A0D /* Pods-DysarthriaChecker-DysarthriaCheckerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DysarthriaChecker-DysarthriaCheckerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DysarthriaChecker-DysarthriaCheckerUITests/Pods-DysarthriaChecker-DysarthriaCheckerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEF3B9B1F44C7D62C4863EBB /* Pods_DysarthriaCheckerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DysarthriaCheckerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3BFC1FC3D90147D50483827 /* Pods_DysarthriaChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DysarthriaChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F643C3642A5BDE9200E27324 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		F6B6429A2A52FCF300A1E552 /* PyTorch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PyTorch-Bridging-Header.h"; sourceTree = "<group>"; };
 		F6B6429C2A52FF8000A1E552 /* TorchModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorchModule.h; sourceTree = "<group>"; };
 		F6B6429E2A53004D00A1E552 /* TorchModule.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TorchModule.mm; sourceTree = "<group>"; };
 		F6B6E37E2A5686B100E5A8E7 /* AudioRecordingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingHelper.swift; sourceTree = "<group>"; };
 		F6B6E3812A56870B00E5A8E7 /* InspectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionHelper.swift; sourceTree = "<group>"; };
 		F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
-		F6B6E3882A56938500E5A8E7 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		F6B6E38A2A56960200E5A8E7 /* onInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onInspectionView.swift; sourceTree = "<group>"; };
 		F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpectrumView.swift; sourceTree = "<group>"; };
 		F79D23059E13CE205E63B05F /* Pods-DysarthriaCheckerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DysarthriaCheckerTests.debug.xcconfig"; path = "Target Support Files/Pods-DysarthriaCheckerTests/Pods-DysarthriaCheckerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -306,7 +306,7 @@
 		7BA1D00529F42A190016578B /* DysarthriaChecker */ = {
 			isa = PBXGroup;
 			children = (
-				F6B6E3882A56938500E5A8E7 /* include */,
+				F643C3642A5BDE9200E27324 /* include */,
 				7BA7703C2A01EA4700D16A93 /* Train */,
 				7BB5015C2A0172AA00F27BFB /* More */,
 				7BB501512A01688B00F27BFB /* Inspection */,
@@ -612,7 +612,7 @@
 				7BA1D00E29F42A1A0016578B /* Preview Assets.xcassets in Resources */,
 				7B49A47529FA33F800978134 /* GoogleService-Info.plist in Resources */,
 				7BA1D00B29F42A1A0016578B /* Assets.xcassets in Resources */,
-				F6B6E3892A56938500E5A8E7 /* include in Resources */,
+				F643C3652A5BDE9200E27324 /* include in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

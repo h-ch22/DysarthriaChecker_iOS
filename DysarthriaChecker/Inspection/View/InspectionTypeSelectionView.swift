@@ -203,7 +203,7 @@ struct InspectionTypeSelectionView: View {
                                     }
                                     
                                     HStack {
-                                        Text("자유로운 대화로 검사를 진행합니다.\n일상 생활 속에서 쌍방간 의사소통이 원활하며, 화면에 표시되는 문자를 읽을 수 있는 경우 이 옵션을 선택하십시오.")
+                                        Text("자유로운 대화로 검사를 진행합니다.\n일상 생활 속에서 쌍방간 의사소통이 원활한 경우 이 옵션을 선택하십시오.")
                                             .font(.subheadline)
                                             .foregroundColor(selectedType == .FREE_SPEECH ? .white : .txt_color)
                                             .multilineTextAlignment(.leading)

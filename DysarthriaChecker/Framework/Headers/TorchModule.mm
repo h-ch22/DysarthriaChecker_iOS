@@ -29,7 +29,7 @@
 
 @implementation AudioTorchModule
 
--(NSArray<NSNumber*>*)predictBrain:(void*)audioBuffer {
+-(NSArray<NSNumber*>*)predictT00:(void*)audioBuffer {
     try{
         at::Tensor tensor = torch::from_blob(audioBuffer, {1, 3, 28, 28}, at::kFloat);
         c10::InferenceMode guard;

@@ -118,12 +118,20 @@ struct onInspectionView: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(.txt_color)
                     
-                    Text("\(helper.scripts[index])")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.accent)
-                        .padding(5)
+                        Text("\(helper.scripts[index])")
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.accent)
+                            .padding(5)
+                    
+                    if type == .SEMI_FREE_SPEECH{
+                        Spacer().frame(height : 10)
+                        
+                        Text("다음과 같은 형식으로 말하세요 : \(helper.speech_examples[index])")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
                     
                     Spacer()
                     
