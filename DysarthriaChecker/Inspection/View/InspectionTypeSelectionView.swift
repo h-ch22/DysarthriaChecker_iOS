@@ -163,7 +163,7 @@ struct InspectionTypeSelectionView: View {
                                     }
                                     
                                     HStack {
-                                        Text("자유발화에 준하는 문장으로 검사를 진행합니다.\n장애의 정도가 경미하다고 판단되는 경우 이 옵션을 선택하십시오.")
+                                        Text("자유발화에 준하는 문장으로 검사를 진행합니다.\n장애의 정도가 경미하다고 판단되며, 쌍방간 의사소통이 원활한 경우 이 옵션을 선택하십시오.")
                                             .font(.subheadline)
                                             .foregroundColor(selectedType == .SEMI_FREE_SPEECH ? .white : .txt_color)
                                             .multilineTextAlignment(.leading)
@@ -203,7 +203,7 @@ struct InspectionTypeSelectionView: View {
                                     }
                                     
                                     HStack {
-                                        Text("자유로운 대화로 검사를 진행합니다.\n일상 생활 속에서 쌍방간 의사소통이 원활한 경우 이 옵션을 선택하십시오.")
+                                        Text("자유로운 대화로 검사를 진행합니다.\n화면에 표시되는 글자를 읽기 어려워 이미 녹음된 파일이 있는 경우 이 옵션을 선택하십시오.")
                                             .font(.subheadline)
                                             .foregroundColor(selectedType == .FREE_SPEECH ? .white : .txt_color)
                                             .multilineTextAlignment(.leading)

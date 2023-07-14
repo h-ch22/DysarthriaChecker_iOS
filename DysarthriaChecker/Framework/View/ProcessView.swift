@@ -11,7 +11,7 @@ struct ProcessView: View {
     var body: some View {
         ProgressView()
             .padding(20)
-            .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.txt_color).opacity(0.7))
+            .background(RoundedRectangle(cornerRadius: 15).foregroundColor(.btn_color).opacity(0.7))
     }
 }
 

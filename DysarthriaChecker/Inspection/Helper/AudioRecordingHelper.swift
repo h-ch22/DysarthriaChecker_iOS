@@ -43,7 +43,11 @@ class AudioRecordingHelper : NSObject, ObservableObject, AVAudioRecorderDelegate
             AVFormatIDKey: Int(kAudioFormatLinearPCM),
             AVSampleRateKey: 44100.0,
             AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
+            AVLinearPCMBitDepthKey: 16,
+            AVLinearPCMIsBigEndianKey: false,
+            AVLinearPCMIsNonInterleaved: true,
+            AVLinearPCMIsFloatKey: false
         ]
         
         do {
@@ -73,21 +77,71 @@ class AudioRecordingHelper : NSObject, ObservableObject, AVAudioRecorderDelegate
         
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let url = paths[0].appendingPathComponent("recording.wav")
-        let playSession = AVAudioSession.sharedInstance()
-
-        do {
-            try playSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
-            let audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
+        
+        do{
+            let data = try Data(contentsOf: url)
+            let headerData = createFileHeader(data: data)
+            let wavFileData = headerData + data
+            
+            try wavFileData.write(to: url)
             
             completion(true)
             return
         } catch{
-            print("Failed to play file")
+            print(error.localizedDescription)
             completion(false)
             return
         }
+    }
+    
+    private func createFileHeader(data: Data) -> NSData{
+        let sampleRate: Int32 = 44100
+        let chunkSize: Int32 = 36 + Int32(data.count)
+        let subChunkSize:Int32 = 16
+        let format:Int16 = 1
+        let channels:Int16 = 1
+        let bitsPerSample:Int16 = 16
+        let byteRate:Int32 = sampleRate * Int32(channels * bitsPerSample / 8)
+        let blockAlign: Int16 = channels * bitsPerSample / 8
+        let dataSize:Int32 = Int32(data.count)
+        
+        let header = NSMutableData()
+        
+        header.append([UInt8]("RIFF".utf8), length: 4)
+        header.append(intToByteArray(chunkSize), length: 4)
+        
+        header.append([UInt8]("WAVE".utf8), length: 4)
+        
+        header.append([UInt8]("fmt ".utf8), length: 4)
+        
+        header.append(intToByteArray(subChunkSize), length: 4)
+        header.append(shortToByteArray(format), length: 2)
+        header.append(shortToByteArray(channels), length: 2)
+        header.append(intToByteArray(sampleRate), length: 4)
+        header.append(intToByteArray(byteRate), length: 4)
+        header.append(shortToByteArray(blockAlign), length: 2)
+        header.append(shortToByteArray(bitsPerSample), length: 2)
+        
+        header.append([UInt8]("data".utf8), length: 4)
+        header.append(intToByteArray(dataSize), length: 4)
+        
+        return header
+    }
+    
+    private func intToByteArray(_ i: Int32) -> [UInt8] {
+        return [
+            UInt8(truncatingIfNeeded: (i      ) & 0xff),
+            UInt8(truncatingIfNeeded: (i >>  8) & 0xff),
+            UInt8(truncatingIfNeeded: (i >> 16) & 0xff),
+            UInt8(truncatingIfNeeded: (i >> 24) & 0xff)
+        ]
+    }
+    
+    private func shortToByteArray(_ i: Int16) -> [UInt8] {
+        return [
+            UInt8(truncatingIfNeeded: (i      ) & 0xff),
+            UInt8(truncatingIfNeeded: (i >>  8) & 0xff)
+        ]
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {

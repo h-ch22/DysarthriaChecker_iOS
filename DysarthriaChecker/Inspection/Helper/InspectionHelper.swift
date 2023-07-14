@@ -5,18 +5,25 @@
 //  Created by 하창진 on 2023/07/06.
 //
 
-import Foundation
+import Metal
+import MetalKit
 import RosaKit
+import Accelerate
+import UIKit
 
-class InspectionHelper : ObservableObject{
+
+class InspectionHelper : NSObject, ObservableObject{
     @Published var scripts: [String] = []
     @Published var speech_examples: [String] = []
+    @Published var progress: InspectionProgressModel? = nil
+    @Published var elementWidth: CGFloat = 20.0
+    @Published var spectrograms = [[Double]]()
     
     private let word_path = Bundle.main.path(forResource: "list_word", ofType: "CSV", inDirectory: "include")!
     private let sentence_path = Bundle.main.path(forResource: "list_sentence", ofType: "CSV", inDirectory: "include")!
     private let paragraph_path = Bundle.main.path(forResource: "list_paragraph", ofType: "csv", inDirectory: "include")!
     private let semiFreeSpeech_path = Bundle.main.path(forResource: "list_semi_free_speech", ofType: "csv", inDirectory: "include")!
-
+    
     private lazy var module_T00: AudioTorchModule = {
         if let filePath = Bundle.main.path(forResource: "T00_mobile", ofType: "pt", inDirectory: "include"),
            let module = AudioTorchModule(fileAtPath: filePath){
@@ -54,10 +61,10 @@ class InspectionHelper : ObservableObject{
     }()
     
     private var usedIndexes : [Int] = []
-
+    
     private func getRandomIndex(max: Int) -> Int{
         let num = Int.random(in: 0...max-1)
-
+        
         if !usedIndexes.contains(num){
             usedIndexes.append(num)
         } else{
@@ -66,16 +73,17 @@ class InspectionHelper : ObservableObject{
         
         return num
     }
-        
-    func getScripts(inspectionType : InspectionTypeModel, count: Int, completion: @escaping(_ result : Bool?) -> Void){
+    
+    @MainActor func getScripts(inspectionType : InspectionTypeModel, count: Int, completion: @escaping(_ result : Bool?) -> Void){
         scripts.removeAll()
         
         do{
             switch inspectionType{
             case .WORD:
                 let data = try Data(contentsOf: URL(fileURLWithPath: word_path))
-                let dataEncoded = String(data: data, encoding: .utf8)
-                                    
+                var dataEncoded = String(data: data, encoding: .utf8)
+                dataEncoded = dataEncoded?.replacingOccurrences(of: "\r", with: "")
+                
                 if let dataArr = dataEncoded?.components(separatedBy: "\n"){
                     for _ in 0 ..< count{
                         let index = getRandomIndex(max: dataArr.count)
@@ -90,7 +98,8 @@ class InspectionHelper : ObservableObject{
                 
             case .SENTENCE:
                 let data = try Data(contentsOf: URL(fileURLWithPath: sentence_path))
-                let dataEncoded = String(data: data, encoding: .utf8)
+                var dataEncoded = String(data: data, encoding: .utf8)
+                dataEncoded = dataEncoded?.replacingOccurrences(of: "\r", with: "")
                 
                 if let dataArr = dataEncoded?.components(separatedBy: "\n"){
                     for _ in 0 ..< count{
@@ -106,7 +115,8 @@ class InspectionHelper : ObservableObject{
                 
             case .PARAGRAPH:
                 let data = try Data(contentsOf: URL(fileURLWithPath: paragraph_path))
-                let dataEncoded = String(data: data, encoding: .utf8)
+                var dataEncoded = String(data: data, encoding: .utf8)
+                dataEncoded = dataEncoded?.replacingOccurrences(of: "\r", with: "")
                 
                 if let dataArr = dataEncoded?.components(separatedBy: "\n"){
                     for var i in 0 ..< count{
@@ -126,17 +136,14 @@ class InspectionHelper : ObservableObject{
                 
             case .SEMI_FREE_SPEECH:
                 let data = try Data(contentsOf: URL(fileURLWithPath: semiFreeSpeech_path))
-                let dataEncoded = String(data: data, encoding: .utf8)
+                var dataEncoded = String(data: data, encoding: .utf8)
+                dataEncoded = dataEncoded?.replacingOccurrences(of: "\r", with: "")
                 
                 if let dataArr = dataEncoded?.components(separatedBy: "\n"){
-                    for var i in 0 ..< count{
-                        let index = getRandomIndex(max: dataArr.count)
-                        
-                        if dataArr[index].count < 2{
-                            i-=1
-                        } else{
+                    for index in 0 ..< dataArr.count{
+                        if dataArr[index] != ""{
                             let script = dataArr[index].split(separator: ",")
-
+                            
                             scripts.append(String(script[0]))
                             speech_examples.append(String(script[1]))
                         }
@@ -148,9 +155,10 @@ class InspectionHelper : ObservableObject{
                 }
                 
             case .FREE_SPEECH:
-                break
+                completion(false)
+                return
             }
-
+            
         } catch{
             print("Error reading CSV file")
             completion(false)
@@ -160,7 +168,7 @@ class InspectionHelper : ObservableObject{
         completion(true)
     }
     
-    func refreshScript(type: InspectionTypeModel, index: Int, completion: @escaping(_ result : Bool?) -> Void){
+    @MainActor func refreshScript(type: InspectionTypeModel, index: Int, completion: @escaping(_ result : Bool?) -> Void){
         do{
             switch type{
             case .WORD:
@@ -205,7 +213,7 @@ class InspectionHelper : ObservableObject{
                 if let dataArr = dataEncoded?.components(separatedBy: "\n"){
                     let index = getRandomIndex(max: dataArr.count)
                     let script = dataArr[index].split(separator: ",")
-                        
+                    
                     scripts[index] = String(script[0])
                     speech_examples[index] = String(script[1])
                     
@@ -219,7 +227,7 @@ class InspectionHelper : ObservableObject{
             }
             
             completion(true)
-
+            
         } catch{
             print("Error reading CSV file")
             completion(false)
@@ -227,20 +235,24 @@ class InspectionHelper : ObservableObject{
         }
     }
     
-    func extractMFCC(completion: @escaping(_ result : Bool?) -> Void){
-        var spectrograms = [[Double]]()
-        
+    func extractMelSpectrogram(filePath: URL? = nil, completion: @escaping(_ result : Bool?) -> Void){
         do{
             let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            let url : URL? = paths[0].appendingPathComponent("recording.wav")
+            if filePath != nil{
+                filePath!.startAccessingSecurityScopedResource()
+            }
+
+            let url : URL? = filePath == nil ? paths[0].appendingPathComponent("recording.wav") : filePath
             
-            let audio = url.flatMap{ try? WavFileManager().readWavFile(at: $0) }
+            let audio = try url.flatMap{ try WavFileManager().readWavFile(at: $0) }
+            progress = .LOAD_FILE
+            
             let dataCount = audio?.data.count ?? 0
             let sampleRate = 44100
             let bytesPerSample = audio?.bytesPerSample ?? 0
             
             if bytesPerSample == 0{
-                print("Inspection terminated because bytespersample is 0")
+                print("Inspection terminated because bytes per sample is 0 (DivideByZeroException)")
                 completion(false)
                 return
             } else{
@@ -254,17 +266,24 @@ class InspectionHelper : ObservableObject{
                     spectrograms.append(contentsOf: powerSpectrogram.transposed)
                 }
                 
-                print(spectrograms)
+                progress = .EXTRACT_FILE
+                completion(true)
+                return
             }
-
         } catch{
-            print("Error loading Audio File")
+            print(error.localizedDescription)
             completion(false)
             return
         }
+        
     }
     
+    func changeProgress(progress: InspectionProgressModel){
+        self.progress = progress
+    }
+
+    
     func predict(){
-        
+        progress = .RENDER_SPECTROGRAM
     }
 }
