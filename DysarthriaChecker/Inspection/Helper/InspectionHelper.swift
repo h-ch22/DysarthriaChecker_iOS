@@ -16,7 +16,7 @@ class InspectionHelper : NSObject, ObservableObject{
     @Published var scripts: [String] = []
     @Published var speech_examples: [String] = []
     @Published var progress: InspectionProgressModel? = nil
-    @Published var elementWidth: CGFloat = 20.0
+    @Published var elementWidth: CGFloat = 1.0
     @Published var spectrograms = [[Double]]()
     
     private let word_path = Bundle.main.path(forResource: "list_word", ofType: "CSV", inDirectory: "include")!

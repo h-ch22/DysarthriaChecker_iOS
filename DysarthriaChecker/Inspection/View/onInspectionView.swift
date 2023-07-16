@@ -387,6 +387,7 @@ struct onInspectionView: View {
                     })
                     .fullScreenCover(isPresented: $showRenderView, content: {
                         onRenderingView(spectrograms: helper.spectrograms, elementWidth: helper.elementWidth)
+                            .environmentObject(helper)
                     })
                     .onAppear{
                         DispatchQueue.global(qos: .background).async{

@@ -1,5 +1,5 @@
 //
-//  onRenderingViewController.swift
+//  onRenderingView.swift
 //  DysarthriaChecker
 //
 //  Created by 하창진 on 7/13/23.
@@ -14,23 +14,26 @@ import MetalKit
 struct onRenderingView: UIViewRepresentable{
     typealias UIViewType = MTKView
     @Environment(\.presentationMode) var presentationmode
-
+    @EnvironmentObject var helper : InspectionHelper
+    
     let spectrograms: [[Double]]
     let elementWidth: CGFloat
     
     var closeView = false
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator(self, helper: helper)
     }
     
     func makeUIView(context: Context) -> MTKView {
-        let metalView = MTLCreateSystemDefaultDevice().map { MTKView(frame: CGRect(x: 0, y: 0, width: 480, height: 480), device: $0) }
-        metalView?.delegate = context.coordinator
+        let metalView = MTLCreateSystemDefaultDevice().map { MTKView(frame: CGRect(x: 0, y: 0, width: 640, height: 480), device: $0) }
         metalView?.framebufferOnly = false
         metalView?.colorPixelFormat = .bgra8Unorm
         metalView?.preferredFramesPerSecond = 30
+        metalView?.contentMode = .scaleAspectFit
+        metalView?.autoResizeDrawable = false
         metalView?.enableSetNeedsDisplay = true
+        metalView?.delegate = context.coordinator
 
         context.coordinator.renderSpectrogram(spectrograms: spectrograms, elementWidth: elementWidth)
         
@@ -38,7 +41,8 @@ struct onRenderingView: UIViewRepresentable{
     }
     
     func updateUIView(_ uiView: MTKView, context: Context) {
-        if closeView{
+        if helper.progress == .RENDER_SPECTROGRAM{
+            print("closeView variable modified to true")
             self.presentationmode.wrappedValue.dismiss()
         }
     }
@@ -48,23 +52,28 @@ struct onRenderingView: UIViewRepresentable{
         private var spectrograms = [[Double]]()
         
         var parent: onRenderingView
+        var helper: InspectionHelper
         
-        init(_ parent: onRenderingView){
+        init(_ parent: onRenderingView, helper: InspectionHelper){
             self.parent = parent
+            self.helper = helper
         }
         
         func renderSpectrogram(spectrograms: [[Double]], elementWidth: CGFloat){
             self.spectrograms = spectrograms
             renderer.setup()
-            let rect = CGRect(x: 0, y: 0, width: 480, height: 480)
+            renderer.scaleFactor = Float(elementWidth)
+            let rect = CGRect(x: 0, y: 0, width: 640, height: 480)
             let elementsCount = spectrograms.count
             guard elementsCount > 1 else{
                 print("Inspection terminated because elements count is under 1")
                 return
             }
             
-            let startElement = Int(rect.origin.x / elementWidth)
-            let endElement = Int(ceil(rect.maxX / elementWidth) + 1)
+            let startElement = Int(UIScreen.main.bounds.minX / elementWidth)
+            let endElement = Int(ceil(UIScreen.main.bounds.maxX / elementWidth) + 1)
+            
+            print("start : \(startElement), end: \(endElement)")
             
             guard startElement >= 0 else{
                 print("Inspection terminated because start element is under 0")
@@ -101,10 +110,11 @@ struct onRenderingView: UIViewRepresentable{
             }
             
             let texture = MTLCreateSystemDefaultDevice()?.createRedTexture(from: bytes, width: rows, height: cols)
-
+            print("texture size : \(texture?.width), \(texture?.height)")
             texture.map{
                 renderer.send(texture: $0)
             }
+            
         }
         
         private func elementsValueInSpectrogram(at index: Int) -> [Double] {
@@ -133,13 +143,17 @@ struct onRenderingView: UIViewRepresentable{
             
             let image = currentDrawable.texture.toCGImage()
             
+            print("drawable size : \(currentDrawable.texture.width), \(currentDrawable.texture.height)")
+            print("image size : \(image?.width), \(image?.height)")
+            
             if image != nil{
                 // TODO: Save CGImage to Sandbox for inspection
+                
             } else{
                 print("Inspection terminated because created mel-spectrogram image is nil.")
             }
             
-            parent.closeView = true
+            helper.changeProgress(progress: .RENDER_SPECTROGRAM)
         }
 
     }

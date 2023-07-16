@@ -88,5 +88,4 @@ extension MTLDevice {
         
         return texture
     }
-    
 }

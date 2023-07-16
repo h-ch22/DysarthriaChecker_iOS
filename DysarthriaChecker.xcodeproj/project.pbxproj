@@ -80,7 +80,7 @@
 		F6B6E3862A568EF100E5A8E7 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */; };
 		F6B6E38B2A56960200E5A8E7 /* onInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E38A2A56960200E5A8E7 /* onInspectionView.swift */; };
 		F6B6E38D2A56A17700E5A8E7 /* AudioSpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */; };
-		F6BBC4512A5FD28F00E8F62E /* onRenderingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BBC4502A5FD28F00E8F62E /* onRenderingViewController.swift */; };
+		F6BBC4512A5FD28F00E8F62E /* onRenderingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BBC4502A5FD28F00E8F62E /* onRenderingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,7 +176,7 @@
 		F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		F6B6E38A2A56960200E5A8E7 /* onInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onInspectionView.swift; sourceTree = "<group>"; };
 		F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpectrumView.swift; sourceTree = "<group>"; };
-		F6BBC4502A5FD28F00E8F62E /* onRenderingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onRenderingViewController.swift; sourceTree = "<group>"; };
+		F6BBC4502A5FD28F00E8F62E /* onRenderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onRenderingView.swift; sourceTree = "<group>"; };
 		F79D23059E13CE205E63B05F /* Pods-DysarthriaCheckerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DysarthriaCheckerTests.debug.xcconfig"; path = "Target Support Files/Pods-DysarthriaCheckerTests/Pods-DysarthriaCheckerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -441,7 +441,7 @@
 				F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */,
 				F630CE8D2A5DA64C009FC34A /* ScriptDetailView.swift */,
 				F65CB3BB2A5E66580031CB83 /* InspectionResultSummaryView.swift */,
-				F6BBC4502A5FD28F00E8F62E /* onRenderingViewController.swift */,
+				F6BBC4502A5FD28F00E8F62E /* onRenderingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -794,7 +794,7 @@
 				F65CB3BC2A5E66580031CB83 /* InspectionResultSummaryView.swift in Sources */,
 				F613DDEB2A5E5620007F0125 /* MTLTextureExtensions.swift in Sources */,
 				7B505A2C2A11248600614721 /* TrainingSessionView.swift in Sources */,
-				F6BBC4512A5FD28F00E8F62E /* onRenderingViewController.swift in Sources */,
+				F6BBC4512A5FD28F00E8F62E /* onRenderingView.swift in Sources */,
 				7BAD71DD29FFFDE9004B7655 /* AES256Util.swift in Sources */,
 				7BA1D00729F42A190016578B /* DysarthriaCheckerApp.swift in Sources */,
 				F6B6E3862A568EF100E5A8E7 /* ProcessView.swift in Sources */,
