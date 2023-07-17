@@ -6,7 +6,7 @@
 //
 
 #import "TorchModule.h"
-#import <Libtorch-Lite/Libtorch-Lite.h>
+#import <Libtorch-Lite.h>
 
 @implementation TorchModule {
 @protected
@@ -14,33 +14,36 @@
 }
 
 - (nullable instancetype)initWithFileAtPath:(NSString*)filePath {
-    self = [super init];
-    if (self) {
-        try {
-            _impl = torch::jit::_load_for_mobile(filePath.UTF8String);
-        } catch (const std::exception& exception) {
-            NSLog(@"%s", exception.what());
-            return nil;
-        }
+  self = [super init];
+  if (self) {
+    try {
+      _impl = torch::jit::_load_for_mobile(filePath.UTF8String);
+    } catch (const std::exception& exception) {
+      NSLog(@"%s", exception.what());
+      return nil;
     }
-    return self;
+  }
+  return self;
 }
-@end
 
-@implementation AudioTorchModule
-
--(NSArray<NSNumber*>*)predictT00:(void*)audioBuffer {
+-(NSArray<NSNumber*>*)predictAudio:(void*)audioBuffer {
     try{
+        c10::InferenceMode mode;
         at::Tensor tensor = torch::from_blob(audioBuffer, {1, 3, 28, 28}, at::kFloat);
-        c10::InferenceMode guard;
-        auto output = _impl.forward({tensor}).toTensor();
-        float* floatBuffer = output.data_ptr<float>();
+        auto outputTensor = _impl.forward({tensor}).toTensor();
+        float* floatBuffer = outputTensor.data_ptr<float>();
         
         if(!floatBuffer){
             return nil;
         }
         
         NSMutableArray* results = [[NSMutableArray alloc] init];
+        
+        for(int i = 0; i < 1000; i++){
+            [results addObject:@(floatBuffer[i])];
+        }
+        
+        return [results copy];
         
     } catch(const std::exception& exception){
         NSLog(@"%s", exception.what());

@@ -147,8 +147,7 @@ struct onRenderingView: UIViewRepresentable{
             print("image size : \(image?.width), \(image?.height)")
             
             if image != nil{
-                // TODO: Save CGImage to Sandbox for inspection
-                
+                helper.spectrogram = image!
             } else{
                 print("Inspection terminated because created mel-spectrogram image is nil.")
             }

@@ -17,6 +17,13 @@ struct onInspectionView: View {
     @State private var showRenderErrorAlert = false
     @State private var showAllScript = false
     @State private var showRenderView = false
+    @State private var showResult = false
+    @State private var results: [[PredictResult]?] = [[]]
+    
+    @State private var result_T00 : [PredictResult]? = nil
+    @State private var result_T01 : [PredictResult]? = nil
+    @State private var result_T02 : [PredictResult]? = nil
+    @State private var result_T03 : [PredictResult]? = nil
     
     @ObservedObject private var audioHelper = AudioRecordingHelper(numberOfSamples: 10)
     @Environment(\.presentationMode) var presentationmode
@@ -152,7 +159,7 @@ struct onInspectionView: View {
                                 } else{
                                     ProgressView()
                                 }
-                            } else if helper.progress == .RENDER_SPECTROGRAM || helper.progress == .T00 || helper.progress == .T01 || helper.progress == .T02{
+                            } else if helper.progress == .RENDER_SPECTROGRAM || helper.progress == .T00 || helper.progress == .T01 || helper.progress == .T02 || helper.progress == .T03{
                                 Image(systemName: "checkmark")
                                     .font(helper.progress == .EXTRACT_FILE ? .headline : .caption)
                                     .foregroundColor(.green)
@@ -169,14 +176,33 @@ struct onInspectionView: View {
 
                         HStack{
                             if helper.progress == .RENDER_SPECTROGRAM{
-                                if showInspectionErrorAlert{
+                                if helper.spectrogram == nil || showInspectionErrorAlert{
                                     Image(systemName: "exclamationmark.circle.fill")
                                         .font(helper.progress == .RENDER_SPECTROGRAM ? .headline : .caption)
                                         .foregroundColor(.orange)
+                                        .onAppear{
+                                            showInspectionErrorAlert = true
+                                        }
                                 } else{
                                     ProgressView()
+                                        .onAppear{
+                                            DispatchQueue.global(qos: .background).async{
+                                                helper.predict(){ result in
+                                                    guard let result = result else {
+                                                        showInspectionErrorAlert = true
+                                                        return
+                                                    }
+                                                    
+                                                    if result != nil{
+                                                        self.result_T00 = result
+                                                    } else{
+                                                        showInspectionErrorAlert = true
+                                                    }
+                                                }
+                                            }
+                                        }
                                 }
-                            } else if helper.progress == .T00 || helper.progress == .T01 || helper.progress == .T02{
+                            } else if helper.progress == .T00 || helper.progress == .T01 || helper.progress == .T02 || helper.progress == .T03{
                                 Image(systemName: "checkmark")
                                     .font(helper.progress == .RENDER_SPECTROGRAM ? .headline : .caption)
                                     .foregroundColor(.green)
@@ -199,8 +225,25 @@ struct onInspectionView: View {
                                         .foregroundColor(.orange)
                                 } else{
                                     ProgressView()
+                                        .onAppear{
+                                            DispatchQueue.global(qos: .background).async{
+                                                helper.predict(){ result in
+                                                    guard let result = result else {
+                                                        showInspectionErrorAlert = true
+                                                        return
+                                                    }
+                                                    
+                                                    if result != nil{
+                                                        self.result_T01 = result
+
+                                                    } else{
+                                                        showInspectionErrorAlert = true
+                                                    }
+                                                }
+                                            }
+                                        }
                                 }
-                            } else if helper.progress == .T01 || helper.progress == .T02{
+                            } else if helper.progress == .T01 || helper.progress == .T02 || helper.progress == .T03{
                                 Image(systemName: "checkmark")
                                     .font(helper.progress == .T00 ? .headline : .caption)
                                     .foregroundColor(.green)
@@ -223,8 +266,25 @@ struct onInspectionView: View {
                                         .foregroundColor(.orange)
                                 } else{
                                     ProgressView()
+                                        .onAppear{
+                                            DispatchQueue.global(qos: .background).async{
+                                                helper.predict(){ result in
+                                                    guard let result = result else {
+                                                        showInspectionErrorAlert = true
+                                                        return
+                                                    }
+                                                    
+                                                    if result != nil{
+                                                        self.result_T02 = result
+
+                                                    } else{
+                                                        showInspectionErrorAlert = true
+                                                    }
+                                                }
+                                            }
+                                        }
                                 }
-                            } else if helper.progress == .T02{
+                            } else if helper.progress == .T02 || helper.progress == .T03{
                                 Image(systemName: "checkmark")
                                     .font(helper.progress == .T01 ? .headline : .caption)
                                     .foregroundColor(.green)
@@ -247,11 +307,29 @@ struct onInspectionView: View {
                                         .foregroundColor(.orange)
                                 } else{
                                     ProgressView()
+                                        .onAppear{
+                                            DispatchQueue.global(qos: .background).async{
+                                                helper.predict(){ result in
+                                                    guard let result = result else {
+                                                        showInspectionErrorAlert = true
+                                                        return
+                                                    }
+                                                    
+                                                    if result != nil{
+                                                        self.result_T03 = result
+
+                                                    } else{
+                                                        showInspectionErrorAlert = true
+                                                    }
+                                                }
+                                            }
+                                        }
                                 }
                             } else if helper.progress == .T03{
                                 Image(systemName: "checkmark")
                                     .font(helper.progress == .T02 ? .headline : .caption)
                                     .foregroundColor(.green)
+
                             }
                             
                             Spacer().frame(width : 5)
@@ -266,12 +344,35 @@ struct onInspectionView: View {
                     Spacer()
                     
                     Group{
-                        
                         if !showParsingAlert && !showErrorAlert && !showInspectionErrorAlert{
-                            Text("Dysarthria Checker에서 사용자의 음성 데이터를 분석하고 있습니다.\n이 작업은 파일의 길이에 따라 수 분이 걸릴 수 있습니다.\n잠시 기다려 주십시오.")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
+                            if helper.progress == .T03{
+                                Text("Dysarthria Checker에서 사용자의 음성 데이터 분석을 완료하였습니다.")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                
+                                Spacer().frame(height : 10)
+                                
+                                Button(action: {
+                                    self.showResult = true
+                                }){
+                                    HStack{
+                                        Text("검사 결과 확인")
+                                            .foregroundColor(.white)
+                                        
+                                        Image(systemName : "chevron.right")
+                                            .foregroundColor(.white)
+                                    }.padding([.vertical], 20)
+                                        .padding([.horizontal], 120)
+                                        .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.accent).shadow(radius: 5))
+                                }
+                            } else{
+                                Text("Dysarthria Checker에서 사용자의 음성 데이터를 분석하고 있습니다.\n이 작업은 파일의 길이에 따라 수 분이 걸릴 수 있습니다.\n잠시 기다려 주십시오.")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                            }
+
                         } else{
                             Image(systemName: "exclamationmark.circle.fill")
                                 .foregroundColor(.accentColor)
@@ -389,6 +490,12 @@ struct onInspectionView: View {
                         onRenderingView(spectrograms: helper.spectrograms, elementWidth: helper.elementWidth)
                             .environmentObject(helper)
                     })
+                    .sheet(isPresented : $showResult){
+                        InspectionResultView(result_T00: self.result_T00!,
+                                             result_T01: self.result_T01!,
+                                             result_T02: self.result_T02!,
+                                             result_T03: self.result_T03!)
+                    }
                     .onAppear{
                         DispatchQueue.global(qos: .background).async{
                             audioHelper.finishRecording(){ result in

@@ -15,14 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(init(fileAtPath:)) NS_DESIGNATED_INITIALIZER;
 + (instancetype) new NS_UNAVAILABLE;
 - (instancetype) init NS_UNAVAILABLE;
+- (nullable NSArray<NSNumber*>*)predictAudio:(void*)audioBuffer NS_SWIFT_NAME(predict(audio:));
 
-@end
 
-@interface AudioTorchModule : TorchModule
-- (nullable NSArray<NSNumber*>*)predictT00:(void*) audioBuffer NS_SWIFT_NAME(predict(audio:));
-- (nullable NSArray<NSNumber*>*)predictT01:(void*) audioBuffer NS_SWIFT_NAME(predict(audio:));
-- (nullable NSArray<NSNumber*>*)predictT02:(void*) audioBuffer NS_SWIFT_NAME(predict(audio:));
-- (nullable NSArray<NSNumber*>*)predictT03:(void*) audioBuffer NS_SWIFT_NAME(predict(audio:));
 @end
 
 NS_ASSUME_NONNULL_END

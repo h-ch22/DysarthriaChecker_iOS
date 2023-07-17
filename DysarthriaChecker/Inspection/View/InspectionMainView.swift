@@ -116,7 +116,7 @@ struct InspectionMainView: View {
                             .frame(width : 30, height : 30)
                             .foregroundColor(.accent)
                         
-                        Text("DysarthriaChecker는 구음장애의 완전한 진단 및 치료를 보장하지 않으며, 환자는 DysarthriaChecker를 통해 치료상의 이익을 얻을 수 없습니다.\n구음장애가 의심되는 경우 의사와 상담을 통해 의학적 조치를 받으십시오.")
+                        Text("DysarthriaChecker는 구음장애의 완전한 진단 및 치료를 보장하지 않으며, 환자는 DysarthriaChecker를 통해 치료상의 이익을 얻을 수 없습니다.\n구음장애가 의심되는 경우 전문가와 상담을 통해 의학적 조치를 받으십시오.")
                             .font(.caption)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.gray)

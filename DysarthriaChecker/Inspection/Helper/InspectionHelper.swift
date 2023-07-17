@@ -10,6 +10,7 @@ import MetalKit
 import RosaKit
 import Accelerate
 import UIKit
+import PDFKit
 
 
 class InspectionHelper : NSObject, ObservableObject{
@@ -18,42 +19,43 @@ class InspectionHelper : NSObject, ObservableObject{
     @Published var progress: InspectionProgressModel? = nil
     @Published var elementWidth: CGFloat = 1.0
     @Published var spectrograms = [[Double]]()
+    @Published var spectrogram: CGImage?
     
     private let word_path = Bundle.main.path(forResource: "list_word", ofType: "CSV", inDirectory: "include")!
     private let sentence_path = Bundle.main.path(forResource: "list_sentence", ofType: "CSV", inDirectory: "include")!
     private let paragraph_path = Bundle.main.path(forResource: "list_paragraph", ofType: "csv", inDirectory: "include")!
     private let semiFreeSpeech_path = Bundle.main.path(forResource: "list_semi_free_speech", ofType: "csv", inDirectory: "include")!
     
-    private lazy var module_T00: AudioTorchModule = {
-        if let filePath = Bundle.main.path(forResource: "T00_mobile", ofType: "pt", inDirectory: "include"),
-           let module = AudioTorchModule(fileAtPath: filePath){
+    private lazy var module_T00: TorchModule = {
+        if let filePath = Bundle.main.path(forResource: "T00", ofType: "ptl", inDirectory: "include"),
+           let module_T00 = TorchModule(fileAtPath: filePath){
             return module_T00
         } else{
             fatalError("Failed to load model : T00")
         }
     }()
     
-    private lazy var module_T01: AudioTorchModule = {
-        if let filePath = Bundle.main.path(forResource: "T01_mobile", ofType: "pt", inDirectory: "include"),
-           let module = AudioTorchModule(fileAtPath: filePath){
+    private lazy var module_T01: TorchModule = {
+        if let filePath = Bundle.main.path(forResource: "T01", ofType: "ptl", inDirectory: "include"),
+           let module_T01 = TorchModule(fileAtPath: filePath){
             return module_T01
         } else{
             fatalError("Failed to load model : T01")
         }
     }()
     
-    private lazy var module_T02: AudioTorchModule = {
-        if let filePath = Bundle.main.path(forResource: "T02_mobile", ofType: "pt", inDirectory: "include"),
-           let module = AudioTorchModule(fileAtPath: filePath){
+    private lazy var module_T02: TorchModule = {
+        if let filePath = Bundle.main.path(forResource: "T02", ofType: "ptl", inDirectory: "include"),
+           let module_T02 = TorchModule(fileAtPath: filePath){
             return module_T02
         } else{
             fatalError("Failed to load model : T02")
         }
     }()
     
-    private lazy var module_T03: AudioTorchModule = {
-        if let filePath = Bundle.main.path(forResource: "T03_mobile", ofType: "pt", inDirectory: "include"),
-           let module = AudioTorchModule(fileAtPath: filePath){
+    private lazy var module_T03: TorchModule = {
+        if let filePath = Bundle.main.path(forResource: "T03", ofType: "ptl", inDirectory: "include"),
+           let module_T03 = TorchModule(fileAtPath: filePath){
             return module_T03
         } else{
             fatalError("Failed to load model : T03")
@@ -72,6 +74,73 @@ class InspectionHelper : NSObject, ObservableObject{
         }
         
         return num
+    }
+    
+    static func convertDiseaseCodeToKorean(diseaseCode: String, code: String) -> String{
+        switch diseaseCode{
+        case "T00":
+            switch code{
+            case "BRAIN":
+                return "뇌신경장애"
+                
+            case "LANGUAGE":
+                return "언어청각장애"
+                
+            case "LARYNX":
+                return "후두장애"
+                
+            default:
+                return ""
+            }
+            
+        case "T01":
+            switch code{
+            case "LANGUAGE":
+                return "언어+뇌신경장애"
+                
+            case "EAR":
+                return "청각+뇌신경장애"
+                
+            default:
+                return ""
+            }
+            
+        case "T02":
+            switch code{
+            case "ARTICULATION":
+                return "조음장애"
+                
+            case "VOCALIZATION":
+                return "발성장애"
+                
+            case "CONDUCTION":
+                return "전음성장애"
+                
+            case "SENSORINEURAL":
+                return "감음신경성장애"
+                
+            default:
+                return ""
+            }
+            
+        case "T03":
+            switch code{
+            case "FUNCTIONAL":
+                return "기능성 후두장애"
+                
+            case "LARYNX":
+                return "후두장애"
+                
+            case "ORAL":
+                return "구강장애"
+                
+            default:
+                return ""
+            }
+            
+        default:
+            return ""
+        }
     }
     
     @MainActor func getScripts(inspectionType : InspectionTypeModel, count: Int, completion: @escaping(_ result : Bool?) -> Void){
@@ -241,7 +310,7 @@ class InspectionHelper : NSObject, ObservableObject{
             if filePath != nil{
                 filePath!.startAccessingSecurityScopedResource()
             }
-
+            
             let url : URL? = filePath == nil ? paths[0].appendingPathComponent("recording.wav") : filePath
             
             let audio = try url.flatMap{ try WavFileManager().readWavFile(at: $0) }
@@ -281,9 +350,116 @@ class InspectionHelper : NSObject, ObservableObject{
     func changeProgress(progress: InspectionProgressModel){
         self.progress = progress
     }
-
     
-    func predict(){
-        progress = .RENDER_SPECTROGRAM
+    private func topK(scores: [NSNumber], labels: [String], count: Int) -> [PredictResult]?{
+        let zippedResults = zip(labels.indices, scores)
+        let sortedResults = zippedResults.sorted { $0.1.floatValue > $1.1.floatValue }.prefix(count)
+        
+        let result = sortedResults.map { PredictResult(score: $0.1.floatValue, label: labels[$0.0]) }
+        return result
+    }
+
+    func predict(completion: @escaping(_ result: [PredictResult]?) -> Void){
+        if self.spectrogram == nil{
+            completion(nil)
+            return
+        }
+        
+        let resizedImage = UIImage(cgImage: self.spectrogram!).resized(to: CGSize(width: 28, height: 28))
+        
+        guard var tensorBuffer = resizedImage.normalized() else{
+            completion(nil)
+            return
+        }
+        
+        switch progress {
+        case .LOAD_FILE, .EXTRACT_FILE, .T03:
+            completion(nil)
+            return
+            
+        case .RENDER_SPECTROGRAM:
+            guard let outputs = module_T00.predict(audio: UnsafeMutableRawPointer(&tensorBuffer)) else{
+                completion(nil)
+                return
+            }
+            
+            let labels = ["BRAIN", "LANGUAGE", "LARYNX"]
+            
+            progress = .T00
+            
+            completion(topK(scores: outputs, labels: labels, count: 3))
+            return
+            
+        case .T00:
+            guard let outputs = module_T01.predict(audio: UnsafeMutableRawPointer(&tensorBuffer)) else{
+                completion(nil)
+                return
+            }
+            
+            let labels = ["LANGUAGE", "EAR"]
+            
+            progress = .T01
+            
+            completion(topK(scores: outputs, labels: labels, count: 2))
+            return
+            
+        case .T01:
+            guard let outputs = module_T02.predict(audio: UnsafeMutableRawPointer(&tensorBuffer)) else{
+                completion(nil)
+                return
+            }
+            
+            let labels = ["ARTICULATION", "VOCALIZATION", "CONDUCTION", "SENSORINEURAL"]
+            
+            progress = .T02
+
+            completion(topK(scores: outputs, labels: labels, count: 4))
+            return
+            
+        case .T02:
+            guard let outputs = module_T03.predict(audio: UnsafeMutableRawPointer(&tensorBuffer)) else{
+                completion(nil)
+                return
+            }
+            
+            let labels = ["FUNCTIONAL", "LARYNX", "ORAL"]
+            
+            progress = .T03
+
+            completion(topK(scores: outputs, labels: labels, count: 3))
+            return
+            
+        case nil:
+            completion(nil)
+            return
+        }
+    }
+    
+    func createPDF(patientName: String) -> Data{
+        let pdfMetaData = [
+            kCGPDFContextCreator : "Dysarthria Checker",
+            kCGPDFContextAuthor : "Dysarthria Checker"
+        ]
+        
+        let format = UIGraphicsPDFRendererFormat()
+        format.documentInfo = pdfMetaData as [String : Any]
+        
+        let pageWidth = 8.5 * 72.0
+        let pageHeight = 11 * 72.0
+        let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
+        
+        let data = renderer.pdfData{ (context) in
+            context.beginPage()
+            
+            let titleAttributes = [
+                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18.0)
+            ]
+            
+            let title = "구음장애 진단 결과 (\(patientName))"
+            title.draw(at: CGPoint(x: 0, y: 0), withAttributes: titleAttributes)
+        }
+        
+        return data
     }
 }
