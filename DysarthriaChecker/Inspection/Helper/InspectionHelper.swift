@@ -378,7 +378,7 @@ class InspectionHelper : NSObject, ObservableObject{
             return
             
         case .RENDER_SPECTROGRAM:
-            guard let outputs = module_T00.predict(audio: UnsafeMutableRawPointer(&tensorBuffer)) else{
+            guard let outputs = module_T00.predict(audio: UnsafeMutableRawPointer(&tensorBuffer), outputSize: 3) else{
                 completion(nil)
                 return
             }
@@ -391,7 +391,7 @@ class InspectionHelper : NSObject, ObservableObject{
             return
             
         case .T00:
-            guard let outputs = module_T01.predict(audio: UnsafeMutableRawPointer(&tensorBuffer)) else{
+            guard let outputs = module_T01.predict(audio: UnsafeMutableRawPointer(&tensorBuffer), outputSize: 2) else{
                 completion(nil)
                 return
             }
@@ -404,7 +404,7 @@ class InspectionHelper : NSObject, ObservableObject{
             return
             
         case .T01:
-            guard let outputs = module_T02.predict(audio: UnsafeMutableRawPointer(&tensorBuffer)) else{
+            guard let outputs = module_T02.predict(audio: UnsafeMutableRawPointer(&tensorBuffer), outputSize: 4) else{
                 completion(nil)
                 return
             }
@@ -417,7 +417,7 @@ class InspectionHelper : NSObject, ObservableObject{
             return
             
         case .T02:
-            guard let outputs = module_T03.predict(audio: UnsafeMutableRawPointer(&tensorBuffer)) else{
+            guard let outputs = module_T03.predict(audio: UnsafeMutableRawPointer(&tensorBuffer), outputSize: 3) else{
                 completion(nil)
                 return
             }

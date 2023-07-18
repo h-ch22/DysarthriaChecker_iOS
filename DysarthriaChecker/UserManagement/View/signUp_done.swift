@@ -63,7 +63,7 @@ struct signUp_done: View {
             })
             
             .fullScreenCover(isPresented: $navigateToHome, content: {
-                TabManager(userManagement : userManagement)
+                TabManager()
             })
         }
     }

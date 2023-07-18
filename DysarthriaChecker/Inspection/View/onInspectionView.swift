@@ -9,6 +9,8 @@ import SwiftUI
 
 struct onInspectionView: View {
     @StateObject var helper : InspectionHelper
+    @StateObject private var userManagement = UserManagement()
+    
     @State private var showOverlay = false
     @State private var index = 0
     @State private var showParsingAlert = false
@@ -365,6 +367,12 @@ struct onInspectionView: View {
                                     }.padding([.vertical], 20)
                                         .padding([.horizontal], 120)
                                         .background(RoundedRectangle(cornerRadius: 50).foregroundColor(.accent).shadow(radius: 5))
+                                }.onAppear{
+                                    userManagement.uploadInspectionResult(T00: self.result_T00!,
+                                                                          T01: self.result_T01!,
+                                                                          T02: self.result_T02!,
+                                                                          T03: self.result_T03!){ result in
+                                    }
                                 }
                             } else{
                                 Text("Dysarthria Checker에서 사용자의 음성 데이터를 분석하고 있습니다.\n이 작업은 파일의 길이에 따라 수 분이 걸릴 수 있습니다.\n잠시 기다려 주십시오.")
@@ -491,7 +499,8 @@ struct onInspectionView: View {
                             .environmentObject(helper)
                     })
                     .sheet(isPresented : $showResult){
-                        InspectionResultView(result_T00: self.result_T00!,
+                        InspectionResultView(helper : helper,
+                                             result_T00: self.result_T00!,
                                              result_T01: self.result_T01!,
                                              result_T02: self.result_T02!,
                                              result_T03: self.result_T03!)

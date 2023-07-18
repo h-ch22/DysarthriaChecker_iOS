@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 class UserManagement : ObservableObject{
     @Published var userInfo : UserInfoModel? = nil
+    @Published var latestInspectionResult : InspectionResultModel? = nil
     
     private let auth = Auth.auth()
     private let db = Firestore.firestore()
@@ -26,11 +27,15 @@ class UserManagement : ObservableObject{
             
             self.getUserInfo(){result in
                 guard let result = result else{return}
-                UserDefaults.standard.set(AES256Util.encrypt(string: email), forKey: "auth_email")
-                UserDefaults.standard.set(AES256Util.encrypt(string: password), forKey: "auth_password")
                 
-                completion(true)
-                return
+                if result{
+                    UserDefaults.standard.set(AES256Util.encrypt(string: email), forKey: "auth_email")
+                    UserDefaults.standard.set(AES256Util.encrypt(string: password), forKey: "auth_password")
+                    
+                    completion(true)
+                    return
+                }
+
             }
             
         }
@@ -159,6 +164,80 @@ class UserManagement : ObservableObject{
             self.userInfo = UserInfoModel(uid : self.auth.currentUser?.uid ?? "", name : AES256Util.decrypt(encoded: document?.get("name") as? String ?? ""), phone : AES256Util.decrypt(encoded: document?.get("phone") as? String ?? ""), email: AES256Util.decrypt(encoded: document?.get("email") as? String ?? ""))
             completion(true)
             return
+        }
+    }
+    
+    func uploadInspectionResult(T00: [PredictResult], T01: [PredictResult], T02: [PredictResult], T03: [PredictResult], completion: @escaping(_ result: Bool?) -> Void){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd. kk:mm:ss"
+        
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Inspection").document(formatter.string(from: Date())).setData([
+            "T00_\(T00[0].label)" : T00[0].score,
+            "T00_\(T00[1].label)" : T00[1].score,
+            "T00_\(T00[2].label)" : T00[2].score,
+            "T01_\(T01[0].label)" : T01[0].score,
+            "T01_\(T01[1].label)" : T01[1].score,
+            "T02_\(T02[0].label)" : T02[0].score,
+            "T02_\(T02[1].label)" : T02[1].score,
+            "T02_\(T02[2].label)" : T02[2].score,
+            "T02_\(T02[3].label)" : T02[3].score,
+            "T03_\(T03[0].label)" : T03[0].score,
+            "T03_\(T03[1].label)" : T03[1].score,
+            "T03_\(T03[2].label)" : T03[2].score
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+                completion(false)
+                return
+            } else{
+                completion(true)
+                return
+            }
+        }
+    }
+    
+    func getLatestInspectionResults(completion : @escaping(_ result: Bool?) -> Void){
+        let collectionRef = self.db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Inspection")
+        collectionRef.getDocuments(){(querySnapshot, error) in
+            if error != nil{
+                print(error?.localizedDescription)
+                completion(false)
+                return
+            } else{
+                if querySnapshot?.documents != nil{
+                    let data = querySnapshot?.documents[0].data()
+                    let T00_BRAIN = data?["T00_BRAIN"] as? Float ?? 0.0
+                    let T00_LANGUAGE = data?["T00_LANGUAGE"] as? Float ?? 0.0
+                    let T00_LARYNX = data?["T00_LARYNX"] as? Float ?? 0.0
+                    
+                    let T01_LANGUAGE = data?["T01_LAUNGAGE"] as? Float ?? 0.0
+                    let T01_EAR = data?["T01_EAR"] as? Float ?? 0.0
+                    
+                    let T02_ARTICULATION = data?["T02_ARTICULATION"] as? Float ?? 0.0
+                    let T02_VOCALIZATION = data?["T02_VOCALIZATION"] as? Float ?? 0.0
+                    let T02_CONDUCTION = data?["T02_CONDUCTION"] as? Float ?? 0.0
+                    let T02_SENSORINEURAL = data?["T02_SENSORINEURAL"] as? Float ?? 0.0
+                    
+                    let T03_FUNCTIONAL = data?["T03_FUNCTIONAL"] as? Float ?? 0.0
+                    let T03_LARYNX = data?["T03_LARYNX"] as? Float ?? 0.0
+                    let T03_ORAL = data?["T03_ORAL"] as? Float ?? 0.0
+                    
+                    var T00 : [PredictResult] = [PredictResult(score: T00_BRAIN, label: "BRAIN"), PredictResult(score: T00_LANGUAGE, label: "LANGUAGE"), PredictResult(score: T00_LARYNX, label: "LARYNX")]
+                    var T01 : [PredictResult] = [PredictResult(score: T01_EAR, label: "EAR"), PredictResult(score: T01_LANGUAGE, label: "LANGUAGE")]
+                    var T02 : [PredictResult] = [PredictResult(score: T02_ARTICULATION, label : "ARTICULATION"), PredictResult(score: T02_VOCALIZATION, label: "VOCALIZATION"), PredictResult(score: T02_CONDUCTION, label: "CONDUCTION"), PredictResult(score: T02_SENSORINEURAL, label: "SENSORINEURAL")]
+                    var T03 : [PredictResult] = [PredictResult(score: T03_ORAL, label: "ORAL"), PredictResult(score: T03_LARYNX, label: "LARYNX"), PredictResult(score: T03_FUNCTIONAL, label: "FUNCTIONAL")]
+                    
+                    T00.sort {$0.score > $1.score}
+                    T01.sort {$0.score > $1.score}
+                    T02.sort {$0.score > $1.score}
+                    T03.sort {$0.score > $1.score}
+                    
+                    self.latestInspectionResult = InspectionResultModel(targetDate: querySnapshot?.documents[0].documentID, T00: T00, T01: T01, T02: T02, T03: T03)
+                }
+                
+                completion(true)
+                return
+            }
         }
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MoreView: View {
-    @StateObject var helper : UserManagement
+    @StateObject private var helper = UserManagement()
     var body: some View {
         ZStack{
             Color.backgroundColor.edgesIgnoringSafeArea(.all)
@@ -130,6 +130,6 @@ struct MoreView: View {
 
 struct MoreView_Previews: PreviewProvider {
     static var previews: some View {
-        MoreView(helper : UserManagement())
+        MoreView()
     }
 }

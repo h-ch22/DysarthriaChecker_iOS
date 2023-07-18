@@ -10,6 +10,7 @@ import AVKit
 
 struct InspectionResultView: View {
     @Environment(\.presentationMode) var presentationmode
+    @StateObject var helper : InspectionHelper
     
     let result_T00 : [PredictResult]
     let result_T01 : [PredictResult]
@@ -171,18 +172,39 @@ struct InspectionResultView: View {
                         
                         Spacer().frame(height : 20)
                         
+                        HStack{
+                            Text("음성 데이터 렌더링 결과 (Audio Spectrogram)")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.txt_color)
+                            
+                            Spacer()
+                        }
+                        
+                        Spacer().frame(height : 10)
+                        
+                        Divider()
+                        
+                        Spacer().frame(height : 10)
+                        
+                        Image(uiImage: UIImage(cgImage: helper.spectrogram!))
+                            .resizable()
+                            .frame(width : 350, height : 350)
+                            .aspectRatio(contentMode: .fit)
+                        
+                        Spacer().frame(height : 20)
+
                         Button(action: {
                             
                         }){
                             HStack{
                                 Image(systemName : "square.and.arrow.up")
-                                Text("PDF로 저장")
+                                Text("PDF 내보내기")
                             }
                         }.buttonStyle(BorderedButtonStyle())
                         
                         Spacer().frame(height : 10)
 
-                        Text("구음장애가 의심되는 경우 이 검사결과를 PDF로 저장하여 의료기관에 참고자료로 제출할 수 있습니다.")
+                        Text("구음장애가 의심되는 경우 이 검사결과를 PDF로 내보내어 의료기관에 참고자료로 제출할 수 있습니다.")
                             .font(.caption)
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
@@ -194,10 +216,14 @@ struct InspectionResultView: View {
                             .frame(width : 30, height : 30)
                             .foregroundColor(.accent)
                         
-                        Text("DysarthriaChecker는 구음장애의 완전한 진단 및 치료를 보장하지 않으며, 환자는 DysarthriaChecker를 통해 치료상의 이익을 얻을 수 없습니다.\n구음장애가 의심되는 경우 전문가와 상담을 통해 의학적 조치를 받으십시오.")
+                        Text("Dysarthria Checker는 구음장애의 완전한 진단 및 치료를 보장하지 않으며, 환자는 Dysarthria Checker를 통해 치료상의 이익을 얻을 수 없습니다.\n구음장애가 의심되는 경우 전문가와 상담을 통해 의학적 조치를 받으십시오.")
                             .font(.caption)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.gray)
+                        
+                        Spacer().frame(height : 20)
+
+                        AboutDysarthriaView()
                         
                     }.navigationBarTitle("검사 결과")
                         .navigationBarTitleDisplayMode(.inline)
@@ -211,5 +237,5 @@ struct InspectionResultView: View {
 }
 
 #Preview {
-    InspectionResultView(result_T00: [PredictResult(score: 1.0, label: "TEST_T00")], result_T01: [PredictResult(score: 1.0, label: "TEST_T01")], result_T02: [PredictResult(score: 1.0, label: "TEST_T02")], result_T03: [PredictResult(score: 1.0, label: "TEST_T03")])
+    InspectionResultView(helper : InspectionHelper(), result_T00: [PredictResult(score: 1.0, label: "TEST_T00")], result_T01: [PredictResult(score: 1.0, label: "TEST_T01")], result_T02: [PredictResult(score: 1.0, label: "TEST_T02")], result_T03: [PredictResult(score: 1.0, label: "TEST_T03")])
 }

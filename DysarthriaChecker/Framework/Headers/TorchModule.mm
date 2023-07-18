@@ -26,10 +26,11 @@
   return self;
 }
 
--(NSArray<NSNumber*>*)predictAudio:(void*)audioBuffer {
+-(NSArray<NSNumber*>*)predictAudio:(void*)audioBuffer : (int)outputSize {
     try{
-        c10::InferenceMode mode;
         at::Tensor tensor = torch::from_blob(audioBuffer, {1, 3, 28, 28}, at::kFloat);
+        c10::InferenceMode mode;
+
         auto outputTensor = _impl.forward({tensor}).toTensor();
         float* floatBuffer = outputTensor.data_ptr<float>();
         
@@ -39,7 +40,7 @@
         
         NSMutableArray* results = [[NSMutableArray alloc] init];
         
-        for(int i = 0; i < 1000; i++){
+        for(int i = 0; i < outputSize; i++){
             [results addObject:@(floatBuffer[i])];
         }
         

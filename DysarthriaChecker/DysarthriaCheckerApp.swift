@@ -21,7 +21,7 @@ struct DysarthriaCheckerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SplashView()
+            SplashView().environmentObject(UserManagement())
         }
     }
 }

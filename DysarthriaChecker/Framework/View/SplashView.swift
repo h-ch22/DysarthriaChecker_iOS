@@ -10,7 +10,7 @@ import SwiftUI
 struct SplashView: View {
     @State private var showSignInView = false
     @State private var showHome = false
-    @State private var helper = UserManagement()
+    @EnvironmentObject var helper : UserManagement
     
     var body: some View {
         NavigationView{
@@ -62,7 +62,7 @@ struct SplashView: View {
                 SignInView()
             }
             .fullScreenCover(isPresented: $showHome){
-                TabManager(userManagement: helper)
+                TabManager()
             }
             .navigationBarHidden(true)
             .accentColor(.accent)

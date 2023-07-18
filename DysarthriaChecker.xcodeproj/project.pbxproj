@@ -70,10 +70,14 @@
 		F613DDE72A5E55E5007F0125 /* CommonUtils.metal in Sources */ = {isa = PBXBuildFile; fileRef = F613DDE62A5E55E5007F0125 /* CommonUtils.metal */; };
 		F613DDE92A5E5608007F0125 /* MTLDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613DDE82A5E5608007F0125 /* MTLDeviceExtensions.swift */; };
 		F613DDEB2A5E5620007F0125 /* MTLTextureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613DDEA2A5E5620007F0125 /* MTLTextureExtensions.swift */; };
+		F62576482A66638000BE5D2C /* HomeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62576472A66638000BE5D2C /* HomeListModel.swift */; };
+		F625764C2A6668A100BE5D2C /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F625764B2A6668A100BE5D2C /* StatisticsView.swift */; };
 		F630CE8E2A5DA64C009FC34A /* ScriptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630CE8D2A5DA64C009FC34A /* ScriptDetailView.swift */; };
 		F65CB3BC2A5E66580031CB83 /* InspectionResultSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65CB3BB2A5E66580031CB83 /* InspectionResultSummaryView.swift */; };
 		F65CB3BE2A5E66700031CB83 /* InspectionResultSeverityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65CB3BD2A5E66700031CB83 /* InspectionResultSeverityModel.swift */; };
 		F6B3EED62A6517D10057FB4F /* InspectionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B3EED52A6517D10057FB4F /* InspectionResultView.swift */; };
+		F6B3F17F2A66536E00DE51FA /* AboutDysarthriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B3F17E2A66536E00DE51FA /* AboutDysarthriaView.swift */; };
+		F6B3F1812A6657E000DE51FA /* InspectionResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B3F1802A6657E000DE51FA /* InspectionResultModel.swift */; };
 		F6B6429F2A53004D00A1E552 /* TorchModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = F6B6429E2A53004D00A1E552 /* TorchModule.mm */; };
 		F6B6E37F2A5686B100E5A8E7 /* AudioRecordingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E37E2A5686B100E5A8E7 /* AudioRecordingHelper.swift */; };
 		F6B6E3822A56870B00E5A8E7 /* InspectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E3812A56870B00E5A8E7 /* InspectionHelper.swift */; };
@@ -167,10 +171,14 @@
 		F613DDE62A5E55E5007F0125 /* CommonUtils.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CommonUtils.metal; sourceTree = "<group>"; };
 		F613DDE82A5E5608007F0125 /* MTLDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLDeviceExtensions.swift; sourceTree = "<group>"; };
 		F613DDEA2A5E5620007F0125 /* MTLTextureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLTextureExtensions.swift; sourceTree = "<group>"; };
+		F62576472A66638000BE5D2C /* HomeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListModel.swift; sourceTree = "<group>"; };
+		F625764B2A6668A100BE5D2C /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		F630CE8D2A5DA64C009FC34A /* ScriptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDetailView.swift; sourceTree = "<group>"; };
 		F65CB3BB2A5E66580031CB83 /* InspectionResultSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultSummaryView.swift; sourceTree = "<group>"; };
 		F65CB3BD2A5E66700031CB83 /* InspectionResultSeverityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultSeverityModel.swift; sourceTree = "<group>"; };
 		F6B3EED52A6517D10057FB4F /* InspectionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultView.swift; sourceTree = "<group>"; };
+		F6B3F17E2A66536E00DE51FA /* AboutDysarthriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDysarthriaView.swift; sourceTree = "<group>"; };
+		F6B3F1802A6657E000DE51FA /* InspectionResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultModel.swift; sourceTree = "<group>"; };
 		F6B6429A2A52FCF300A1E552 /* PyTorch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PyTorch-Bridging-Header.h"; sourceTree = "<group>"; };
 		F6B6429C2A52FF8000A1E552 /* TorchModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorchModule.h; sourceTree = "<group>"; };
 		F6B6429E2A53004D00A1E552 /* TorchModule.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TorchModule.mm; sourceTree = "<group>"; };
@@ -303,6 +311,7 @@
 				7BB5013D2A011F9C00F27BFB /* RadioButton.swift */,
 				7BB501432A012F6700F27BFB /* TabManager.swift */,
 				F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */,
+				F6B3F17E2A66536E00DE51FA /* AboutDysarthriaView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,6 +342,7 @@
 		7BA1D00529F42A190016578B /* DysarthriaChecker */ = {
 			isa = PBXGroup;
 			children = (
+				F62576492A66689500BE5D2C /* Statistics */,
 				F6D5D27D2A6438F400DD565A /* include */,
 				7BA7703C2A01EA4700D16A93 /* Train */,
 				7BB5015C2A0172AA00F27BFB /* More */,
@@ -413,6 +423,7 @@
 		7BB5014D2A01649800F27BFB /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F62576462A66637900BE5D2C /* Models */,
 				7BB5014E2A0164A300F27BFB /* View */,
 			);
 			path = Home;
@@ -461,6 +472,7 @@
 				F65CB3BD2A5E66700031CB83 /* InspectionResultSeverityModel.swift */,
 				F6D5D26A2A641C8400DD565A /* PredictResult.swift */,
 				F6DE9FA52A651EEB00A1B9E1 /* InspectionResultRow.swift */,
+				F6B3F1802A6657E000DE51FA /* InspectionResultModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -512,6 +524,30 @@
 				F613DDEA2A5E5620007F0125 /* MTLTextureExtensions.swift */,
 			);
 			path = Renderer;
+			sourceTree = "<group>";
+		};
+		F62576462A66637900BE5D2C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F62576472A66638000BE5D2C /* HomeListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F62576492A66689500BE5D2C /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				F625764A2A66689900BE5D2C /* View */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		F625764A2A66689900BE5D2C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F625764B2A6668A100BE5D2C /* StatisticsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		F6B6429B2A52FF7300A1E552 /* Headers */ = {
@@ -795,11 +831,15 @@
 				7B4BE6742A113DFF00B9698D /* TrainingWarningView.swift in Sources */,
 				7BF99B112A0179380035A0DB /* InfoView.swift in Sources */,
 				7BB501562A016CBB00F27BFB /* InspectionTypeSelectionView.swift in Sources */,
+				F6B3F1812A6657E000DE51FA /* InspectionResultModel.swift in Sources */,
+				F625764C2A6668A100BE5D2C /* StatisticsView.swift in Sources */,
 				7BB5014A2A015B9C00F27BFB /* LAHelper.swift in Sources */,
 				7BAD71DA29FFFC92004B7655 /* CheckBox_w.swift in Sources */,
 				F6D5D26B2A641C8400DD565A /* PredictResult.swift in Sources */,
+				F62576482A66638000BE5D2C /* HomeListModel.swift in Sources */,
 				F613DDDE2A5E5437007F0125 /* MetalRenderer.swift in Sources */,
 				7BB501502A0164AB00F27BFB /* HomeView.swift in Sources */,
+				F6B3F17F2A66536E00DE51FA /* AboutDysarthriaView.swift in Sources */,
 				7B71DA0729FA32C2004B1EA8 /* SignInView.swift in Sources */,
 				F65CB3BC2A5E66580031CB83 /* InspectionResultSummaryView.swift in Sources */,
 				F613DDEB2A5E5620007F0125 /* MTLTextureExtensions.swift in Sources */,
