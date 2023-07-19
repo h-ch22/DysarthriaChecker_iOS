@@ -143,6 +143,101 @@ class InspectionHelper : NSObject, ObservableObject{
         }
     }
     
+    static func createPDF(patientName: String, id: String, T00 : [PredictResult], T01 : [PredictResult], T02 : [PredictResult], T03 : [PredictResult], spectrogram: UIImage?) -> Data{
+        let pdfMetaData = [
+            kCGPDFContextCreator : "Dysarthria Checker",
+            kCGPDFContextAuthor : "Dysarthria Checker",
+            kCGPDFContextTitle : "DysarthriaChecker_\(patientName)_\(id)"
+        ]
+        
+        let format = UIGraphicsPDFRendererFormat()
+        format.documentInfo = pdfMetaData as [String: Any]
+        
+        let pageRect = CGRect(x:10, y:10, width: 595.2, height: 841.8)
+        let graphicsRenderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
+        
+        let data = graphicsRenderer.pdfData{(context) in
+            context.beginPage()
+            let initialCursor: CGFloat = 32
+            
+            var cursor = context.addCenteredText(fontSize: 24, weight: .bold, text: "구음장애 진단 결과 (\(patientName))", cursor: initialCursor, pdfSize: pageRect.size)
+            
+            cursor += 24
+            
+            let leftMargin: CGFloat = 74
+            
+            cursor = context.addSingleLineText(fontSize: 12, weight: .thin, text: "검사일 : \(id)", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: nil, annotationColor: .gray)
+            cursor += 24
+            
+            cursor = context.addSingleLineText(fontSize: 16, weight: .bold, text: "통합 검사 결과 (T00)", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: .underline, annotationColor: .black)
+            
+            for i in 0...2{
+                cursor += 6
+
+                cursor = context.addSingleLineText(fontSize: 14, weight: i == 0 ? .bold : .regular, text: "\(InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: T00[i].label )) : \(T00[i].score )%", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: nil, annotationColor: i == 0 ? UIColor(.accentColor) : .black)
+            }
+            
+            cursor += 12
+            
+            cursor = context.addSingleLineText(fontSize: 16, weight: .bold, text: "뇌신경장애 검사 결과 (T01)", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: .underline, annotationColor: .black)
+            
+            for i in 0...1{
+                cursor += 6
+
+                cursor = context.addSingleLineText(fontSize: 14, weight: i == 0 ? .bold : .regular, text: "\(InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: T01[i].label )) : \(T01[i].score )%", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: nil, annotationColor: i == 0 ? UIColor(.accentColor) : .black)
+            }
+            
+            cursor += 12
+            
+            cursor = context.addSingleLineText(fontSize: 16, weight: .bold, text: "언어청각장애 검사 결과 (T02)", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: .underline, annotationColor: .black)
+            
+            for i in 0...3{
+                cursor += 6
+
+                cursor = context.addSingleLineText(fontSize: 14, weight: i == 0 ? .bold : .regular, text: "\(InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: T02[i].label )) : \(T02[i].score )%", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: nil, annotationColor: i == 0 ? UIColor(.accentColor) : .black)
+            }
+
+            cursor += 12
+            
+            cursor = context.addSingleLineText(fontSize: 16, weight: .bold, text: "후두장애 검사 결과 (T03)", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: .underline, annotationColor: .black)
+            
+            for i in 0...2{
+                cursor += 6
+
+                cursor = context.addSingleLineText(fontSize: 14, weight: i == 0 ? .bold : .regular, text: "\(InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: T03[i].label )) : \(T03[i].score )%", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: nil, annotationColor: i == 0 ? UIColor(.accentColor) : .black)
+            }
+            
+            if spectrogram != nil{
+                cursor += 12
+                
+                cursor = context.addSingleLineText(fontSize: 16, weight: .bold, text: "음성 데이터 렌더링 결과 (Audio Spectrogram)", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: .underline, annotationColor: .black)
+
+                cursor += 6
+                
+                let maxHeight = pageRect.height * 0.2
+                let maxWidth = pageRect.width * 0.4
+
+                let aspectWidth = maxWidth / spectrogram!.size.width
+                let aspectHeight = maxHeight / spectrogram!.size.height
+                let aspectRatio = min(aspectWidth, aspectHeight)
+
+                let scaledWidth = spectrogram!.size.width * aspectRatio
+                let scaledHeight = spectrogram!.size.height * aspectRatio
+
+                let imageRect = CGRect(x: 84, y: cursor, width: scaledWidth, height: scaledHeight)
+                spectrogram?.draw(in: imageRect)
+            }
+        }
+        
+        return data
+    }
+    
+    static func convertDataToPDF(data : Data) -> PDFDocument?{
+        let pdf = PDFDocument(data: data)
+        
+        return pdf
+    }
+    
     @MainActor func getScripts(inspectionType : InspectionTypeModel, count: Int, completion: @escaping(_ result : Bool?) -> Void){
         scripts.removeAll()
         
@@ -433,33 +528,5 @@ class InspectionHelper : NSObject, ObservableObject{
             completion(nil)
             return
         }
-    }
-    
-    func createPDF(patientName: String, T00 : [PredictResult], T01 : [PredictResult], T02 : [PredictResult], T03 : [PredictResult]) -> Data{
-        let pdfMetaData = [
-            kCGPDFContextCreator : "Dysarthria Checker",
-            kCGPDFContextAuthor : "Dysarthria Checker"
-        ]
-        
-        let format = UIGraphicsPDFRendererFormat()
-        format.documentInfo = pdfMetaData as [String : Any]
-        
-        let pageWidth = 8.5 * 72.0
-        let pageHeight = 11 * 72.0
-        let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
-        let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
-        
-        let data = renderer.pdfData{ (context) in
-            context.beginPage()
-            
-            let titleAttributes = [
-                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18.0)
-            ]
-            
-            let title = "구음장애 진단 결과 (\(patientName))"
-            title.draw(at: CGPoint(x: 0, y: 0), withAttributes: titleAttributes)
-        }
-        
-        return data
     }
 }

@@ -14,10 +14,15 @@ class UserManagement : ObservableObject{
     @Published var userInfo : UserInfoModel? = nil
     @Published var latestInspectionResult : InspectionResultModel? = nil
     @Published var inspectionResults : [InspectionResultModel] = []
+    @Published var spectrogram: UIImage? = nil
     
     private let auth = Auth.auth()
     private let db = Firestore.firestore()
     private let storage = Storage.storage()
+    
+    func getUID() -> String{
+        return auth.currentUser?.uid ?? ""
+    }
     
     func signIn(email : String, password : String, completion : @escaping(_ result : Bool?) -> Void){
         auth.signIn(withEmail: email, password: password){_, error in
@@ -37,7 +42,7 @@ class UserManagement : ObservableObject{
                     completion(true)
                     return
                 }
-
+                
             }
             
         }
@@ -73,7 +78,7 @@ class UserManagement : ObservableObject{
                 completion(true)
                 return
             }
-
+            
         }
     }
     
@@ -211,7 +216,7 @@ class UserManagement : ObservableObject{
                         return
                     }
                 }
-
+                
             }
         }
     }
@@ -312,14 +317,24 @@ class UserManagement : ObservableObject{
     
     func getSpectrograms(id: String, completion: @escaping(_ result: URL?) -> Void){
         let storageRef = self.storage.reference().child("spectrograms/\(self.auth.currentUser?.uid ?? "")/\(id)/spectrogram.png")
-        storageRef.downloadURL(){downloadURL, error in
+        storageRef.getData(maxSize: 1024 * 1024 * 1024){data, error in
             if error != nil{
                 print(error?.localizedDescription)
                 completion(nil)
                 return
             } else{
-                completion(downloadURL)
-                return
+                self.spectrogram = UIImage(data: data!)
+                
+                storageRef.downloadURL(){downloadURL, error in
+                    if error != nil{
+                        print(error?.localizedDescription)
+                        completion(nil)
+                        return
+                    } else{
+                        completion(downloadURL)
+                        return
+                    }
+                }
             }
         }
     }

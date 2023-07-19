@@ -75,6 +75,8 @@
 		F625764E2A677DAB00BE5D2C /* PartStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F625764D2A677DAB00BE5D2C /* PartStatisticsView.swift */; };
 		F62576502A677E3700BE5D2C /* ResultTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F625764F2A677E3700BE5D2C /* ResultTypeModel.swift */; };
 		F62576522A67AC9000BE5D2C /* TrainTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62576512A67AC9000BE5D2C /* TrainTypeModel.swift */; };
+		F62576552A67BD9500BE5D2C /* PDFDataViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62576542A67BD9500BE5D2C /* PDFDataViewer.swift */; };
+		F62576572A67C4B600BE5D2C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62576562A67C4B600BE5D2C /* ActivityViewController.swift */; };
 		F630CE8E2A5DA64C009FC34A /* ScriptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630CE8D2A5DA64C009FC34A /* ScriptDetailView.swift */; };
 		F65CB3BC2A5E66580031CB83 /* InspectionResultSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65CB3BB2A5E66580031CB83 /* InspectionResultSummaryView.swift */; };
 		F65CB3BE2A5E66700031CB83 /* InspectionResultSeverityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65CB3BD2A5E66700031CB83 /* InspectionResultSeverityModel.swift */; };
@@ -179,6 +181,8 @@
 		F625764D2A677DAB00BE5D2C /* PartStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartStatisticsView.swift; sourceTree = "<group>"; };
 		F625764F2A677E3700BE5D2C /* ResultTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTypeModel.swift; sourceTree = "<group>"; };
 		F62576512A67AC9000BE5D2C /* TrainTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTypeModel.swift; sourceTree = "<group>"; };
+		F62576542A67BD9500BE5D2C /* PDFDataViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDataViewer.swift; sourceTree = "<group>"; };
+		F62576562A67C4B600BE5D2C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		F630CE8D2A5DA64C009FC34A /* ScriptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDetailView.swift; sourceTree = "<group>"; };
 		F65CB3BB2A5E66580031CB83 /* InspectionResultSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultSummaryView.swift; sourceTree = "<group>"; };
 		F65CB3BD2A5E66700031CB83 /* InspectionResultSeverityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultSeverityModel.swift; sourceTree = "<group>"; };
@@ -318,6 +322,8 @@
 				7BB501432A012F6700F27BFB /* TabManager.swift */,
 				F6B6E3852A568EF100E5A8E7 /* ProcessView.swift */,
 				F6B3F17E2A66536E00DE51FA /* AboutDysarthriaView.swift */,
+				F62576542A67BD9500BE5D2C /* PDFDataViewer.swift */,
+				F62576562A67C4B600BE5D2C /* ActivityViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -865,6 +871,7 @@
 				7B71DA0B29FA32D5004B1EA8 /* SplashView.swift in Sources */,
 				F6DE9FA62A651EEB00A1B9E1 /* InspectionResultRow.swift in Sources */,
 				F6B6E3822A56870B00E5A8E7 /* InspectionHelper.swift in Sources */,
+				F62576572A67C4B600BE5D2C /* ActivityViewController.swift in Sources */,
 				7BB501402A01294600F27BFB /* SignUpAlertModel.swift in Sources */,
 				7BAD71D929FFFC92004B7655 /* CheckBox.swift in Sources */,
 				7BB501542A01689D00F27BFB /* InspectionMainView.swift in Sources */,
@@ -872,6 +879,7 @@
 				7BB5013C2A011F6A00F27BFB /* RadioButtonGroup.swift in Sources */,
 				F613DDE72A5E55E5007F0125 /* CommonUtils.metal in Sources */,
 				7BAD71D429FFF8D5004B7655 /* SignUpView.swift in Sources */,
+				F62576552A67BD9500BE5D2C /* PDFDataViewer.swift in Sources */,
 				7B505A2A2A1123EA00614721 /* ARViewModel.swift in Sources */,
 				7B49A48929FA34BF00978134 /* UserManagement.swift in Sources */,
 				F613DDE92A5E5608007F0125 /* MTLDeviceExtensions.swift in Sources */,

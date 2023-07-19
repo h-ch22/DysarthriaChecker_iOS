@@ -11,12 +11,18 @@ import AVKit
 struct InspectionResultView: View {
     @Environment(\.presentationMode) var presentationmode
     @StateObject var helper : InspectionHelper
+    @StateObject private var userManagement = UserManagement()
+    
+    @State private var id = ""
+    @State private var showShareSheet = false
     
     let result_T00 : [PredictResult]
     let result_T01 : [PredictResult]
     let result_T02 : [PredictResult]
     let result_T03 : [PredictResult]
-
+    
+    let formatter = DateFormatter()
+    
     var body: some View {
         NavigationView{
             ZStack{
@@ -33,9 +39,9 @@ struct InspectionResultView: View {
                             .fontWeight(.semibold)
                             .multilineTextAlignment(.center)
                             .foregroundColor(.txt_color)
-                                                
+                        
                         Spacer().frame(height : 40)
-
+                        
                         Group{
                             HStack{
                                 Text("통합 (T00) 검사 결과")
@@ -54,22 +60,18 @@ struct InspectionResultView: View {
                             Divider()
                             
                             Spacer().frame(height : 10)
-
+                            
                             VStack{
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: result_T00[0].label), score : result_T00[0].score)
-                                
-                                Spacer().frame(height : 10)
-
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: result_T00[1].label), score : result_T00[1].score)
-                                
-                                Spacer().frame(height : 10)
-
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: result_T00[2].label), score : result_T00[2].score)
+                                ForEach(result_T00.indices, id: \.self){index in
+                                    InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: result_T00[index].label), score : result_T00[index].score)
+                                    
+                                    Spacer().frame(height : 10)
+                                }
                             }.padding(10)
                         }
                         
-                        Spacer().frame(height : 20)
-
+                        Spacer().frame(height : 10)
+                        
                         Group{
                             HStack{
                                 Text("뇌신경장애 (T01) 검사 결과")
@@ -88,18 +90,18 @@ struct InspectionResultView: View {
                             Divider()
                             
                             Spacer().frame(height : 10)
-
+                            
                             VStack{
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: result_T01[0].label), score : result_T01[0].score)
-                                
-                                Spacer().frame(height : 10)
-
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: result_T01[1].label), score : result_T01[1].score)
+                                ForEach(result_T01.indices, id: \.self){index in
+                                    InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: result_T01[index].label), score : result_T01[index].score)
+                                    
+                                    Spacer().frame(height : 10)
+                                }
                             }.padding(10)
                         }
                         
-                        Spacer().frame(height : 20)
-
+                        Spacer().frame(height : 10)
+                        
                         Group{
                             HStack{
                                 Text("언어청각장애 (T02) 검사 결과")
@@ -118,26 +120,18 @@ struct InspectionResultView: View {
                             Divider()
                             
                             Spacer().frame(height : 10)
-
+                            
                             VStack{
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: result_T02[0].label), score : result_T02[0].score)
-                                
-                                Spacer().frame(height : 10)
-
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: result_T02[1].label), score : result_T02[1].score)
-                                
-                                Spacer().frame(height : 10)
-
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: result_T02[2].label), score : result_T02[2].score)
-                                
-                                Spacer().frame(height : 10)
-
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: result_T02[3].label), score : result_T02[3].score)
+                                ForEach(result_T02.indices, id: \.self){index in
+                                    InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: result_T02[index].label), score : result_T02[index].score)
+                                    
+                                    Spacer().frame(height : 10)
+                                }
                             }.padding(10)
                         }
                         
-                        Spacer().frame(height : 20)
-
+                        Spacer().frame(height : 10)
+                        
                         Group{
                             HStack{
                                 Text("후두장애 (T03) 검사 결과")
@@ -156,17 +150,13 @@ struct InspectionResultView: View {
                             Divider()
                             
                             Spacer().frame(height : 10)
-
+                            
                             VStack{
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: result_T03[0].label), score : result_T03[0].score)
-                                
-                                Spacer().frame(height : 10)
-
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: result_T03[1].label), score : result_T03[1].score)
-                                
-                                Spacer().frame(height : 10)
-
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: result_T03[2].label), score : result_T03[2].score)
+                                ForEach(result_T03.indices, id: \.self){index in
+                                    InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: result_T03[index].label), score : result_T03[index].score)
+                                    
+                                    Spacer().frame(height : 10)
+                                }
                             }.padding(10)
                         }
                         
@@ -192,10 +182,11 @@ struct InspectionResultView: View {
                             .aspectRatio(contentMode: .fit)
                         
                         Spacer().frame(height : 20)
-
+                        
                         Button(action: {
-                            
-                        }){
+                            self.showShareSheet = true
+                        })
+                        {
                             HStack{
                                 Image(systemName : "square.and.arrow.up")
                                 Text("PDF 내보내기")
@@ -203,14 +194,14 @@ struct InspectionResultView: View {
                         }.buttonStyle(BorderedButtonStyle())
                         
                         Spacer().frame(height : 10)
-
+                        
                         Text("구음장애가 의심되는 경우 이 검사결과를 PDF로 내보내어 의료기관에 참고자료로 제출할 수 있습니다.")
                             .font(.caption)
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                         
                         Spacer().frame(height : 20)
-
+                        
                         Image(systemName : "person.badge.shield.checkmark.fill")
                             .resizable()
                             .frame(width : 30, height : 30)
@@ -222,7 +213,7 @@ struct InspectionResultView: View {
                             .foregroundColor(.gray)
                         
                         Spacer().frame(height : 20)
-
+                        
                         AboutDysarthriaView()
                         
                     }.navigationBarTitle("검사 결과")
@@ -231,6 +222,19 @@ struct InspectionResultView: View {
                 }
             }.navigationBarItems(trailing: Button("닫기"){
                 self.presentationmode.wrappedValue.dismiss()
+            })
+            .onAppear{
+                formatter.dateFormat = "yyyy. MM. dd. kk:mm"
+                id = formatter.string(from: Date())
+            }
+            .sheet(isPresented: $showShareSheet, content:{
+                ActivityViewController(activityItems: [InspectionHelper.convertDataToPDF(data: InspectionHelper.createPDF(patientName: "",
+                                                                                                                          id: id,
+                                                                                                                          T00: result_T00,
+                                                                                                                          T01: result_T01,
+                                                                                                                          T02: result_T02,
+                                                                                                                          T03: result_T03,
+                                                                                                                          spectrogram: UIImage(cgImage: helper.spectrogram!)))?.dataRepresentation()])
             })
         }
     }

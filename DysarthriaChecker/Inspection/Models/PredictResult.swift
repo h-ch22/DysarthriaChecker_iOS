@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PredictResult{
+struct PredictResult : Hashable{
     let score: Float
     let label: String
 }

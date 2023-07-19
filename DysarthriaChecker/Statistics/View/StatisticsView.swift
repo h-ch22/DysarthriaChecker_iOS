@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import PDFKit
 
 struct StatisticsView: View {
     @State private var showProgress = true
     @State private var currentIndex = 0
     @State private var url: URL? = nil
+    @State private var showShareSheet = false
     
     @StateObject var helper : UserManagement
-    
-    
+
     var body: some View {
         NavigationView{
             ZStack{
@@ -35,6 +36,7 @@ struct StatisticsView: View {
                                 Button(action: {
                                     if currentIndex < helper.inspectionResults.count - 1{
                                         currentIndex += 1
+                                        self.url = nil
                                         
                                         helper.getSpectrograms(id: helper.inspectionResults[currentIndex].targetDate ?? ""){result in
                                             guard let result = result else{return}
@@ -56,7 +58,8 @@ struct StatisticsView: View {
                                 Button(action: {
                                     if currentIndex > 0{
                                         currentIndex -= 1
-                                                                                
+                                        self.url = nil
+                                        
                                         helper.getSpectrograms(id: helper.inspectionResults[currentIndex].targetDate ?? ""){result in
                                             guard let result = result else{return}
                                             self.url = result
@@ -89,19 +92,15 @@ struct StatisticsView: View {
                             Spacer().frame(height : 10)
                             
                             VStack{
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: helper.inspectionResults[currentIndex].T00?[0].label ?? ""), score : helper.inspectionResults[currentIndex].T00?[0].score ?? 0.0)
-                                
-                                Spacer().frame(height : 10)
-                                
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: helper.inspectionResults[currentIndex].T00?[1].label ?? ""), score : helper.inspectionResults[currentIndex].T00?[1].score ?? 0.0)
-                                
-                                Spacer().frame(height : 10)
-                                
-                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: helper.inspectionResults[currentIndex].T00?[2].label ?? ""), score : helper.inspectionResults[currentIndex].T00?[2].score ?? 0.0)
+                                ForEach(helper.inspectionResults[currentIndex].T00!.indices, id: \.self){index in
+                                    InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: helper.inspectionResults[currentIndex].T00?[index].label ?? ""), score : helper.inspectionResults[currentIndex].T00?[index].score ?? 0.0)
+                                    
+                                    Spacer().frame(height : 10)
+                                }
                             }.padding(10)
                         }
                         
-                        Spacer().frame(height : 20)
+                        Spacer().frame(height : 10)
                         
                         HStack{
                             Text("뇌신경장애 (T01) 검사 결과")
@@ -122,14 +121,14 @@ struct StatisticsView: View {
                         Spacer().frame(height : 10)
                         
                         VStack{
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: helper.inspectionResults[currentIndex].T01?[0].label ?? ""), score : helper.inspectionResults[currentIndex].T01?[0].score ?? 0.0)
-                            
-                            Spacer().frame(height : 10)
-                            
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: helper.inspectionResults[currentIndex].T01?[1].label ?? ""), score : helper.inspectionResults[currentIndex].T01?[1].score ?? 0.0)
+                            ForEach(helper.inspectionResults[currentIndex].T01!.indices, id: \.self){index in
+                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: helper.inspectionResults[currentIndex].T01?[index].label ?? ""), score : helper.inspectionResults[currentIndex].T01?[index].score ?? 0.0)
+
+                                Spacer().frame(height : 10)
+                            }
                         }.padding(10)
                         
-                        Spacer().frame(height : 20)
+                        Spacer().frame(height : 10)
                         
                         HStack{
                             Text("언어청각장애 (T02) 검사 결과")
@@ -150,22 +149,14 @@ struct StatisticsView: View {
                         Spacer().frame(height : 10)
                         
                         VStack{
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: helper.inspectionResults[currentIndex].T02?[0].label ?? ""), score : helper.inspectionResults[currentIndex].T02?[0].score ?? 0.0)
-                            
-                            Spacer().frame(height : 10)
-                            
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: helper.inspectionResults[currentIndex].T02?[1].label ?? ""), score : helper.inspectionResults[currentIndex].T02?[1].score ?? 0.0)
-                            
-                            Spacer().frame(height : 10)
-                            
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: helper.inspectionResults[currentIndex].T02?[2].label ?? ""), score : helper.inspectionResults[currentIndex].T02?[2].score ?? 0.0)
-                            
-                            Spacer().frame(height : 10)
-                            
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: helper.inspectionResults[currentIndex].T02?[3].label ?? ""), score : helper.inspectionResults[currentIndex].T02?[3].score ?? 0.0)
+                            ForEach(helper.inspectionResults[currentIndex].T02!.indices, id: \.self){index in
+                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: helper.inspectionResults[currentIndex].T02?[index].label ?? ""), score : helper.inspectionResults[currentIndex].T02?[index].score ?? 0.0)
+
+                                Spacer().frame(height : 10)
+                            }
                         }.padding(10)
                         
-                        Spacer().frame(height : 20)
+                        Spacer().frame(height : 10)
                         
                         HStack{
                             Text("후두장애 (T03) 검사 결과")
@@ -186,18 +177,14 @@ struct StatisticsView: View {
                         Spacer().frame(height : 10)
                         
                         VStack{
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: helper.inspectionResults[currentIndex].T03?[0].label ?? ""), score : helper.inspectionResults[currentIndex].T03?[0].score ?? 0.0)
-                            
-                            Spacer().frame(height : 10)
-                            
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: helper.inspectionResults[currentIndex].T03?[1].label ?? ""), score : helper.inspectionResults[currentIndex].T03?[1].score ?? 0.0)
-                            
-                            Spacer().frame(height : 10)
-                            
-                            InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: helper.inspectionResults[currentIndex].T03?[2].label ?? ""), score : helper.inspectionResults[currentIndex].T03?[2].score ?? 0.0)
+                            ForEach(helper.inspectionResults[currentIndex].T03!.indices, id: \.self){index in
+                                InspectionResultRow(disease : InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: helper.inspectionResults[currentIndex].T03?[index].label ?? ""), score : helper.inspectionResults[currentIndex].T03?[index].score ?? 0.0)
+
+                                Spacer().frame(height : 10)
+                            }
                         }.padding(10)
                         
-                        Spacer().frame(height : 20)
+                        Spacer().frame(height : 10)
                         
                         if self.url != nil{
                             HStack{
@@ -219,15 +206,16 @@ struct StatisticsView: View {
                                     .resizable()
                                     .frame(width : 350, height : 350)
                                     .aspectRatio(contentMode: .fit)
+
                             } placeholder: {
                                 ProgressView()
                             }
                             
                             Spacer().frame(height : 20)
                         }
-
+                        
                         Button(action: {
-                            
+                            self.showShareSheet = true
                         }){
                             HStack{
                                 Image(systemName : "square.and.arrow.up")
@@ -236,7 +224,7 @@ struct StatisticsView: View {
                         }.buttonStyle(BorderedButtonStyle())
                         
                         Spacer().frame(height : 10)
-
+                        
                         Text("구음장애가 의심되는 경우 이 검사결과를 PDF로 내보내어 의료기관에 참고자료로 제출할 수 있습니다.")
                             .font(.caption)
                             .foregroundColor(.gray)
@@ -255,11 +243,7 @@ struct StatisticsView: View {
                             .foregroundColor(.gray)
                         
                     }.padding(20)
-                    
-                    
                 }
-                
-                
             }
             .navigationTitle(Text("검사 기록"))
             .onAppear{
@@ -276,6 +260,15 @@ struct StatisticsView: View {
                     showProgress = false
                 }
             }
+            .sheet(isPresented: $showShareSheet, content:{
+                ActivityViewController(activityItems: [InspectionHelper.convertDataToPDF(data: InspectionHelper.createPDF(patientName: helper.userInfo?.name ?? "",
+                                                                                                                          id: helper.inspectionResults[currentIndex].targetDate ?? "",
+                                                                                                                          T00: helper.inspectionResults[currentIndex].T00!,
+                                                                                                                          T01: helper.inspectionResults[currentIndex].T01!,
+                                                                                                                          T02: helper.inspectionResults[currentIndex].T02!,
+                                                                                                                          T03: helper.inspectionResults[currentIndex].T03!,
+                                                                                                                          spectrogram: helper.spectrogram))?.dataRepresentation()])
+            })
         }
     }
 }
