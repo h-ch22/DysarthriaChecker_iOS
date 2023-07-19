@@ -13,9 +13,11 @@ import FirebaseFirestore
 class UserManagement : ObservableObject{
     @Published var userInfo : UserInfoModel? = nil
     @Published var latestInspectionResult : InspectionResultModel? = nil
+    @Published var inspectionResults : [InspectionResultModel] = []
     
     private let auth = Auth.auth()
     private let db = Firestore.firestore()
+    private let storage = Storage.storage()
     
     func signIn(email : String, password : String, completion : @escaping(_ result : Bool?) -> Void){
         auth.signIn(withEmail: email, password: password){_, error in
@@ -167,11 +169,13 @@ class UserManagement : ObservableObject{
         }
     }
     
-    func uploadInspectionResult(T00: [PredictResult], T01: [PredictResult], T02: [PredictResult], T03: [PredictResult], completion: @escaping(_ result: Bool?) -> Void){
+    func uploadInspectionResult(T00: [PredictResult], T01: [PredictResult], T02: [PredictResult], T03: [PredictResult], spectrogram: UIImage, completion: @escaping(_ result: Bool?) -> Void){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd. kk:mm:ss"
         
-        self.db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Inspection").document(formatter.string(from: Date())).setData([
+        let docID = formatter.string(from: Date())
+        
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Inspection").document(docID).setData([
             "T00_\(T00[0].label)" : T00[0].score,
             "T00_\(T00[1].label)" : T00[1].score,
             "T00_\(T00[2].label)" : T00[2].score,
@@ -190,8 +194,24 @@ class UserManagement : ObservableObject{
                 completion(false)
                 return
             } else{
-                completion(true)
-                return
+                let storageRef = self.storage.reference()
+                let imgRef = storageRef.child("spectrograms/\(self.auth.currentUser?.uid ?? "")/\(docID)/spectrogram.png")
+                guard let imgData = spectrogram.pngData() else {
+                    completion(false)
+                    return
+                }
+                
+                imgRef.putData(imgData, metadata: nil){metaData, error in
+                    if error != nil{
+                        print(error?.localizedDescription)
+                        completion(false)
+                        return
+                    } else{
+                        completion(true)
+                        return
+                    }
+                }
+
             }
         }
     }
@@ -205,12 +225,13 @@ class UserManagement : ObservableObject{
                 return
             } else{
                 if querySnapshot?.documents != nil{
-                    let data = querySnapshot?.documents[0].data()
+                    let doc = querySnapshot?.documents[(querySnapshot?.documents.count ?? 0) - 1]
+                    let data = doc?.data()
                     let T00_BRAIN = data?["T00_BRAIN"] as? Float ?? 0.0
                     let T00_LANGUAGE = data?["T00_LANGUAGE"] as? Float ?? 0.0
                     let T00_LARYNX = data?["T00_LARYNX"] as? Float ?? 0.0
                     
-                    let T01_LANGUAGE = data?["T01_LAUNGAGE"] as? Float ?? 0.0
+                    let T01_LANGUAGE = data?["T01_LANGUAGE"] as? Float ?? 0.0
                     let T01_EAR = data?["T01_EAR"] as? Float ?? 0.0
                     
                     let T02_ARTICULATION = data?["T02_ARTICULATION"] as? Float ?? 0.0
@@ -232,10 +253,72 @@ class UserManagement : ObservableObject{
                     T02.sort {$0.score > $1.score}
                     T03.sort {$0.score > $1.score}
                     
-                    self.latestInspectionResult = InspectionResultModel(targetDate: querySnapshot?.documents[0].documentID, T00: T00, T01: T01, T02: T02, T03: T03)
+                    self.latestInspectionResult = InspectionResultModel(targetDate: doc?.documentID, T00: T00, T01: T01, T02: T02, T03: T03, spectrogram: nil)
                 }
                 
                 completion(true)
+                return
+            }
+        }
+    }
+    
+    func getInspectionResults(completion: @escaping(_ result: Bool?) -> Void){
+        self.inspectionResults.removeAll()
+        let collectionRef = self.db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Inspection")
+        collectionRef.getDocuments(){(querySnapshot, error) in
+            if error != nil{
+                print(error?.localizedDescription)
+                completion(false)
+                return
+            } else{
+                if querySnapshot?.documents != nil{
+                    for document in querySnapshot!.documents{
+                        let data = document.data()
+                        let T00_BRAIN = data["T00_BRAIN"] as? Float ?? 0.0
+                        let T00_LANGUAGE = data["T00_LANGUAGE"] as? Float ?? 0.0
+                        let T00_LARYNX = data["T00_LARYNX"] as? Float ?? 0.0
+                        
+                        let T01_LANGUAGE = data["T01_LANGUAGE"] as? Float ?? 0.0
+                        let T01_EAR = data["T01_EAR"] as? Float ?? 0.0
+                        
+                        let T02_ARTICULATION = data["T02_ARTICULATION"] as? Float ?? 0.0
+                        let T02_VOCALIZATION = data["T02_VOCALIZATION"] as? Float ?? 0.0
+                        let T02_CONDUCTION = data["T02_CONDUCTION"] as? Float ?? 0.0
+                        let T02_SENSORINEURAL = data["T02_SENSORINEURAL"] as? Float ?? 0.0
+                        
+                        let T03_FUNCTIONAL = data["T03_FUNCTIONAL"] as? Float ?? 0.0
+                        let T03_LARYNX = data["T03_LARYNX"] as? Float ?? 0.0
+                        let T03_ORAL = data["T03_ORAL"] as? Float ?? 0.0
+                        
+                        var T00 : [PredictResult] = [PredictResult(score: T00_BRAIN, label: "BRAIN"), PredictResult(score: T00_LANGUAGE, label: "LANGUAGE"), PredictResult(score: T00_LARYNX, label: "LARYNX")]
+                        var T01 : [PredictResult] = [PredictResult(score: T01_EAR, label: "EAR"), PredictResult(score: T01_LANGUAGE, label: "LANGUAGE")]
+                        var T02 : [PredictResult] = [PredictResult(score: T02_ARTICULATION, label : "ARTICULATION"), PredictResult(score: T02_VOCALIZATION, label: "VOCALIZATION"), PredictResult(score: T02_CONDUCTION, label: "CONDUCTION"), PredictResult(score: T02_SENSORINEURAL, label: "SENSORINEURAL")]
+                        var T03 : [PredictResult] = [PredictResult(score: T03_ORAL, label: "ORAL"), PredictResult(score: T03_LARYNX, label: "LARYNX"), PredictResult(score: T03_FUNCTIONAL, label: "FUNCTIONAL")]
+                        
+                        T00.sort {$0.score > $1.score}
+                        T01.sort {$0.score > $1.score}
+                        T02.sort {$0.score > $1.score}
+                        T03.sort {$0.score > $1.score}
+                        
+                        self.inspectionResults.append(InspectionResultModel(targetDate: document.documentID, T00: T00, T01: T01, T02: T02, T03: T03, spectrogram: nil))
+                    }
+                }
+                
+                completion(true)
+                return
+            }
+        }
+    }
+    
+    func getSpectrograms(id: String, completion: @escaping(_ result: URL?) -> Void){
+        let storageRef = self.storage.reference().child("spectrograms/\(self.auth.currentUser?.uid ?? "")/\(id)/spectrogram.png")
+        storageRef.downloadURL(){downloadURL, error in
+            if error != nil{
+                print(error?.localizedDescription)
+                completion(nil)
+                return
+            } else{
+                completion(downloadURL)
                 return
             }
         }

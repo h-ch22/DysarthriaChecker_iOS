@@ -10,7 +10,7 @@ import SwiftUI
 struct TabManager: View {
     @State private var selectedIndex = 0
     @State private var showModal = false
-    @StateObject private var userManagement = UserManagement()
+    @StateObject var userManagement : UserManagement
 
     let icon = ["house.fill", "chart.xyaxis.line", "waveform", "rectangle.3.offgrid.bubble.left.fill", "ellipsis.circle.fill"]
     
@@ -28,21 +28,21 @@ struct TabManager: View {
                 ZStack{
                     switch selectedIndex{
                     case 0:
-                        HomeView(parent: self)
+                        HomeView(helper: userManagement, parent: self)
                             .navigationBarHidden(true)
                         
                     case 1:
-                        StatisticsView()
+                        StatisticsView(helper : userManagement)
                             .navigationBarHidden(true)
                     case 3:
                         TrainView()
 
                         
                     case 4:
-                        MoreView()
+                        MoreView(helper: userManagement)
                             .navigationBarHidden(true)
                     default:
-                        HomeView(parent: self)
+                        HomeView(helper: userManagement, parent: self)
                             .navigationBarHidden(true)
 
                     }
@@ -108,13 +108,13 @@ struct TabManager: View {
             .background(Color.backgroundColor.edgesIgnoringSafeArea(.all))
             
             .accentColor(.accent)
-        }
+        }.animation(.easeInOut, value: 1.0)
         .navigationBarHidden(true)
     }
 }
 
 struct TabManager_Previews: PreviewProvider {
     static var previews: some View {
-        TabManager()
+        TabManager(userManagement: UserManagement())
     }
 }

@@ -26,7 +26,7 @@ struct HomeListModel: View {
             
             Spacer().frame(height : 10)
             
-            Text(String(point))
+            Text("\(String(point))%")
                 .font(.caption)
                 .foregroundColor(.accentColor)
 

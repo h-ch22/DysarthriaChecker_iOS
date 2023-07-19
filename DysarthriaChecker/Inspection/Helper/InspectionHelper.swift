@@ -435,7 +435,7 @@ class InspectionHelper : NSObject, ObservableObject{
         }
     }
     
-    func createPDF(patientName: String) -> Data{
+    func createPDF(patientName: String, T00 : [PredictResult], T01 : [PredictResult], T02 : [PredictResult], T03 : [PredictResult]) -> Data{
         let pdfMetaData = [
             kCGPDFContextCreator : "Dysarthria Checker",
             kCGPDFContextAuthor : "Dysarthria Checker"

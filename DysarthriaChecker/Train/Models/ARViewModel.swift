@@ -11,7 +11,7 @@ import ARKit
 
 class ARViewModel : UIViewController, ObservableObject, ARSessionDelegate{
     @Published private var model : ARModel = ARModel()
-    
+    private var type: TrainTypeModel = .LIP
     
     var arView : ARView{
         model.arView
@@ -45,6 +45,10 @@ class ARViewModel : UIViewController, ObservableObject, ARSessionDelegate{
     
     var remainingTime : String{
         return String(count)
+    }
+    
+    func changeType(type: TrainTypeModel){
+        self.type = type
     }
     
     func startTimer(){

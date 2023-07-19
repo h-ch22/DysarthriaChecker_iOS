@@ -62,7 +62,7 @@ struct SplashView: View {
                 SignInView()
             }
             .fullScreenCover(isPresented: $showHome){
-                TabManager()
+                TabManager(userManagement: helper)
             }
             .navigationBarHidden(true)
             .accentColor(.accent)

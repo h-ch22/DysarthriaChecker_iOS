@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var helper = UserManagement()
+    @StateObject var helper : UserManagement
     @State private var showProgress = false
+    @State private var showStatistics = false
+    @State private var selectedType : ResultTypeModel? = nil
     
     let parent: TabManager
     
@@ -79,21 +81,41 @@ struct HomeView: View {
                         
                         
                         HStack{
-                            HomeListModel(disease: "통합 (T00)", result: InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: helper.latestInspectionResult?.T00?.first?.label ?? ""), point : helper.latestInspectionResult?.T00?.first?.score ?? 0.0)
+                            Button(action: {
+                                selectedType = .T00
+                                showStatistics = true
+                            }){
+                                HomeListModel(disease: "통합 (T00)", result: InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T00", code: helper.latestInspectionResult?.T00?.first?.label ?? ""), point : helper.latestInspectionResult?.T00?.first?.score ?? 0.0)
+                            }
                             
                             Spacer()
                             
-                            HomeListModel(disease: "뇌신경장애 (T01)", result: InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: helper.latestInspectionResult?.T01?.first?.label ?? ""), point : helper.latestInspectionResult?.T01?.first?.score ?? 0.0)
+                            Button(action: {
+                                selectedType = .T01
+                                showStatistics = true
+                            }){
+                                HomeListModel(disease: "뇌신경장애 (T01)", result: InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T01", code: helper.latestInspectionResult?.T01?.first?.label ?? ""), point : helper.latestInspectionResult?.T01?.first?.score ?? 0.0)
+                            }
                         }
                         
                         Spacer().frame(height : 20)
                         
                         HStack{
-                            HomeListModel(disease: "언어청각장애 (T02)", result: InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: helper.latestInspectionResult?.T02?.first?.label ?? ""), point : helper.latestInspectionResult?.T02?.first?.score ?? 0.0)
+                            Button(action: {
+                                selectedType = .T02
+                                showStatistics = true
+                            }){
+                                HomeListModel(disease: "언어청각장애 (T02)", result: InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T02", code: helper.latestInspectionResult?.T02?.first?.label ?? ""), point : helper.latestInspectionResult?.T02?.first?.score ?? 0.0)
+                            }
                             
                             Spacer()
                             
-                            HomeListModel(disease: "후두장애 (T03)", result: InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: helper.latestInspectionResult?.T03?.first?.label ?? ""), point : helper.latestInspectionResult?.T03?.first?.score ?? 0.0)
+                            Button(action: {
+                                selectedType = .T03
+                                showStatistics = true
+                            }){
+                                HomeListModel(disease: "후두장애 (T03)", result: InspectionHelper.convertDiseaseCodeToKorean(diseaseCode: "T03", code: helper.latestInspectionResult?.T03?.first?.label ?? ""), point : helper.latestInspectionResult?.T03?.first?.score ?? 0.0)
+                            }
                         }
                                     
                         Spacer().frame(height : 40)
@@ -130,11 +152,14 @@ struct HomeView: View {
                     showProgress = false
                 }
             }
+            .sheet(isPresented: $showStatistics, content: {
+                PartStatisticsView(type: selectedType ?? .T00, helper: helper)
+            })
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(parent: TabManager())
+        HomeView(helper: UserManagement(), parent: TabManager(userManagement: UserManagement()))
     }
 }

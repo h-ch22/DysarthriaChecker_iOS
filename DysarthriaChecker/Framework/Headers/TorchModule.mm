@@ -41,7 +41,9 @@
         NSMutableArray* results = [[NSMutableArray alloc] init];
         
         for(int i = 0; i < outputSize; i++){
-            [results addObject:@(floatBuffer[i])];
+            float score = floatBuffer[i] * 100;
+            
+            [results addObject:@((int)(score * 1000.0) / 1000.0)];
         }
         
         return [results copy];

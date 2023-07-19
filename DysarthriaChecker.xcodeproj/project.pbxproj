@@ -72,6 +72,9 @@
 		F613DDEB2A5E5620007F0125 /* MTLTextureExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613DDEA2A5E5620007F0125 /* MTLTextureExtensions.swift */; };
 		F62576482A66638000BE5D2C /* HomeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62576472A66638000BE5D2C /* HomeListModel.swift */; };
 		F625764C2A6668A100BE5D2C /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F625764B2A6668A100BE5D2C /* StatisticsView.swift */; };
+		F625764E2A677DAB00BE5D2C /* PartStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F625764D2A677DAB00BE5D2C /* PartStatisticsView.swift */; };
+		F62576502A677E3700BE5D2C /* ResultTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F625764F2A677E3700BE5D2C /* ResultTypeModel.swift */; };
+		F62576522A67AC9000BE5D2C /* TrainTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62576512A67AC9000BE5D2C /* TrainTypeModel.swift */; };
 		F630CE8E2A5DA64C009FC34A /* ScriptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F630CE8D2A5DA64C009FC34A /* ScriptDetailView.swift */; };
 		F65CB3BC2A5E66580031CB83 /* InspectionResultSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65CB3BB2A5E66580031CB83 /* InspectionResultSummaryView.swift */; };
 		F65CB3BE2A5E66700031CB83 /* InspectionResultSeverityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65CB3BD2A5E66700031CB83 /* InspectionResultSeverityModel.swift */; };
@@ -173,6 +176,9 @@
 		F613DDEA2A5E5620007F0125 /* MTLTextureExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLTextureExtensions.swift; sourceTree = "<group>"; };
 		F62576472A66638000BE5D2C /* HomeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListModel.swift; sourceTree = "<group>"; };
 		F625764B2A6668A100BE5D2C /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		F625764D2A677DAB00BE5D2C /* PartStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartStatisticsView.swift; sourceTree = "<group>"; };
+		F625764F2A677E3700BE5D2C /* ResultTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTypeModel.swift; sourceTree = "<group>"; };
+		F62576512A67AC9000BE5D2C /* TrainTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTypeModel.swift; sourceTree = "<group>"; };
 		F630CE8D2A5DA64C009FC34A /* ScriptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDetailView.swift; sourceTree = "<group>"; };
 		F65CB3BB2A5E66580031CB83 /* InspectionResultSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultSummaryView.swift; sourceTree = "<group>"; };
 		F65CB3BD2A5E66700031CB83 /* InspectionResultSeverityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultSeverityModel.swift; sourceTree = "<group>"; };
@@ -407,6 +413,7 @@
 			children = (
 				7B505A272A1123A100614721 /* ARModel.swift */,
 				7B505A292A1123EA00614721 /* ARViewModel.swift */,
+				F62576512A67AC9000BE5D2C /* TrainTypeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -473,6 +480,7 @@
 				F6D5D26A2A641C8400DD565A /* PredictResult.swift */,
 				F6DE9FA52A651EEB00A1B9E1 /* InspectionResultRow.swift */,
 				F6B3F1802A6657E000DE51FA /* InspectionResultModel.swift */,
+				F625764F2A677E3700BE5D2C /* ResultTypeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -546,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				F625764B2A6668A100BE5D2C /* StatisticsView.swift */,
+				F625764D2A677DAB00BE5D2C /* PartStatisticsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -827,8 +836,10 @@
 			files = (
 				7B49A49029FA385B00978134 /* TutorialView.swift in Sources */,
 				F6B6E38B2A56960200E5A8E7 /* onInspectionView.swift in Sources */,
+				F62576502A677E3700BE5D2C /* ResultTypeModel.swift in Sources */,
 				F630CE8E2A5DA64C009FC34A /* ScriptDetailView.swift in Sources */,
 				7B4BE6742A113DFF00B9698D /* TrainingWarningView.swift in Sources */,
+				F62576522A67AC9000BE5D2C /* TrainTypeModel.swift in Sources */,
 				7BF99B112A0179380035A0DB /* InfoView.swift in Sources */,
 				7BB501562A016CBB00F27BFB /* InspectionTypeSelectionView.swift in Sources */,
 				F6B3F1812A6657E000DE51FA /* InspectionResultModel.swift in Sources */,
@@ -879,6 +890,7 @@
 				F613DDDC2A5E41E3007F0125 /* InspectionProgressModel.swift in Sources */,
 				F6B6E38D2A56A17700E5A8E7 /* AudioSpectrumView.swift in Sources */,
 				7B49A48C29FA34E100978134 /* UserInfoModel.swift in Sources */,
+				F625764E2A677DAB00BE5D2C /* PartStatisticsView.swift in Sources */,
 				7BB501462A012FF000F27BFB /* onProgressCallerModel.swift in Sources */,
 				7BAD71E62A0001A7004B7655 /* DisabledTypeCheckView.swift in Sources */,
 				7BB5014C2A0160AB00F27BFB /* DiseaseInfoModel.swift in Sources */,

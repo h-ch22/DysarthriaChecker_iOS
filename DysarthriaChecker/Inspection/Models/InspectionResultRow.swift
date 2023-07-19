@@ -19,7 +19,7 @@ struct InspectionResultRow: View {
             
             Spacer()
             
-            Text(String(score))
+            Text("\(String(score))%")
                 .font(.caption)
                 .foregroundColor(.accentColor)
         }

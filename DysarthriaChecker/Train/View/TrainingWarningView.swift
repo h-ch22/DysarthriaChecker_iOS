@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TrainingWarningView: View {
+    let type : TrainTypeModel
+    
     var body: some View {
         ZStack{
             Color.backgroundColor.edgesIgnoringSafeArea(.all)
@@ -149,7 +151,8 @@ struct TrainingWarningView: View {
                             }
                             
                             HStack {
-                                Text("일시적 또는 영구적인 입술 부위의 근육 당김/결림/통증, 성대 부위의 통증, 목에 이물질이 걸린 듯한 느낌, 일시적 또는 영구적인 성대 손상, 일시적 또는 영구적인 입술 부위의 근육 파열, 정신착란을 포함한 기타 형태의 정신적 문제, 사망")
+                                Text(type == .LIP ? "일시적 또는 영구적인 입술 부위의 근육 당김/결림/통증, 성대 부위의 통증, 목에 이물질이 걸린 듯한 느낌, 일시적 또는 영구적인 성대 손상, 일시적 또는 영구적인 입술 부위의 근육 파열, 정신착란을 포함한 기타 형태의 정신적 문제" :
+                                        "일시적 또는 영구적인 혀 부위의 근육 당김/결림/통증, 성대 부위의 통증, 목에 이물질이 걸린 듯한 느낌, 일시적 또는 영구적인 성대 손상, 정신착란을 포함한 기타 형태의 정신적 문제")
                                     .font(.caption)
                                     .fixedSize(horizontal: false, vertical: true)
                                     .foregroundColor(.gray)
@@ -163,7 +166,7 @@ struct TrainingWarningView: View {
                 Group{
                     Spacer().frame(height : 20)
 
-                    NavigationLink(destination : TrainingSessionView().navigationBarTitleDisplayMode(.inline)){
+                    NavigationLink(destination : TrainingSessionView(type: type).navigationBarTitleDisplayMode(.inline)){
                         HStack{
                             Text("시작하기")
                                 .foregroundColor(.white)
@@ -191,6 +194,6 @@ struct TrainingWarningView: View {
 
 struct TrainingWarningView_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingWarningView()
+        TrainingWarningView(type : .LIP)
     }
 }

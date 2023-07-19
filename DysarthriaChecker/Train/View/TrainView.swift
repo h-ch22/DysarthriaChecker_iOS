@@ -38,7 +38,7 @@ struct TrainView: View {
                         
                         Spacer().frame(height : 20)
                         
-                        NavigationLink(destination : TrainingWarningView()){
+                        NavigationLink(destination : TrainingWarningView(type : .LIP)){
                             VStack {
                                 LazyVGrid(columns: lip_col){
                                     ForEach((0...9), id : \.self){index in
@@ -87,7 +87,7 @@ struct TrainView: View {
                         
                         Spacer().frame(height : 20)
                         
-                        Button(action : {}){
+                        NavigationLink(destination : TrainingWarningView(type : .LIP)){
                             VStack {
                                 LazyVGrid(columns: tongue_col){
                                     ForEach((0...6), id : \.self){index in

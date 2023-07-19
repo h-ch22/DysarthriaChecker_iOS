@@ -123,7 +123,7 @@ struct SignInView: View {
                         return Alert(title: Text("오류"), message: Text("로그인 처리 중 문제가 발생했습니다.\n네트워크 상태를 확인하거나, 입력한 정보가 일치하는지 확인하십시오."), dismissButton: .default(Text("확인")))
                     })
                     .fullScreenCover(isPresented: $showHome, content: {
-                        TabManager()
+                        TabManager(userManagement: helper)
                     })
                     .overlay(ProcessView().isHidden(!showOverlay))
 

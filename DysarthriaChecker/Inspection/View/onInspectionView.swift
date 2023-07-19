@@ -89,7 +89,7 @@ struct onInspectionView: View {
         ZStack{
             Color.backgroundColor.edgesIgnoringSafeArea(.all)
             
-            if index >= all_index - 1 || type == .FREE_SPEECH{
+            if index > all_index - 1 || type == .FREE_SPEECH{
                 VStack{
                     HStack{
                         Spacer()
@@ -371,7 +371,8 @@ struct onInspectionView: View {
                                     userManagement.uploadInspectionResult(T00: self.result_T00!,
                                                                           T01: self.result_T01!,
                                                                           T02: self.result_T02!,
-                                                                          T03: self.result_T03!){ result in
+                                                                          T03: self.result_T03!,
+                                                                          spectrogram: UIImage(cgImage: helper.spectrogram!)){ result in
                                     }
                                 }
                             } else{
@@ -585,12 +586,12 @@ struct onInspectionView: View {
                     Spacer()
                     
                     Button(action : {
-                        if index < all_index - 1{
+                        if index < all_index{
                             index += 1
                         }
                     }){
                         HStack{
-                            Text(index < all_index-1 ? "다음" : "검사 종료")
+                            Text(index < all_index - 1 ? "다음" : "검사 종료")
                                 .foregroundColor(.white)
                             
                             Image(systemName : "chevron.right")

@@ -9,6 +9,7 @@ import SwiftUI
 import RealityKit
 
 struct TrainingSessionView: View {
+    let type: TrainTypeModel
     @ObservedObject var viewModel : ARViewModel = ARViewModel()
     
     var body: some View {
@@ -66,6 +67,8 @@ struct TrainingSessionView: View {
                 }
 
             }
+        }.onAppear{
+            viewModel.changeType(type: type)
         }.onDisappear{
             viewModel.stopSessionDelegate()
         }

@@ -22,9 +22,8 @@ struct InspectionMainView: View {
                        
                         HStack {
                             Image(systemName : "waveform.and.magnifyingglass")
-                                .resizable()
-                                .frame(width : 50, height : 45)
-                                .foregroundColor(.accent)
+                                .font(.largeTitle)
+                                .foregroundStyle(Color.accentColor)
                             
                             VStack{
                                 HStack {
@@ -51,9 +50,8 @@ struct InspectionMainView: View {
                         
                         HStack {
                             Image(systemName : "chart.line.uptrend.xyaxis")
-                                .resizable()
-                                .frame(width : 50, height : 50)
-                                .foregroundColor(.accent)
+                                .font(.largeTitle)
+                                .foregroundStyle(Color.accentColor)
                             
                             VStack{
                                 HStack {
@@ -81,9 +79,8 @@ struct InspectionMainView: View {
                         
                         HStack {
                             Image(systemName : "speaker.slash.fill")
-                                .resizable()
-                                .frame(width : 50, height : 50)
-                                .foregroundColor(.accent)
+                                .font(.largeTitle)
+                                .foregroundStyle(Color.accentColor)
                             
                             VStack{
                                 HStack {
