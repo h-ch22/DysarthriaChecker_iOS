@@ -174,7 +174,7 @@ class UserManagement : ObservableObject{
         }
     }
     
-    func uploadInspectionResult(T00: [PredictResult], T01: [PredictResult], T02: [PredictResult], T03: [PredictResult], spectrogram: UIImage, completion: @escaping(_ result: Bool?) -> Void){
+    func uploadInspectionResult(T00: [PredictResult], T01: [PredictResult], T02: [PredictResult], T03: [PredictResult], spectrogram: UIImage, scripts: String?, completion: @escaping(_ result: Bool?) -> Void){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd. kk:mm:ss"
         
@@ -192,7 +192,8 @@ class UserManagement : ObservableObject{
             "T02_\(T02[3].label)" : T02[3].score,
             "T03_\(T03[0].label)" : T03[0].score,
             "T03_\(T03[1].label)" : T03[1].score,
-            "T03_\(T03[2].label)" : T03[2].score
+            "T03_\(T03[2].label)" : T03[2].score,
+            "Scripts" : scripts
         ]){ error in
             if error != nil{
                 print(error?.localizedDescription)
@@ -294,6 +295,7 @@ class UserManagement : ObservableObject{
                         let T03_FUNCTIONAL = data["T03_FUNCTIONAL"] as? Float ?? 0.0
                         let T03_LARYNX = data["T03_LARYNX"] as? Float ?? 0.0
                         let T03_ORAL = data["T03_ORAL"] as? Float ?? 0.0
+                        let scripts = data["Scripts"] as? String ?? nil
                         
                         var T00 : [PredictResult] = [PredictResult(score: T00_BRAIN, label: "BRAIN"), PredictResult(score: T00_LANGUAGE, label: "LANGUAGE"), PredictResult(score: T00_LARYNX, label: "LARYNX")]
                         var T01 : [PredictResult] = [PredictResult(score: T01_EAR, label: "EAR"), PredictResult(score: T01_LANGUAGE, label: "LANGUAGE")]

@@ -16,4 +16,5 @@ struct InspectionResultModel : Identifiable{
     let T02 : [PredictResult]?
     let T03 : [PredictResult]?
     var spectrogram : URL? = nil
+    var scripts: String? = nil
 }

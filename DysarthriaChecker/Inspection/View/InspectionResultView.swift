@@ -20,6 +20,7 @@ struct InspectionResultView: View {
     let result_T01 : [PredictResult]
     let result_T02 : [PredictResult]
     let result_T03 : [PredictResult]
+    let scripts: String?
     
     let formatter = DateFormatter()
     
@@ -182,6 +183,26 @@ struct InspectionResultView: View {
                             .aspectRatio(contentMode: .fit)
                         
                         Spacer().frame(height : 20)
+//                        
+//                        if scripts != nil{
+//                            HStack{
+//                                Text("사용한 스크립트")
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(.txt_color)
+//                                
+//                                Spacer()
+//                            }
+//                            
+//                            Spacer().frame(height : 10)
+//                            
+//                            Divider()
+//                            
+//                            Spacer().frame(height : 10)
+//                            
+//                            Text(scripts!)
+//                            
+//                            Spacer().frame(height : 20)
+//                        }
                         
                         Button(action: {
                             self.showShareSheet = true
@@ -234,12 +255,13 @@ struct InspectionResultView: View {
                                                                                                                           T01: result_T01,
                                                                                                                           T02: result_T02,
                                                                                                                           T03: result_T03,
-                                                                                                                          spectrogram: UIImage(cgImage: helper.spectrogram!)))?.dataRepresentation()])
+                                                                                                                          spectrogram: UIImage(cgImage: helper.spectrogram!),
+                                                                                                                          scripts: scripts))?.dataRepresentation()])
             })
         }
     }
 }
 
 #Preview {
-    InspectionResultView(helper : InspectionHelper(), result_T00: [PredictResult(score: 1.0, label: "TEST_T00")], result_T01: [PredictResult(score: 1.0, label: "TEST_T01")], result_T02: [PredictResult(score: 1.0, label: "TEST_T02")], result_T03: [PredictResult(score: 1.0, label: "TEST_T03")])
+    InspectionResultView(helper : InspectionHelper(), result_T00: [PredictResult(score: 1.0, label: "TEST_T00")], result_T01: [PredictResult(score: 1.0, label: "TEST_T01")], result_T02: [PredictResult(score: 1.0, label: "TEST_T02")], result_T03: [PredictResult(score: 1.0, label: "TEST_T03")], scripts: nil)
 }

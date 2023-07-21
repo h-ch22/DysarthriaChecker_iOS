@@ -11,6 +11,7 @@ import RosaKit
 import Accelerate
 import UIKit
 import PDFKit
+import AVFAudio
 
 
 class InspectionHelper : NSObject, ObservableObject{
@@ -143,7 +144,7 @@ class InspectionHelper : NSObject, ObservableObject{
         }
     }
     
-    static func createPDF(patientName: String, id: String, T00 : [PredictResult], T01 : [PredictResult], T02 : [PredictResult], T03 : [PredictResult], spectrogram: UIImage?) -> Data{
+    static func createPDF(patientName: String, id: String, T00 : [PredictResult], T01 : [PredictResult], T02 : [PredictResult], T03 : [PredictResult], spectrogram: UIImage?, scripts: String?) -> Data{
         let pdfMetaData = [
             kCGPDFContextCreator : "Dysarthria Checker",
             kCGPDFContextAuthor : "Dysarthria Checker",
@@ -227,6 +228,16 @@ class InspectionHelper : NSObject, ObservableObject{
                 let imageRect = CGRect(x: 84, y: cursor, width: scaledWidth, height: scaledHeight)
                 spectrogram?.draw(in: imageRect)
             }
+            
+//            if scripts != nil{
+//                cursor += 12
+//                
+//                cursor = context.addSingleLineText(fontSize: 16, weight: .bold, text: "검사에 사용된 스크립트", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: .underline, annotationColor: .black)
+//                
+//                cursor += 6
+//
+//                cursor = context.addSingleLineText(fontSize: 14, weight: .regular, text: "\(scripts!)", indent: leftMargin, cursor: cursor, pdfSize: pageRect.size, annotation: nil, annotationColor: .black)
+//            }
         }
         
         return data
@@ -412,7 +423,7 @@ class InspectionHelper : NSObject, ObservableObject{
             progress = .LOAD_FILE
             
             let dataCount = audio?.data.count ?? 0
-            let sampleRate = 44100
+            let sampleRate = 44000
             let bytesPerSample = audio?.bytesPerSample ?? 0
             
             if bytesPerSample == 0{
@@ -452,6 +463,89 @@ class InspectionHelper : NSObject, ObservableObject{
         
         let result = sortedResults.map { PredictResult(score: $0.1.floatValue, label: labels[$0.0]) }
         return result
+    }
+    
+    func getUsedScripts(type: InspectionTypeModel) -> String?{
+        do{
+            switch type{
+            case .WORD:
+                let data = try Data(contentsOf: URL(fileURLWithPath: word_path))
+                let dataEncoded = String(data: data, encoding: .utf8)
+                
+                if let dataArr = dataEncoded?.components(separatedBy: "\n"){
+                    var scripts = ""
+                    
+                    for index in usedIndexes{
+                        scripts += "\(dataArr[index])"
+                        
+                        if usedIndexes.last != index{
+                            scripts += ", "
+                        }
+                    }
+                    
+                    return scripts
+                }
+                
+            case .SENTENCE:
+                let data = try Data(contentsOf: URL(fileURLWithPath: sentence_path))
+                let dataEncoded = String(data: data, encoding: .utf8)
+                
+                if let dataArr = dataEncoded?.components(separatedBy: "\n"){
+                    var scripts = ""
+                    
+                    for index in usedIndexes{
+                        scripts += " \(dataArr[index])"
+                        
+                        if usedIndexes.last != index{
+                            scripts += ", "
+                        }
+                    }
+                    
+                    return scripts
+                }
+                
+            case .PARAGRAPH:
+                let data = try Data(contentsOf: URL(fileURLWithPath: paragraph_path))
+                let dataEncoded = String(data: data, encoding: .utf8)
+                
+                if let dataArr = dataEncoded?.components(separatedBy: "\n"){
+                    var scripts = ""
+                    
+                    for index in usedIndexes{
+                        scripts += " \(dataArr[index])"
+                        
+                        if usedIndexes.last != index{
+                            scripts += ", "
+                        }
+                    }
+                    
+                    return scripts
+                }
+                
+            case .SEMI_FREE_SPEECH:
+                let data = try Data(contentsOf: URL(fileURLWithPath: semiFreeSpeech_path))
+                let dataEncoded = String(data: data, encoding: .utf8)
+                
+                if let dataArr = dataEncoded?.components(separatedBy: "\n"){
+                    var scripts = ""
+                    
+                    let index = getRandomIndex(max: dataArr.count)
+                    let script = dataArr[index].split(separator: ",")
+                    
+                    scripts += " \(String(script[0]))"
+                }
+                
+            case .FREE_SPEECH:
+                return "자유 발화 (사전에 녹음된 음성)"
+            }
+            
+            
+        } catch{
+            print("Error reading CSV file")
+            return nil
+        }
+        
+        return nil
     }
 
     func predict(completion: @escaping(_ result: [PredictResult]?) -> Void){

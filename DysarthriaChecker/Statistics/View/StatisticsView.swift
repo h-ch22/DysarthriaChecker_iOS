@@ -50,8 +50,12 @@ struct StatisticsView: View {
                                 
                                 Spacer()
                                 
-                                Text(helper.inspectionResults[currentIndex].targetDate ?? "")
-                                    .foregroundStyle(Color.txt_color)
+                                Picker("", selection: $currentIndex){
+                                    ForEach(0..<helper.inspectionResults.count){
+                                        Text(helper.inspectionResults[$0].targetDate ?? "")
+                                            .foregroundStyle(Color.txt_color)
+                                    }
+                                }.pickerStyle(MenuPickerStyle())
                                 
                                 Spacer()
                                 
@@ -214,6 +218,26 @@ struct StatisticsView: View {
                             Spacer().frame(height : 20)
                         }
                         
+//                        if helper.inspectionResults[currentIndex].scripts != nil{
+//                            HStack{
+//                                Text("사용한 스크립트")
+//                                    .fontWeight(.semibold)
+//                                    .foregroundColor(.txt_color)
+//                                
+//                                Spacer()
+//                            }
+//                            
+//                            Spacer().frame(height : 10)
+//                            
+//                            Divider()
+//                            
+//                            Spacer().frame(height : 10)
+//                            
+//                            Text(helper.inspectionResults[currentIndex].scripts!)
+//                            
+//                            Spacer().frame(height : 20)
+//                        }
+                        
                         Button(action: {
                             self.showShareSheet = true
                         }){
@@ -267,7 +291,8 @@ struct StatisticsView: View {
                                                                                                                           T01: helper.inspectionResults[currentIndex].T01!,
                                                                                                                           T02: helper.inspectionResults[currentIndex].T02!,
                                                                                                                           T03: helper.inspectionResults[currentIndex].T03!,
-                                                                                                                          spectrogram: helper.spectrogram))?.dataRepresentation()])
+                                                                                                                          spectrogram: helper.spectrogram,
+                                                                                                                          scripts: helper.inspectionResults[currentIndex].scripts))?.dataRepresentation()])
             })
         }
     }

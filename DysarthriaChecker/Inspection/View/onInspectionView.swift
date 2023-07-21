@@ -372,7 +372,8 @@ struct onInspectionView: View {
                                                                           T01: self.result_T01!,
                                                                           T02: self.result_T02!,
                                                                           T03: self.result_T03!,
-                                                                          spectrogram: UIImage(cgImage: helper.spectrogram!)){ result in
+                                                                          spectrogram: UIImage(cgImage: helper.spectrogram!),
+                                                                          scripts: helper.getUsedScripts(type: self.type)){ result in
                                     }
                                 }
                             } else{
@@ -504,7 +505,8 @@ struct onInspectionView: View {
                                              result_T00: self.result_T00!,
                                              result_T01: self.result_T01!,
                                              result_T02: self.result_T02!,
-                                             result_T03: self.result_T03!)
+                                             result_T03: self.result_T03!,
+                                             scripts: helper.getUsedScripts(type: self.type))
                     }
                     .onAppear{
                         DispatchQueue.global(qos: .background).async{

@@ -16,5 +16,85 @@
             categories = "Metal Diagnostics">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0229288-0384-4D38-921E-BDCFEC3A3708"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DysarthriaChecker/Inspection/Helper/InspectionHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
+            landmarkName = "extractMelSpectrogram(filePath:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F0229288-0384-4D38-921E-BDCFEC3A3708 - a1793169cd2aa8ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DysarthriaChecker.InspectionHelper.extractMelSpectrogram(filePath: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DysarthriaChecker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hachangjin/Desktop/2023/Dysarthria%20Checker/iOS/DysarthriaChecker/Inspection/Helper/InspectionHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "421"
+                  endingLineNumber = "421"
+                  offsetFromSymbolStart = "1328">
+               </Location>
+               <Location
+                  uuid = "F0229288-0384-4D38-921E-BDCFEC3A3708 - a829d751838e0355"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.URL) throws -&gt; Swift.Optional&lt;RosaKit.WavFileManager.WAVFileDesriptor&gt; in DysarthriaChecker.InspectionHelper.extractMelSpectrogram(filePath: Swift.Optional&lt;Foundation.URL&gt;, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DysarthriaChecker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hachangjin/Desktop/2023/Dysarthria%20Checker/iOS/DysarthriaChecker/Inspection/Helper/InspectionHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "421"
+                  endingLineNumber = "421"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3AE4C37-39D6-40C4-82E5-B839E3462652"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DysarthriaChecker/Inspection/Helper/InspectionHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
+            landmarkName = "extractMelSpectrogram(filePath:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "57382B18-C635-4E66-82AD-3FB073BA97DA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DysarthriaChecker/Inspection/Helper/InspectionHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
+            landmarkName = "extractMelSpectrogram(filePath:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
