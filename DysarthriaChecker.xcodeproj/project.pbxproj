@@ -311,6 +311,7 @@
 		7B71DA0929FA32CD004B1EA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7BA1D00629F42A190016578B /* DysarthriaCheckerApp.swift */,
 				7BAD71D729FFFC92004B7655 /* CheckBox_w.swift */,
 				7BAD71D629FFFC91004B7655 /* CheckBox.swift */,
 				7BAD71D529FFFC91004B7655 /* PDFViewer.swift */,
@@ -362,7 +363,6 @@
 				7BB5014D2A01649800F27BFB /* Home */,
 				7B71DA0829FA32C7004B1EA8 /* Framework */,
 				7B71DA0429FA32B7004B1EA8 /* UserManagement */,
-				7BA1D00629F42A190016578B /* DysarthriaCheckerApp.swift */,
 				7BA1D00A29F42A1A0016578B /* Assets.xcassets */,
 				7BA1D00C29F42A1A0016578B /* Preview Content */,
 			);

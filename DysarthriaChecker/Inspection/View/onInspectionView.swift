@@ -509,7 +509,7 @@ struct onInspectionView: View {
                                              scripts: helper.getUsedScripts(type: self.type))
                     }
                     .onAppear{
-                        DispatchQueue.global(qos: .background).async{
+                        DispatchQueue.global().async{
                             audioHelper.finishRecording(){ result in
                                 guard let result = result else{ return }
                                 
