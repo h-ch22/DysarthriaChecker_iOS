@@ -59,21 +59,32 @@ A diagnose app for detect dysarthria with ML and Korean vocalization for Korean<
  iPhone 12 Pro </br>
  iPhone 12 </br>
  iPhone 12 mini </br>
+iPhone 11 Pro Max </br>
+ iPhone 11 Pro </br>
+ iPhone Xs Max </br>
+ iPhone Xs </br>
+ iPhone X<sub>R</sub> </br>
  iPhone SE (3rd-Generation) (AR Train not supported.) </br>
+ iPhone SE (2nd-Generation) (AR Train not supported.) </br>
 
 ### iPad</br>
 
-> iPad Pro 12.9 6th-Generation </br>
- iPad Pro 11 4th-Generation </br>
- iPad Pro 12.9 5th-Generation </br>
- iPad 11 3rd-Generation </br>
- iPad Pro 12.9 4th-Generation </br>
- iPad 11 2nd-Generation </br>
- iPad Pro 12.9 3rd-Generation </br>
- iPad Pro 11 1st-Generation </br>
+> iPad Pro 12.9 (6th-Generation) </br>
+ iPad Pro 11 (4th-Generation) </br>
+ iPad Pro 12.9 (5th-Generation) </br>
+ iPad Pro 11 (3rd-Generation) </br>
+ iPad Pro 12.9 (4th-Generation) </br>
+ iPad Pro 11 (2nd-Generation) </br>
+ iPad Pro 12.9 (3rd-Generation) </br>
+ iPad Pro 11 (1st-Generation) </br>
+ iPad Pro 12.9 (2nd-Generation) (AR Train not supported.) </br>
+ iPad Pro 10.5 (AR Train not supported.) </br>
  iPad Air (5th-Generation) (AR Train not supported.) </br>
  iPad Air (4th-Generation) (AR Train not supported.) </br>
+ iPad Air (3rd-Generation) (AR Train not supported.) </br>
  iPad mini (6th-Generation) (AR Train not supported.) </br>
+ iPad mini (5th-Generation) (AR Train not supported.) </br>
  iPad (10th-Generation) (AR Train not supported.) </br>
+ iPad (9th-Generation) (AR Train not supported.) </br>
 
  * Required iOS/iPadOS 16 or up.
