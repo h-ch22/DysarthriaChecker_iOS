@@ -59,8 +59,9 @@ A diagnose app for detect dysarthria with ML and Korean vocalization for Korean<
  iPhone 12 Pro </br>
  iPhone 12 </br>
  iPhone 12 mini </br>
-iPhone 11 Pro Max </br>
+ iPhone 11 Pro Max </br>
  iPhone 11 Pro </br>
+ iPhone 11 </br>
  iPhone Xs Max </br>
  iPhone Xs </br>
  iPhone X<sub>R</sub> </br>
