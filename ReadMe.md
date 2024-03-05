@@ -4,6 +4,8 @@ Dysarthria Checker
 </br>
 A diagnose app for detect dysarthria with ML and Korean vocalization for Korean</br>
 
+[Changjin Ha, Taesik Go. "Development of a Mobile Application for Disease Prediction Using Speech Data of Korean Patients with Dysarthria" Journal of Biomedical Engineering Research 45.1 (2024): 1-9](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003057725)<br><br>
+
 ## Features</br>
 #### Home</br>
 > Check your latest inspection results at a glance.</br>
