@@ -241,8 +241,10 @@ struct InspectionResultView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         .padding(20)
                 }
-            }.navigationBarItems(trailing: Button("닫기"){
+            }.navigationBarItems(leading: Button(action: {
                 self.presentationmode.wrappedValue.dismiss()
+            }){
+                Image(systemName: "xmark")
             })
             .onAppear{
                 formatter.dateFormat = "yyyy. MM. dd. kk:mm"

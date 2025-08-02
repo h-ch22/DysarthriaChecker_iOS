@@ -134,9 +134,13 @@ struct InspectionMainView: View {
                     
                 }.padding(20).navigationTitle(Text("음성 분석 시작하기"))
                     .toolbar(content: {
-                        Button("닫기"){
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
+                        ToolbarItem(placement: .topBarLeading, content: {
+                            Button(action: {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }){
+                                Image(systemName: "xmark")
+                            }
+                        })
                     })
             }
         }

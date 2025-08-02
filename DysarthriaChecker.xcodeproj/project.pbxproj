@@ -3,17 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		368E509D64CDE1D190D2CF5D /* Pods_DysarthriaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2CA4A0EE18222082D49FB1 /* Pods_DysarthriaCheckerTests.framework */; };
 		7B49A47529FA33F800978134 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B49A47429FA33F800978134 /* GoogleService-Info.plist */; };
 		7B49A47829FA343A00978134 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47729FA343A00978134 /* FirebaseAnalytics */; };
-		7B49A47A29FA343A00978134 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47929FA343A00978134 /* FirebaseAnalyticsSwift */; };
 		7B49A47C29FA343A00978134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47B29FA343A00978134 /* FirebaseAuth */; };
 		7B49A47E29FA343A00978134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47D29FA343A00978134 /* FirebaseFirestore */; };
-		7B49A48029FA343A00978134 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A47F29FA343A00978134 /* FirebaseFirestoreSwift */; };
 		7B49A48229FA343A00978134 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A48129FA343A00978134 /* FirebaseFunctions */; };
 		7B49A48429FA343A00978134 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A48329FA343A00978134 /* FirebaseMessaging */; };
 		7B49A48629FA343A00978134 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7B49A48529FA343A00978134 /* FirebaseStorage */; };
@@ -91,7 +89,6 @@
 		F6B6E38D2A56A17700E5A8E7 /* AudioSpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */; };
 		F6BBC4512A5FD28F00E8F62E /* onRenderingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BBC4502A5FD28F00E8F62E /* onRenderingView.swift */; };
 		F6D5D26B2A641C8400DD565A /* PredictResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5D26A2A641C8400DD565A /* PredictResult.swift */; };
-		F6D5D27E2A6438F400DD565A /* include in Resources */ = {isa = PBXBuildFile; fileRef = F6D5D27D2A6438F400DD565A /* include */; };
 		F6DE9FA62A651EEB00A1B9E1 /* InspectionResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DE9FA52A651EEB00A1B9E1 /* InspectionResultRow.swift */; };
 /* End PBXBuildFile section */
 
@@ -199,18 +196,36 @@
 		F6B6E38C2A56A17700E5A8E7 /* AudioSpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpectrumView.swift; sourceTree = "<group>"; };
 		F6BBC4502A5FD28F00E8F62E /* onRenderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onRenderingView.swift; sourceTree = "<group>"; };
 		F6D5D26A2A641C8400DD565A /* PredictResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictResult.swift; sourceTree = "<group>"; };
-		F6D5D27D2A6438F400DD565A /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		F6DE9FA52A651EEB00A1B9E1 /* InspectionResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultRow.swift; sourceTree = "<group>"; };
 		FF442250C95259AEBFCE200E /* Pods-DysarthriaChecker-DysarthriaCheckerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DysarthriaChecker-DysarthriaCheckerUITests.release.xcconfig"; path = "Target Support Files/Pods-DysarthriaChecker-DysarthriaCheckerUITests/Pods-DysarthriaChecker-DysarthriaCheckerUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7BE554252E3E57B600C22731 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				list_paragraph.csv,
+				list_semi_free_speech.csv,
+				list_sentence.csv,
+				list_word.csv,
+				T00_mobile.pt,
+				T01_mobile.pt,
+				T02_mobile.pt,
+				T03_mobile.pt,
+			);
+			target = 7BA1D00229F42A190016578B /* DysarthriaChecker */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		7BE5541C2E3E57AC00C22731 /* include */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (7BE554252E3E57B600C22731 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = include; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7BA1D00029F42A190016578B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B49A48029FA343A00978134 /* FirebaseFirestoreSwift in Frameworks */,
-				7B49A47A29FA343A00978134 /* FirebaseAnalyticsSwift in Frameworks */,
 				7BAD71E029FFFE6D004B7655 /* CryptoSwift in Frameworks */,
 				7B49A48429FA343A00978134 /* FirebaseMessaging in Frameworks */,
 				7B49A47E29FA343A00978134 /* FirebaseFirestore in Frameworks */,
@@ -355,8 +370,8 @@
 		7BA1D00529F42A190016578B /* DysarthriaChecker */ = {
 			isa = PBXGroup;
 			children = (
+				7BE5541C2E3E57AC00C22731 /* include */,
 				F62576492A66689500BE5D2C /* Statistics */,
-				F6D5D27D2A6438F400DD565A /* include */,
 				7BA7703C2A01EA4700D16A93 /* Train */,
 				7BB5015C2A0172AA00F27BFB /* More */,
 				7BB501512A01688B00F27BFB /* Inspection */,
@@ -601,13 +616,14 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				7BE5541C2E3E57AC00C22731 /* include */,
+			);
 			name = DysarthriaChecker;
 			packageProductDependencies = (
 				7B49A47729FA343A00978134 /* FirebaseAnalytics */,
-				7B49A47929FA343A00978134 /* FirebaseAnalyticsSwift */,
 				7B49A47B29FA343A00978134 /* FirebaseAuth */,
 				7B49A47D29FA343A00978134 /* FirebaseFirestore */,
-				7B49A47F29FA343A00978134 /* FirebaseFirestoreSwift */,
 				7B49A48129FA343A00978134 /* FirebaseFunctions */,
 				7B49A48329FA343A00978134 /* FirebaseMessaging */,
 				7B49A48529FA343A00978134 /* FirebaseStorage */,
@@ -712,7 +728,6 @@
 				7BA1D00E29F42A1A0016578B /* Preview Assets.xcassets in Resources */,
 				7B49A47529FA33F800978134 /* GoogleService-Info.plist in Resources */,
 				7BA1D00B29F42A1A0016578B /* Assets.xcassets in Resources */,
-				F6D5D27E2A6438F400DD565A /* include in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,9 +778,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker-DysarthriaCheckerUITests/Pods-DysarthriaChecker-DysarthriaCheckerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker-DysarthriaCheckerUITests/Pods-DysarthriaChecker-DysarthriaCheckerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -824,9 +843,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker/Pods-DysarthriaChecker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-DysarthriaChecker/Pods-DysarthriaChecker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1262,16 +1285,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 12.0.0;
 			};
 		};
 		7BAD71DE29FFFE6D004B7655 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1282,11 +1305,6 @@
 			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		7B49A47929FA343A00978134 /* FirebaseAnalyticsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsSwift;
-		};
 		7B49A47B29FA343A00978134 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1296,11 +1314,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
-		};
-		7B49A47F29FA343A00978134 /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7B49A47629FA343A00978134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
 		};
 		7B49A48129FA343A00978134 /* FirebaseFunctions */ = {
 			isa = XCSwiftPackageProductDependency;

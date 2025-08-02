@@ -102,9 +102,13 @@ struct PartStatisticsView: View {
                 }
             }
             .navigationTitle(Text("추세"))
-            .navigationBarItems(trailing: Button("닫기"){
-                self.presentationMode.wrappedValue.dismiss()
-            })
+            .navigationBarItems(leading:
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }){
+                    Image(systemName: "xmark")
+                }
+            )
         }
 
         

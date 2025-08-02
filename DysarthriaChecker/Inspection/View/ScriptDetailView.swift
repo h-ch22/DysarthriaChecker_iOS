@@ -23,9 +23,13 @@ struct ScriptDetailView: View {
                             .lineLimit(nil)
                             .lineSpacing(15)
                     }.padding(20)
-                }.navigationBarItems(trailing: Button("닫기"){
-                    self.presentationMode.wrappedValue.dismiss()
-                })
+                }.navigationBarItems(leading:
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }){
+                        Image(systemName: "xmark")
+                    }
+                )
                 .navigationTitle(Text("스크립트 전체 보기"))
             }
         }

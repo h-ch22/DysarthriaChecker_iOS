@@ -140,7 +140,6 @@ struct HomeView: View {
                 AboutDysarthriaView()
                 
                 
-                
             }.padding(20)
         }.animation(.easeInOut, value: 1.0)
             .onAppear{

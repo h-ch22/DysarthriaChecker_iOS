@@ -230,7 +230,7 @@ class UserManagement : ObservableObject{
                 completion(false)
                 return
             } else{
-                if querySnapshot?.documents != nil{
+                if querySnapshot?.documents != nil && (querySnapshot?.documents.count ?? 0) > 0{
                     let doc = querySnapshot?.documents[(querySnapshot?.documents.count ?? 0) - 1]
                     let data = doc?.data()
                     let T00_BRAIN = data?["T00_BRAIN"] as? Float ?? 0.0
