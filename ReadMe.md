@@ -6,7 +6,93 @@ A diagnose app for detect dysarthria with ML and Korean vocalization for Korean<
 
 [Changjin Ha, Taesik Go. "Development of a Mobile Application for Disease Prediction Using Speech Data of Korean Patients with Dysarthria" Journal of Biomedical Engineering Research 45.1 (2024): 1-9](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003057725)<br><br>
 
-## Features</br>
+## 🚀 Tech Stack
+
+### Client (iOS)
+
+<img src="https://img.shields.io/badge/Swift-df5d43?style=flat-square&logo=Swift&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/SwiftUI-df5d43?style=flat-square&logo=Swift&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/ARKit-df5d43?style=flat-square&logo=Swift&logoColor=white"/></a>
+
+### Audio Engineering (iOS)
+
+- AVFoundation: Record user speech as 44.1kHz PCM WAV
+- RosaKit: Extract Mel Spectrogram from raw audio signal
+- Metal: Hardware-accelerated GPU pipeline for rendering spectrograms
+
+### Backend (BaaS & Serverless)
+
+- Firebase Firestore: Save and sync patient's diagnostic results
+
+### AI
+
+- PyTorch Mobile: Execute lightweight `.ptl` models directly on iOS
+- Hierarchical Classification: Sequential inference pipeline (T00 to T03) for deep dysarthria analysis
+
+
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    %% Audio Processing Pipeline
+    subgraph AudioPipeline [🎙️ Audio Preprocessing]
+        Mic[AVFoundation / AVAudioRecorder]
+        WAV[44.1kHz PCM WAV]
+        Rosa[RosaKit]
+        Mel[Mel Spectrogram]
+        Metal[Metal GPU Pipeline]
+
+        Mic -->|Record Voice| WAV
+        WAV -->|Signal Processing| Rosa
+        Rosa -->|Extract Feature| Mel
+        Mel -->|Hardware Accelerate| Metal
+    end
+
+    %% AI Inference Pipeline (Hierarchical)
+    subgraph AIPipeline [🧠 PyTorch Mobile Inference]
+        T00[Model T00: Binary Detection]
+        T01[Model T01: Type Classification 1]
+        T02[Model T02: Type Classification 2]
+        T03[Model T03: Final Severity]
+
+        Metal -.->|Input Tensor| T00
+        T00 -->|Hierarchical Flow| T01
+        T01 --> T02
+        T02 --> T03
+    end
+
+    %% Client & Backend
+    subgraph ClientBackend [📱 Client & ☁️ Firebase]
+        UI[UI & State Management]
+        AR[ARKit / Facial Tracking]
+        PDF[CoreGraphics / PDF Report]
+        Firestore[(Firebase Firestore)]
+
+        AR <-->|AR Speech Train| UI
+        T03 -->|Classification Result| UI
+        UI -->|Generate Report| PDF
+        UI <-->|Save Result| Firestore
+    end
+```
+
+## 🧱 If I were to rebuild it in 2026
+
+| Layer | Original | 2026 Pick | Reason |
+|---|---|---|---|
+| Audio recording | AVAudioRecorder + manual WAV header | AVAudioRecorder (native WAV, no manual header) | Fewer silent bugs |
+| Spectrogram | RosaKit | vDSP + Accelerate (already imported) | No CocoaPods dep, same performance |
+| GPU rendering | Metal + custom shaders | Metal (keep) | Already well-done |
+| ML inference | PyTorch Mobile Nightly | CoreML `.mlpackage` + Neural Engine | 2-5x faster, non CocoaPods, stable API |
+| Crypto | CryptoSwift@main | Apple CryptoKit | Hardware-accelerated, no dep |
+| Credentials | UserDefaults | Keychain via KeychainAccess (SPM) | Security baseline |
+| Build system | CocoaPods + SPM hybrid | SPM only | After CoreML migration |
+| Concurrency | Completion handlers + @MainActor blocking | Swift Concurrency + background actors | Prevents UI freeze |
+| State machine | `switch progress` multi-call | Single `async throws` inference function | Safe, testable API |
+
+## ✨ Core Features</br>
+<details>
+<summary>Show Contents</summary>
+
 #### Home</br>
 > Check your latest inspection results at a glance.</br>
 
@@ -91,3 +177,6 @@ A diagnose app for detect dysarthria with ML and Korean vocalization for Korean<
  iPad (9th-Generation) (AR Train not supported.) </br>
 
  * Required iOS/iPadOS 16 or up.
+
+
+</details>
